@@ -1,0 +1,289 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/nav.css">
+ <link rel="stylesheet" href="../css/blog.css">   
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/tango.css">
+<!------ Include the above in your HEAD tag ---------->
+
+    <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+               <li class="" style="
+    text-align: center;
+    background: #000000;
+"> 
+                 <img src="https://scontent.fbho1-1.fna.fbcdn.net/v/t1.0-1/p160x160/24176670_1494666630649404_7505247795837322239_n.jpg?_nc_cat=0&amp;oh=8b160fed68b34d89bfa5587f3fc6d403&amp;oe=5B32B2C8" style="
+    border-radius: 200px;
+    height: 100px;
+    width: 100px;
+    margin: 14% auto;
+    padding: 9px;
+    border: 1px double #664e90;
+">
+        
+                </li>
+                <li class="sidebar-brand">
+                    <a href="#">
+                       Ankit Mishra
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Home</a>
+		    </li>
+                <li>
+                    <a href="#">Profile</a>
+                </li>
+                <li>
+                   <a href="#">About</a> 
+                </li>
+                <li>
+                    <a href="#">Contact me</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
+                </li>
+            </ul>
+            <div style="height: 10%;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    align-items: center;
+    display: flex;
+    color: white !important;
+    justify-content: space-around;" class="footer-nav">
+                <a href=""><i class="fa fa-1x fa-github"></i></a>
+                <a href=""><i class="fa fa-1x fa-facebook"></i></a>
+                <a href=""> <i class="fa fa-1x fa-gmail"></i> </a>
+            </div>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="container-fluid">
+                <div class="row">
+                    <div style="padding: 0px;" class="col-lg-12">
+                       <div style="height: 50%;width: 100%;position: relative; " class="image_overrelay">
+<div class="heading_container"><h1 class="text-center" style="color:white;">Building MNIST App using Flask</h1>
+</div>
+<img class="image-banner" src="https://cdn-images-1.medium.com/max/2000/1*9qGFK0jjigADvy4BF_PZ_A.jpeg">  
+
+</div>
+                   
+                    </div>
+                </div>
+                 <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-12 ">
+<hr>
+<h2>About the Project</h2>
+
+<p>In this part of Digit Recognition we will be building a Digit recognizer App where we will be building a  flask web app so that we could draw any no and it will detect the number drawn on the screen</p>
+
+<hr>
+<h2>Uisng a Trained Model</h2>
+
+<p>As we have seen in part 1 ,we trained a Convolutional Neural Network on MNIST dataset and acheived a very decent accuracy on the train and test set. </p>
+
+<p>We later save the model using keras model's <code>to_json</code> . we could also use python pickle module to save the model in binary format and later restore the model whenever we need it. </p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">model_json</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>
+<span class="c">#open a json file and write models configurations in json format</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"model.json"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">json_file</span><span class="p">:</span>
+    <span class="n">json_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">model_json</span><span class="p">)</span>
+<span class="c"># serialize weights to HDF5</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_weights</span><span class="p">(</span><span class="s">"model.h5"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Saved model to disk"</span><span class="p">)</span></code></pre></figure>		
+
+<pre class="output">Saved model to disk</pre>
+
+
+<hr>
+<h2>Data Preprocessing</h2>
+<p>Now as we have trained our model we could just pickup any handwritten digit image and our model will predict the correct label with flying colors !! <i>The sad part is no.</i></p>
+We will have to do some transformations  while feeding input to the image.
+
+
+
+
+<p>First we will be installing flask on our system using pip python package manager.All the installation steps required for installation are mentioned in the <a href="">Flask</a>Official Website</p>.Once Flask have been installed,we ill be setting our templates and app.py
+
+<p>The Directory structure of our app is as follows</p>
+
+<img src="../static_assets/Mnist_part_2/structure.png" alt="">
+
+<p>where the static folder contains all the js,css files where as model is used to store the saved model. Inside the model folder we have a file called <code>load_model.py</code></p>.
+
+<p>This file compile the model and instead of learning the new weights and training the model we could use previously learned weights.</p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c">###############</span>
+<span class="n">model_load</span><span class="o">.</span><span class="n">py</span>
+<span class="c">##############</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">keras.models</span>
+<span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imresize</span><span class="p">,</span><span class="n">imshow</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Flatten</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span><span class="n">MaxPool2D</span>
+
+<span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">padding</span> <span class="o">=</span> <span class="s">'Same'</span><span class="p">,</span><span class="n">activation</span> <span class="o">=</span><span class="s">'relu'</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">())</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">padding</span> <span class="o">=</span> <span class="s">'Same'</span><span class="p">,</span><span class="n">activation</span> <span class="o">=</span><span class="s">'relu'</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">())</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">16</span><span class="p">,(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">padding</span> <span class="o">=</span> <span class="s">'Same'</span><span class="p">,</span><span class="n">activation</span> <span class="o">=</span><span class="s">'relu'</span><span class="p">,</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MaxPool2D</span><span class="p">())</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Flatten</span><span class="p">())</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">activation</span> <span class="o">=</span> <span class="s">"softmax"</span><span class="p">))</span>   
+    <span class="c">#load woeights into new model</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s">"model.h5"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Loaded Model from disk"</span><span class="p">)</span>
+
+    <span class="c">#compile and evaluate loaded model</span>
+    <span class="n">model</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">categorical_crossentropy</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adadelta</span><span class="p">(),</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s">'accuracy'</span><span class="p">])</span>
+    <span class="c">#loss,accuracy = model.evaluate(X_test,y_test)</span>
+    <span class="c">#print('loss:', loss)</span>
+    <span class="c">#print('accuracy:', accuracy)</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span></code></pre></figure>
+
+
+<p>Now as you can see model is compiled but not fitted .Only the weights learned are reused to compile the model.</p>		
+<hr>
+
+<h2>Setting up the Server</h2>
+
+<p>Now we will be setting the starter file or entry file of the app <code>start.py</code>.This file contains roting and request handlinglogic.we will be focusing on the preprocessing part. </p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">scipy.misc</span> <span class="kn">import</span> <span class="n">imsave</span><span class="p">,</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imresize</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">keras.models</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">sys</span> 
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">load_model</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="k">global</span> <span class="n">model</span><span class="p">,</span> <span class="n">graph</span>
+<span class="n">model</span><span class="p">,</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">init</span><span class="p">()</span>
+
+<span class="c">#setting index route    </span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">'/'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">"index.html"</span><span class="p">)</span>
+<span class="c">#request handling logic for each and every request</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">'/predict/'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">():</span>
+    <span class="c"># get data from drawing canvas and save as image</span>
+    <span class="n">parseImage</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">get_data</span><span class="p">())</span>
+
+    <span class="c"># read parsed image back in 8-bit, black and white mode (L)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s">'output.png'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'L'</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">imresize</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">))</span>
+
+    <span class="c"># reshape image data for use in neural network</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">graph</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">response</span> 
+ <span class="c">#Parsing images for preprocessing,decoding of base64 and converiting into  </span>
+<span class="k">def</span> <span class="nf">parseImage</span><span class="p">(</span><span class="n">imgData</span><span class="p">):</span>
+    <span class="c"># parse canvas bytes and save as output.png</span>
+    <span class="n">imgstr</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">b</span><span class="s">'base64,(.*)'</span><span class="p">,</span> <span class="n">imgData</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'input.png'</span><span class="p">,</span><span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">imgstr</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="c">#setting the port to serve </span>
+    <span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">"PORT"</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+    <span class="c">#start the main App</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span></code></pre></figure>
+
+<p>Now the Template of the app has canvas element which takes the input from user .The image drawn on the Canvas is served as a Base64 encoded string is posted to server. </p>
+
+<p>The index root acts has a separate function for post at the index route.The Parse image function takes the base64 encoded string,converts it into image ,reshapes into the  form  Keras would expect  the input to be <code>[no_of_sample,height,weight,channel]</code>.</p>
+<p>Now the image <code>output.png</code> written by the parse image function is read by the program.</p>
+
+<p>	Now the App  reads the image and keras <code>model.predict</code> function takes the reshaped image of the form <code>[-1,28,28,1]</code>.</p>
+
+
+
+<h2>Running the App</h2>
+
+<p>The App is ready to be served in Localhost.go to to the terminal and type the following </p>
+<pre class="output">
+export FLASK_APP = //starter script.py
+python -m flask run
+</pre>
+
+<p>The App takes a little time to run,because model is loaded and weights are added.</p>
+
+<img src="../static_assets/Mnist_part_2/App_demo.png" alt="">
+
+<p>A live version of my app is deployed to heroku. <a href="https://ankitpyc-mnist.herokuapp.com/">Try it out</a> </p>
+
+
+
+<hr>
+<div style="text-align: center;
+    font-size: medium;">
+Thankyou for reading !!
+<div >
+<div style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+">
+<i style="text-align: center;
+    margin: 1%;" class="fa fa-1x fa-github"></i>	
+<i style="text-align: center;
+    margin: 1%;" class="fa fa-1x fa-facebook"></i>
+<i style="text-align: center;
+    margin: 1%;" class="fa fa-1x fa-quora"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+<script src="../css/blog.js" type="text/javascript"></script>
+</body>
+</html>

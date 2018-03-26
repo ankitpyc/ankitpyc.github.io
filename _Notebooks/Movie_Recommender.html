@@ -1,0 +1,439 @@
+---
+title : Movie Recommender
+permalink : /Projects/:title
+---
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/nav.css">
+ <link rel="stylesheet" href="../css/blog.css">   
+
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/tango.css">
+<!------ Include the above in your HEAD tag ---------->
+
+    <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+               <li class="" style="
+    text-align: center;
+    background: #000000;
+"> 
+                 <img src="https://scontent.fbho1-1.fna.fbcdn.net/v/t1.0-1/p160x160/24176670_1494666630649404_7505247795837322239_n.jpg?_nc_cat=0&amp;oh=8b160fed68b34d89bfa5587f3fc6d403&amp;oe=5B32B2C8" style="
+    border-radius: 200px;
+    height: 100px;
+    width: 100px;
+    margin: 14% auto;
+    padding: 9px;
+    border: 1px double #664e90;
+">
+        
+                </li>
+                <li class="sidebar-brand">
+                    <a href="#">
+                       Ankit Mishra
+                    </a>
+                </li>
+                <li>
+                    <a href="{{site.url}}">Home</a>
+		    </li>
+                <li>
+                    <a href="#">Projects</a>
+                </li>
+                <li>
+                   <a href="#">About</a> 
+                </li>
+                <li>
+                    <a href="#">Contact me</a>
+                </li>
+            </ul>
+            <div style="height: 10%;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    align-items: center;
+    display: flex;
+    color: white !important;
+    justify-content: space-around;" class="footer-nav">
+                <a href=""><i class="fa fa-1x fa-github"></i></a>
+                <a href=""><i class="fa fa-1x fa-facebook"></i></a>
+                <a href=""> <i class="fa fa-1x fa-gmail"></i> </a>
+            </div>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+    			<span class="hamb-middle"></span>
+				<span class="hamb-bottom"></span>
+            </button>
+            <div class="container-fluid">
+                <div class="row">
+                    <div style="padding: 0px;" class="col-lg-12">
+                       <div style="
+    height: 50%;
+    width: 100%;
+    position: relative;  
+" class="image_overrelay">
+<div style="
+   
+position: absolute;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: -webkit-fill-available;
+    background: #22114ea6;
+
+"><h1 class="text-center" style="color:white;">Movie Recommendation System IMDB</h1>
+</div>
+<img class="image-banner" src="https://cdn-images-1.medium.com/max/1600/1*k182wNgZHsHxBwPgrKBE6Q.png">	
+
+</div>
+                   
+                    </div>
+                </div>
+                 <div class="row">
+                 	<div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-12 ">
+<hr>
+<h2>About the Project</h2>
+<p>
+In this I will be building a Movie Recommender System based on IMDB Dataset.Recommender System are quite useful and popular these.wether it be an ecommerce company or food Delivery Service,Everyone requires a recommender system.It helps them to understand their customers while it also provides a smooth userflow for the users to go through the website.Throughout this Notebook ,I will be discussing various Approaches to build a recommender system ,common algorthims to build a recommender system and also a small demo of how recommendation will be shown to the user. 
+<br>
+<hr>
+</p>
+
+<h1>Exploring and Visualization</h1>
+
+<p>The Dataset we are using for this project can be found <a href="#">here</a>.The Dataset comprises of 2 csv files.Lets import our libraries and see what data we have in the csv file</p>
+
+{% highlight python %}
+# linear algebra
+import numpy as np 
+
+# data processing, CSV file I/O (e.g. pd.read_csv)
+import pandas as pd
+# for visualizations and plotting graphs
+import matplotlib.pyplot as plt
+import seaborn as sns
+#setting the style of grids
+sns.set_style('whitegrid')
+{% endhighlight %}
+
+<p>There are two files <code>tmdb_5000_movies.csv</code> and <code>tmdb_5000_credits.csv</code>.Lets go through them one by one</p>
+{% highlight python %}
+
+#Load the First csv File 
+data_movies = pd.read_csv('Data/tmdb_5000_movies.csv')
+
+#Load the second csv File 
+data_credits = pd.read_csv('Data/tmdb_5000_credits.csv')
+{% endhighlight %}
+
+{% highlight python %}
+#Print the first 1 rows of the data_movies 
+data_movies.head(1)
+{% endhighlight %}
+
+    <table border="1" class="table table-responsive table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>budget</th>
+      <th>genres</th>
+      <th>homepage</th>
+      <th>id</th>
+      <th>keywords</th>
+      <th>original_language</th>
+      <th>original_title</th>
+      <th>overview</th>
+      <th>popularity</th>
+      <th>production_companies</th>
+      <th>production_countries</th>
+      <th>release_date</th>
+      <th>revenue</th>
+      <th>runtime</th>
+      <th>spoken_languages</th>
+      <th>status</th>
+      <th>tagline</th>
+      <th>title</th>
+      <th>vote_average</th>
+      <th>vote_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>237000000</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>http://www.avatarmovie.com/</td>
+      <td>19995</td>
+      <td>[{"id": 1463, "name": "culture clash"}, {"id":...</td>
+      <td>en</td>
+      <td>Avatar</td>
+      <td>In the 22nd century, a paraplegic Marine is di...</td>
+      <td>150.437577</td>
+      <td>[{"name": "Ingenious Film Partners", "id": 289...</td>
+      <td>[{"iso_3166_1": "US", "name": "United States o...</td>
+      <td>2009-12-10</td>
+      <td>2787965087</td>
+      <td>162.0</td>
+      <td>[{"iso_639_1": "en", "name": "English"}, {"iso...</td>
+      <td>Released</td>
+      <td>Enter the World of Pandora.</td>
+      <td>Avatar</td>
+      <td>7.2</td>
+      <td>11800</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now lets understand what each feature is</p>
+{% highlight python%}
+data_movies.columns
+{% endhighlight %}
+<pre class="output">
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 4803 entries, 0 to 4802
+Data columns (total 20 columns):
+budget                  4803 non-null int64
+genres                  4803 non-null object
+homepage                1712 non-null object
+id                      4803 non-null int64
+keywords                4803 non-null object
+original_language       4803 non-null object
+original_title          4803 non-null object
+overview                4800 non-null object
+popularity              4803 non-null float64
+production_companies    4803 non-null object
+production_countries    4803 non-null object
+release_date            4802 non-null object
+revenue                 4803 non-null int64
+runtime                 4801 non-null float64
+spoken_languages        4803 non-null object
+status                  4803 non-null object
+tagline                 3959 non-null object
+title                   4803 non-null object
+vote_average            4803 non-null float64
+vote_count              4803 non-null int64
+dtypes: float64(3), int64(4), object(13)
+memory usage: 750.5+ KB
+None
+</pre>
+
+<b>Some feature columns are explained as below:</b>
+<p>
+<code>genre</code>:states the genre of the film along with the genre id i.e comedy,drama <br>
+<code>budget</code>:budget of the movie <br>
+<code>homepage</code>:url of the movie website <br>
+<code>keywords</code>:indicates the plot of keywords which define the movies <br>
+<code>genre</code>:states the genre of the film along with the genre id i.e comedy,drama <br>
+<code>original_language</code>:s original language in which movie was produced <br>
+<code>popularity</code> : Popularity of movie <br>
+<code>vote_avg</code> : Average votes given to that movie <br>
+<code>vote_count</code> : total no of votes given to that movie <br>
+</p>
+<p>We will be exploring many of the columns later in the notebook and also understand what they</p>
+
+<hr>
+
+<h1>Exploratory Data Analysis</h1>
+In this section we will be analyzing the feature columns , their distrubution over the dataset and what insigths do we get from the plots or charts
+
+
+<h5> <b>1.1 Original language</b></h5>
+<p>Lets find out what is most popular language in which films are produced</p>
+    
+{% highlight python %}
+fig = plt.figure(figsize=(8,8))
+sns.countplot(y=data_movies['original_language'],data=data_movies)
+{% endhighlight %}
+
+<img src="{{site.baseurl}}{{"../static_assets/Recommender_Systems/Languages.png" }}" >
+
+<h5> <b>1.2 Popular Genres</b></h5>
+
+<p>In this section we will analyze which genre is most common among movies. i.e on which genre most of the movies are based.</p>
+{% highlight python %}
+import ast
+genres_movies = dict()
+for movies in data_movies['genres']:
+    movie = ast.literal_eval(movies)
+    for genre in movie:
+        if(genre['name'] not in genres_movies.keys()):
+            genres_movies[genre['name']] = 1
+        else:
+            genres_movies[genre['name']] = genres_movies[genre['name']]+1           
+{% endhighlight %}                   
+
+<img src="{{static.url}}{{"../static_assets/Recommender_Systems/genres.png"}}" alt="">
+
+
+
+<h1>Recommender Systems</h1>
+<p>Recommendation Systems are of mainly 3 different types.Each one offers a different level of personalization.Most recommender systems take either of two basic approaches: collaborative filtering or content-based filtering. Other approaches (such as hybrid approaches) also exist.</p>
+<ul>
+<li>
+<h4>Collaborative Filtering</h4>
+<p>In Collaborative Filtering,recommendations are based on prior user experience.Collaborative filtering uses group knowledge to form a recommendation based on like users.</p>
+</li>
+<li>
+<h4>Content Based Filtering</h4>
+<p>Content-based filtering constructs a recommendation on the basis of a user's behavior.This defineitely requires user browser history ,what kinds of content and blogs he is reading and recommends based on the History.Suppose we were to build a blog recommendation and if a particular user reads blogs about linux , the system would recommend blogs like operating system , ubuntu and other unix based operating.This is what user may like.</p>
+</li>
+<li>
+<h4>Hybrid Approach</h4>
+<p>In hybrid based Approach , that combines both the Collaborative and Content based approach is more complex as compared to both above.The Content based filtering could be used if the user data is not mature enough to be compared with other user data and give a cold start to the system but slighlt shift towards Collaborative approach when the user data grows enough. </p>
+</li>
+</ul>
+
+
+<hr>
+
+
+<h1>Weighted Voting Approach</h1>
+
+<p>Weighted Voting Approach is simple common approach which doesnot takes any user activity into account.
+It simply uses a predefined ranking formulae to rate movie based on thier votes,views etc.
+</p>
+<p>If we peek into our data,we have a lot of features like 
+  <code>Vote Average</code>,
+  <code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work)written in quora.I will be using that approach for movies rating for recommendation.
+
+
+<h2>Building our Simple Engine</h2>
+<p>The rating Formuale for IMDB is</p>
+<br>
+<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C where:</b>
+<code>R </code>: average for the movie (mean) = (Rating) <br>
+<code>v</code>:number of votes for the movie = (votes) <br>
+<code>m</code>: minimum votes required to be listed in the Top 250 (currently 25000) <br>
+<code>C</code> :the mean vote across the whole report (currently 7.0)
+
+<p>Now lets peek again into our movies data </p>
+
+{% highlight python %}
+data_movies.head(1)
+{% endhighlight %}   
+
+<div style="overflow: scroll;">
+   <table border="1" class="table table-responsive table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>budget</th>
+      <th>genres</th>
+      <th>homepage</th>
+      <th>id</th>
+      <th>keywords</th>
+      <th>original_language</th>
+      <th>original_title</th>
+      <th>overview</th>
+      <th>popularity</th>
+      <th>production_companies</th>
+      <th>production_countries</th>
+      <th>release_date</th>
+      <th>revenue</th>
+      <th>runtime</th>
+      <th>spoken_languages</th>
+      <th>status</th>
+      <th>tagline</th>
+      <th>title</th>
+      <th>vote_average</th>
+      <th>vote_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>237000000</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>http://www.avatarmovie.com/</td>
+      <td>19995</td>
+      <td>[{"id": 1463, "name": "culture clash"}, {"id":...</td>
+      <td>en</td>
+      <td>Avatar</td>
+      <td>In the 22nd century, a paraplegic Marine is di...</td>
+      <td>150.437577</td>
+      <td>[{"name": "Ingenious Film Partners", "id": 289...</td>
+      <td>[{"iso_3166_1": "US", "name": "United States o...</td>
+      <td>2009-12-10</td>
+      <td>2787965087</td>
+      <td>162.0</td>
+      <td>[{"iso_639_1": "en", "name": "English"}, {"iso...</td>
+      <td>Released</td>
+      <td>Enter the World of Pandora.</td>
+      <td>Avatar</td>
+      <td>7.2</td>
+      <td>11800</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+  
+<p>Lets calulate the <code>mean vote</code>,<code>average vote</code></p>
+
+
+{% highlight python %}
+votes_counts = data_movies[data_movies['vote_count'].notnull()]['vote_count'].astype('int')
+# we will be using minimum votes as 95% percentile of the maximum votes recieved
+minimum_votes = votes_count.quantile(.95)
+print 'minimum_votes :',minimum_votes
+{% endhighlight %}   
+<pre class="output">
+ 455 
+</pre>
+
+
+{% highlight python %}
+
+mean_votes = data_movies[data_movies['votes_avg'].notnull()]['votes_avg'].mean()
+print 'minimum_votes :',mean_votes
+
+{% endhighlight %}    
+   
+<pre class="output">
+  
+</pre>
+
+
+
+
+<hr/>
+<h2>Content Based Filtering</h2>
+<p>As we have already seen a couple of techniques for building recommendation engines we will be targetting a content based recommendation engine. we will be utilizing the keywords and plot of the movies to recommend the Movies.Lets start</p>
+
+<h4>1.1 Cleaning of Keywords</h4> 
+<p>Keywords will play an important role in the functioning of the engine. Indeed, recommendations will be based on similarity between films and to gauge such similarities, I will look for films described by the same keywords. Hence, the content of the plot_keywords variable deserves some attention since it will be extensively used.</p>
+
+<h4>1.1.1 Reducing words to their roots</h4>
+<p>
+We will be reducing words to their roots . This will help us to better infer from our model.Common
+NLP methodolgies are Stemming and Lemmatization. 
+</p>
+
+
+
+{% include footer.html %}
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+
+</body>
+</html>
