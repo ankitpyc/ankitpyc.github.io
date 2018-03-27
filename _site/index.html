@@ -10,25 +10,24 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.7/typed.min.js" type="text/javascript"></script>
+<script src="css/typ.js" type="text/javascript"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/profile.css">
 <link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/typed.css">
 </head>
 <body style="margin: 0px;">
 	<div class="App">
+        <!-- Sidebar -->
 <div class='sidebar-profile'>
 <img class="background_profile_img" src="static_assets/Profile_index/profile.jpg"/>
 <div class="back_div">
 <img class='profile_center' src="static_assets/Profile_index/codename.jpg" />
-
-<p class="para_intro">Hey There i am a Tech Enthusiast .love to work in react. 
-Currenltly i am in my masters and working with machine Learning and Neural Networks !!</p>
 </div>
 </div>
-<style>*{
-	font-family: 'Ubuntu';
-} </style>
 <div class='sidebar-photo'>  
 
 <!-- Modal -->
@@ -41,7 +40,8 @@ Currenltly i am in my masters and working with machine Learning and Neural Netwo
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
         <h1 style="color: #000;">Stuff i am good at</h1><br>	
-        <p>A bar chart to visualize my Datascience and Software Development Skills.I am constantly honing my sklills and graphs would also be updated frequently.</p>
+        <p>A bar chart to visualize my Datascience and Software Development Skills.I am constantly honing my sklills and graphs would also be updated frequently.
+        </p>
       </div>
       <div class="modal-body">
       	<ul class="nav nav-tabs">
@@ -113,41 +113,38 @@ Currenltly i am in my masters and working with machine Learning and Neural Netwo
 
   </div>
 </div>
-
-<!-- <div class="sty">
-<h5>Machine Learning</h5>
-<p style="fontSize : 12">I have been working  on ensembles and Neural Networks especially Natural Language Processing</p>
-<a href="/Profile/Projects/" class="button_project">Projects</a>
-</div> -->
-<div class="about_me" style="text-align: left;
+<div class="about_me" id="mise" style="text-align: left;
     color: #a7a7a7;
     line-height: 1.5;
     padding: 10px;
+    text-align: left;
     margin: 2%;">
-<h2>About me:</h2>
-<br/>
-
-<p>Hi there !! I am Ankit</p>
-<p>I am passionate About technology with my intrests revolving around various feilds.</p>
-<p>I love Web Technology with digging my hands into machine learning,Neural Networks and Computer Vision.</p>
+<!-- <h2>About me:</h2>
+ --><br/>
+<p style="display: none;" class="Pers">
+ <strong>About me:</strong>  <br>
+Hi there !! I am <strong>Ankit</strong> <br><br>
+I am passionate About technology with my intrests revolving around various feilds. <br><br>
+I love <b>Web Technology</b> with digging my hands into <strong>machine learning</strong>,<em>Neural Networks</em> and <b>Computer Vision.</b></p>
 </div>
-<div style="width: 100%;
-    display: flex;
-    font-size: medium;
-    justify-content: space-around;">
-	<button type="button" class="button-profiles" data-toggle="modal" data-target="#myModal"><i class="fa fa-2x fa-code"></i>
+<span id="typed"></span>
+<div class="utility_bar">
+	<a type="button" class="button-profiles" data-toggle="modal" data-target="#myModal"><i class="fa fa-2x fa-code"></i>
     <br>Skills
-</button>  
-	<button  type="button" class="button-profiles" data-toggle="modal" data-target="#contact"><i class="fa fa-comments-o fa-2x"></i>
+</a>  
+	<a  type="button" class="button-profiles" data-toggle="modal" data-target="#contact"><i class="fa fa-comments-o fa-2x"></i>
     <br>
     Contact
-</button>  
-	<a href="/Projects" type="button" class="button-profiles" data-target="/Profile/Projects"><i class="fa fa-2x fa-folder"></i>
+</a>  
+	<a  href="/Projects" type="button" class="button-profiles" data-target="/Profile/Projects"><i class="fa fa-2x fa-folder"></i>
     <br/>
     <p>Profile</p>
 </a>  </div>
 </div>
 </div>
+<style type="text/css">
+ 
+</style>
 <script src="css/modal.js"></script>	
 </body>
 </html>

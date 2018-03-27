@@ -1,5 +1,5 @@
 *{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 
 }
 
@@ -10,6 +10,10 @@
 }
 body{
   height: 100%;
+}
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: 0.8;
 }
 .App {
 text-align: center;
@@ -37,23 +41,6 @@ position: absolute;
 }
 
 /*navbar navigation*/
-.nav{
-  font-size: medium;
-width: 100%;
-    display: flex;
-    -ms-flex-pack: end;
-    justify-content: flex-start;
-}
-.nav_links{
-  font-size: medium;
-  display: -ms-flexbox;
-    display: flex;
-    width: 90%;
-    -ms-flex-pack: distribute;
-    justify-content: flex-end;
-    color: white;
-    align-items: flex-end;
-}
 li{
   list-style: none;
   margin: 2% 4% !important;
@@ -153,4 +140,37 @@ h5{
       width :100%;
     }
 }
+.utility_bar{
+   width: 50%;
+    display: flex;
+    font-size: medium;
+    justify-content: space-around;
+    position: absolute;
+    top: 82%;
+}
 
+a.button-profiles{
+    text-decoration: none;
+    outline: none;
+    color: #827b7b;
+}
+@media only screen and (max-width: 600px) {
+   #typed{
+position: absolute;
+    line-height: 1.8;
+    text-align: left;
+    font-size: larger;
+    color: #8c8888;
+    margin: 2% 3%;;
+        height: 50vh;
+
+}
+.utility_bar{
+   width: 100%;
+    display: flex;
+    font-size: medium;
+    justify-content: space-around;
+    position: absolute;
+    top: 82%;
+}
+}
