@@ -41,13 +41,21 @@ pre{
 }
 img{
     max-width: 100%;
+    margin: auto;
 }
 p {
-font-size: 14px !important;
+font-size: 17px !important;
     color: #333232;
+    
     margin-top: 2rem;
     margin-bottom: 2rem;
-    line-height: 1.5;
+    line-height: 1.6;
+
+}
+.skills{
+    margin: 7% auto;
+    font-size: larger;
+    color: #757272;
 }
     .Posts{
         padding :20px;

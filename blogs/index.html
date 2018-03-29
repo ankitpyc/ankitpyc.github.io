@@ -1,0 +1,111 @@
+---
+title: Projects
+---
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/nav.css">
+<link rel="stylesheet" href="../css/Projects.css">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
+  
+  <style>
+  	*{
+  		font-family: 'Montserrat';
+  	}
+  	.tags{
+ background: #f3f3f3;
+    font-size: x-small;
+    padding: 5px 8px;
+    border-radius: 4px;
+    color: #8a8686;
+    font-weight: 600;
+  	}
+  	.post_heading{
+  		display: inline-block;
+  		color: #777777;
+  	}
+  	.description{
+  		font-family: 'Roboto Slab';
+  	}
+  	.date{
+    display: inline-block;
+    float: right;
+    margin-top: 3%;
+    color: #909090;
+    font-weight: 500;
+    font-size: small;
+  	}
+  	.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+body, html {
+    height: 100%;
+    background: #fff;
+}
+  </style>
+
+<div class="display_profile" style="
+   
+    margin: auto;
+    display: block;
+    text-align: -webkit-center;
+    padding: 10px;
+    background: #fbfbfb;
+    border-bottom: 1px solid #dfdfdf;
+
+">
+<img src="../static_assets/Profile_index/profile.jpg" alt="" style="
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+">	
+	
+	<div style="display: inline-block;">
+		<h4 style="
+    display: inline-block;
+">Ankit Mishra</h4>
+<br>
+	<a href="https://ankitpyc.github.io" style="
+    line-height: 1.5;
+">ankitpyc.github.io</a>
+	</div>
+	
+</div>
+<div style="margin: 4% auto;
+    width: 70%;">
+<ul class="list-group">
+{% for post in site.posts %}
+<li class="list-group-item">
+<h3 class="post_heading">{{post.title}}</h3><span class="date">{{ post.date | date: "%b %d, %Y" }}</span> 
+
+<br>
+<img style="height: 200;
+    width: auto;display: block;margin: 3% auto;"  src="{{post.image}}" alt="">
+
+<br>
+
+<p class="description">
+	{{post.post_description}}
+</p>
+{% for tags in post.tags%}
+<span class="tags">{{tags}}</span>
+{% endfor%}
+
+  </li>
+
+
+{% endfor %}	
+</ul>
+
+</div>
+

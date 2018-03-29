@@ -2,7 +2,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/nav.css">
  <link rel="stylesheet" href="../css/blog.css">   
-
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -10,11 +10,11 @@
 <link rel="stylesheet" type="text/css" href="../css/tango.css">
 <!------ Include the above in your HEAD tag ---------->
 
-    <div id="wrapper">
+  <div id="wrapper">
         <div class="overlay"></div>
     
         <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                <li class="" style="
     text-align: center;
@@ -36,16 +36,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost:4000">Home</a>
+                    <a href="#">Home</a>
 		    </li>
                 <li>
-                    <a href="#">Projects</a>
+                    <a href="#">Profile</a>
                 </li>
                 <li>
                    <a href="#">About</a> 
                 </li>
                 <li>
                     <a href="#">Contact me</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/maridlcrmn">Follow me</a>
                 </li>
             </ul>
             <div style="height: 10%;
@@ -68,39 +71,27 @@
         <div id="page-content-wrapper">
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
-    			<span class="hamb-middle"></span>
-				<span class="hamb-bottom"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
             </button>
             <div class="container-fluid">
                 <div class="row">
                     <div style="padding: 0px;" class="col-lg-12">
-                       <div style="
-    height: 50%;
-    width: 100%;
-    position: relative;  
-" class="image_overrelay">
-<div style="
-   
-position: absolute;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: -webkit-fill-available;
-    background: #22114ea6;
-
-"><h1 class="text-center" style="color:white;">Movie Recommendation System IMDB</h1>
+                       <div style="height: 50%;width: 100%;position: relative; " class="image_overrelay">
+<div class="heading_container"><h1 class="text-center" style="font-family: 'Roboto Condensed';color:white;">IMDB Movie Recommendation System</h1>
 </div>
-<img class="image-banner" src="https://cdn-images-1.medium.com/max/1600/1*k182wNgZHsHxBwPgrKBE6Q.png">	
+<img class="image-banner" src="https://cdn-images-1.medium.com/max/2000/1*9qGFK0jjigADvy4BF_PZ_A.jpeg">  
 
 </div>
                    
                     </div>
                 </div>
                  <div class="row">
-                 	<div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-12 ">
-<hr>
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-12 ">
+
+<div style="" class="skills">
+  Skills : python,NLP,Machine Learning,Data Visualization
+</div>
 <h2>About the Project</h2>
 <p>
 In this I will be building a Movie Recommender System based on IMDB Dataset.Recommender System are quite useful and popular these.wether it be an ecommerce company or food Delivery Service,Everyone requires a recommender system.It helps them to understand their customers while it also provides a smooth userflow for the users to go through the website.Throughout this Notebook ,I will be discussing various Approaches to build a recommender system ,common algorthims to build a recommender system and also a small demo of how recommendation will be shown to the user. 
@@ -237,7 +228,7 @@ None
 In this section we will be analyzing the feature columns , their distrubution over the dataset and what insigths do we get from the plots or charts
 
 
-<h5> <b>1.1 Original language</b></h5>
+<h4> <b>1.1 Original language</b></h4>
 <p>Lets find out what is most popular language in which films are produced</p>
     
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
@@ -245,7 +236,7 @@ In this section we will be analyzing the feature columns , their distrubution ov
 
 <img src="../static_assets/Recommender_Systems/Languages.png" >
 
-<h5> <b>1.2 Popular Genres</b></h5>
+<h4> <b>1.2 Popular Genres</b></h4>
 
 <p>In this section we will analyze which genre is most common among movies. i.e on which genre most of the movies are based.</p>
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">ast</span>
@@ -260,7 +251,7 @@ In this section we will be analyzing the feature columns , their distrubution ov
 
 <img src="../static_assets/Recommender_Systems/genres.png" alt="">
 
-
+<hr>
 
 <h1>Recommender Systems</h1>
 <p>Recommendation Systems are of mainly 3 different types.Each one offers a different level of personalization.Most recommender systems take either of two basic approaches: collaborative filtering or content-based filtering. Other approaches (such as hybrid approaches) also exist.</p>
@@ -294,9 +285,10 @@ It simply uses a predefined ranking formulae to rate movie based on thier votes,
 
 
 <h2>Building our Simple Engine</h2>
-<p>The rating Formuale for IMDB is</p>
-<br>
-<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C where:</b>
+<p>The rating Formuale for IMDB is</p>:
+<br/>
+<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C where:</b> <br>
+<br/>
 <code>R </code>: average for the movie (mean) = (Rating) <br>
 <code>v</code>:number of votes for the movie = (votes) <br>
 <code>m</code>: minimum votes required to be listed in the Top 250 (currently 25000) <br>
@@ -361,43 +353,1017 @@ It simply uses a predefined ranking formulae to rate movie based on thier votes,
 </table>
 </div>
   
-<p>Lets calulate the <code>mean vote</code>,<code>average vote</code></p>
+<p>Lets calulate the <code>mean vote</code>,<code>average vote</code></p>.
 
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">votes_counts</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">vote_counts</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
 <span class="c"># we will be using minimum votes as 95% percentile of the maximum votes recieved</span>
-<span class="n">minimum_votes</span> <span class="o">=</span> <span class="n">votes_count</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="o">.</span><span class="mi">95</span><span class="p">)</span>
+<span class="c">#calculating the average votes</span>
+
+
+<span class="n">vote_averages</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+<span class="c"># setting minimum vote requirements to be 85 percentile of the votes of the movies</span>
+
+<span class="n">minimum_votes</span> <span class="o">=</span> <span class="n">votes_count</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.85</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">'minimum_votes :'</span><span class="p">,</span><span class="n">minimum_votes</span></code></pre></figure>   
 <pre class="output">
- 455 
+ 1300 
 </pre>
 
+<p>Now we have calculated the minimum vote requirements for the movies to be listed in our chart.Let's extract all the movies from our dataframe which qualifies above criteria</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">mean_votes</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'votes_avg'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'votes_avg'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="k">print</span> <span class="s">'minimum_votes :'</span><span class="p">,</span><span class="n">mean_votes</span></code></pre></figure>    
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">qualified</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[(</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())][[</span><span class="s">'title'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'vote_count'</span><span class="p">,</span> <span class="s">'vote_average'</span><span class="p">,</span> <span class="s">'popularity'</span><span class="p">,</span> <span class="s">'genres'</span><span class="p">]]</span>
+
+
+<span class="n">qualified</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span> <span class="o">=</span> <span class="n">qualified</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+
+<span class="n">qualified</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span> <span class="o">=</span> <span class="n">qualified</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+
+<span class="n">qualified</span><span class="o">.</span><span class="n">shape</span></code></pre></figure>    
    
+
 <pre class="output">
-  
+  (721, 6)
 </pre>
 
+<p>According to our criteria for listing movies we have <code>721</code> movies ready to be recommended to our user</p>.
+<p>Now we will use the standard IMDB rating formulae to calculate the weighted rating for all qualified movies.</p>
 
 
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">weighted_rating</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="o">/</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">m</span><span class="o">/</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">C</span><span class="p">)</span></code></pre></figure>    
+
+<p>we have defined our <code>weighted_rating</code> function which calcuates weighted rating for movies. </p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">qualified</span><span class="p">[</span><span class="s">'wr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">qualified</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">weighted_rating</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qualified</span> <span class="o">=</span> <span class="n">qualified</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'wr'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span></code></pre></figure> 
+
+<!-- table -->
+<div class="table-responsive">
+<table class="table table-bordered table-responsive">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>title</th>
+      <th>year</th>
+      <th>vote_count</th>
+      <th>vote_average</th>
+      <th>popularity</th>
+      <th>genres</th>
+      <th>wr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>90</th>
+      <td>96</td>
+      <td>Inception</td>
+      <td>2010</td>
+      <td>13752</td>
+      <td>8</td>
+      <td>167.583710</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 53, "nam...</td>
+      <td>7.740771</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>65</td>
+      <td>The Dark Knight</td>
+      <td>2008</td>
+      <td>12002</td>
+      <td>8</td>
+      <td>187.322927</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 28, "name...</td>
+      <td>7.706669</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>95</td>
+      <td>Interstellar</td>
+      <td>2014</td>
+      <td>10867</td>
+      <td>8</td>
+      <td>724.247784</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 18, "...</td>
+      <td>7.679307</td>
+    </tr>
+    <tr>
+      <th>355</th>
+      <td>662</td>
+      <td>Fight Club</td>
+      <td>1999</td>
+      <td>9413</td>
+      <td>8</td>
+      <td>146.757391</td>
+      <td>[{"id": 18, "name": "Drama"}]</td>
+      <td>7.635784</td>
+    </tr>
+    <tr>
+      <th>209</th>
+      <td>262</td>
+      <td>The Lord of the Rings: The Fellowship of the Ring</td>
+      <td>2001</td>
+      <td>8705</td>
+      <td>8</td>
+      <td>138.049577</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>7.610012</td>
+    </tr>
+    <tr>
+      <th>671</th>
+      <td>3232</td>
+      <td>Pulp Fiction</td>
+      <td>1994</td>
+      <td>8428</td>
+      <td>8</td>
+      <td>121.463076</td>
+      <td>[{"id": 53, "name": "Thriller"}, {"id": 80, "n...</td>
+      <td>7.598908</td>
+    </tr>
+    <tr>
+      <th>558</th>
+      <td>1881</td>
+      <td>The Shawshank Redemption</td>
+      <td>1994</td>
+      <td>8205</td>
+      <td>8</td>
+      <td>136.747729</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 80, "name...</td>
+      <td>7.589499</td>
+    </tr>
+    <tr>
+      <th>241</th>
+      <td>329</td>
+      <td>The Lord of the Rings: The Return of the King</td>
+      <td>2003</td>
+      <td>8064</td>
+      <td>8</td>
+      <td>123.630332</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>7.583318</td>
+    </tr>
+    <tr>
+      <th>388</th>
+      <td>809</td>
+      <td>Forrest Gump</td>
+      <td>1994</td>
+      <td>7927</td>
+      <td>8</td>
+      <td>138.133331</td>
+      <td>[{"id": 35, "name": "Comedy"}, {"id": 18, "nam...</td>
+      <td>7.577132</td>
+    </tr>
+    <tr>
+      <th>242</th>
+      <td>330</td>
+      <td>The Lord of the Rings: The Two Towers</td>
+      <td>2002</td>
+      <td>7487</td>
+      <td>8</td>
+      <td>106.914973</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>7.555959</td>
+    </tr>
+    <tr>
+      <th>659</th>
+      <td>2912</td>
+      <td>Star Wars</td>
+      <td>1977</td>
+      <td>6624</td>
+      <td>8</td>
+      <td>126.393695</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 28, "...</td>
+      <td>7.507603</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>77</td>
+      <td>Inside Out</td>
+      <td>2015</td>
+      <td>6560</td>
+      <td>8</td>
+      <td>128.655964</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 35, "name...</td>
+      <td>7.503594</td>
+    </tr>
+    <tr>
+      <th>593</th>
+      <td>2285</td>
+      <td>Back to the Future</td>
+      <td>1985</td>
+      <td>6079</td>
+      <td>8</td>
+      <td>76.603233</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 35, "...</td>
+      <td>7.471239</td>
+    </tr>
+    <tr>
+      <th>679</th>
+      <td>3337</td>
+      <td>The Godfather</td>
+      <td>1972</td>
+      <td>5893</td>
+      <td>8</td>
+      <td>143.659698</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 80, "name...</td>
+      <td>7.457567</td>
+    </tr>
+    <tr>
+      <th>561</th>
+      <td>1990</td>
+      <td>The Empire Strikes Back</td>
+      <td>1980</td>
+      <td>5879</td>
+      <td>8</td>
+      <td>78.517830</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 28, "...</td>
+      <td>7.456509</td>
+    </tr>
+    <tr>
+      <th>510</th>
+      <td>1553</td>
+      <td>Se7en</td>
+      <td>1995</td>
+      <td>5765</td>
+      <td>8</td>
+      <td>79.579532</td>
+      <td>[{"id": 80, "name": "Crime"}, {"id": 9648, "na...</td>
+      <td>7.447740</td>
+    </tr>
+    <tr>
+      <th>621</th>
+      <td>2522</td>
+      <td>The Imitation Game</td>
+      <td>2014</td>
+      <td>5723</td>
+      <td>8</td>
+      <td>145.364591</td>
+      <td>[{"id": 36, "name": "History"}, {"id": 18, "na...</td>
+      <td>7.444438</td>
+    </tr>
+    <tr>
+      <th>302</th>
+      <td>494</td>
+      <td>The Lion King</td>
+      <td>1994</td>
+      <td>5376</td>
+      <td>8</td>
+      <td>90.457886</td>
+      <td>[{"id": 10751, "name": "Family"}, {"id": 16, "...</td>
+      <td>7.415565</td>
+    </tr>
+    <tr>
+      <th>506</th>
+      <td>1532</td>
+      <td>The Grand Budapest Hotel</td>
+      <td>2014</td>
+      <td>4519</td>
+      <td>8</td>
+      <td>74.417456</td>
+      <td>[{"id": 35, "name": "Comedy"}, {"id": 18, "nam...</td>
+      <td>7.329502</td>
+    </tr>
+    <tr>
+      <th>575</th>
+      <td>2091</td>
+      <td>The Silence of the Lambs</td>
+      <td>1991</td>
+      <td>4443</td>
+      <td>8</td>
+      <td>18.174804</td>
+      <td>[{"id": 80, "name": "Crime"}, {"id": 18, "name...</td>
+      <td>7.320630</td>
+    </tr>
+    <tr>
+      <th>466</th>
+      <td>1196</td>
+      <td>The Prestige</td>
+      <td>2006</td>
+      <td>4391</td>
+      <td>8</td>
+      <td>74.440708</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 9648, "na...</td>
+      <td>7.314423</td>
+    </tr>
+    <tr>
+      <th>545</th>
+      <td>1818</td>
+      <td>Schindler's List</td>
+      <td>1993</td>
+      <td>4329</td>
+      <td>8</td>
+      <td>104.469351</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 36, "name...</td>
+      <td>7.306872</td>
+    </tr>
+    <tr>
+      <th>699</th>
+      <td>3865</td>
+      <td>Whiplash</td>
+      <td>2014</td>
+      <td>4254</td>
+      <td>8</td>
+      <td>192.528841</td>
+      <td>[{"id": 18, "name": "Drama"}]</td>
+      <td>7.297514</td>
+    </tr>
+    <tr>
+      <th>362</th>
+      <td>690</td>
+      <td>The Green Mile</td>
+      <td>1999</td>
+      <td>4048</td>
+      <td>8</td>
+      <td>103.698022</td>
+      <td>[{"id": 14, "name": "Fantasy"}, {"id": 18, "na...</td>
+      <td>7.270458</td>
+    </tr>
+    <tr>
+      <th>688</th>
+      <td>3573</td>
+      <td>Memento</td>
+      <td>2000</td>
+      <td>4028</td>
+      <td>8</td>
+      <td>60.715151</td>
+      <td>[{"id": 9648, "name": "Mystery"}, {"id": 53, "...</td>
+      <td>7.267720</td>
+    </tr>
+    <tr>
+      <th>594</th>
+      <td>2294</td>
+      <td>Spirited Away</td>
+      <td>2001</td>
+      <td>3840</td>
+      <td>8</td>
+      <td>118.968562</td>
+      <td>[{"id": 14, "name": "Fantasy"}, {"id": 12, "na...</td>
+      <td>7.240940</td>
+    </tr>
+    <tr>
+      <th>592</th>
+      <td>2284</td>
+      <td>The Shining</td>
+      <td>1980</td>
+      <td>3757</td>
+      <td>8</td>
+      <td>78.699993</td>
+      <td>[{"id": 27, "name": "Horror"}, {"id": 53, "nam...</td>
+      <td>7.228483</td>
+    </tr>
+    <tr>
+      <th>712</th>
+      <td>4300</td>
+      <td>Reservoir Dogs</td>
+      <td>1992</td>
+      <td>3697</td>
+      <td>8</td>
+      <td>66.925866</td>
+      <td>[{"id": 80, "name": "Crime"}, {"id": 53, "name...</td>
+      <td>7.219221</td>
+    </tr>
+    <tr>
+      <th>638</th>
+      <td>2731</td>
+      <td>The Godfather: Part II</td>
+      <td>1974</td>
+      <td>3338</td>
+      <td>8</td>
+      <td>105.792936</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 80, "name...</td>
+      <td>7.158794</td>
+    </tr>
+    <tr>
+      <th>684</th>
+      <td>3454</td>
+      <td>The Usual Suspects</td>
+      <td>1995</td>
+      <td>3254</td>
+      <td>8</td>
+      <td>64.025031</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 80, "name...</td>
+      <td>7.143281</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>57</td>
+      <td>WALL·E</td>
+      <td>2008</td>
+      <td>6296</td>
+      <td>7</td>
+      <td>66.390712</td>
+      <td>[{"id": 16, "name": "Animation"}, {"id": 10751...</td>
+      <td>6.657562</td>
+    </tr>
+    <tr>
+      <th>483</th>
+      <td>1356</td>
+      <td>The Hangover</td>
+      <td>2009</td>
+      <td>6173</td>
+      <td>7</td>
+      <td>82.211660</td>
+      <td>[{"id": 35, "name": "Comedy"}]</td>
+      <td>6.651926</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>88</td>
+      <td>Big Hero 6</td>
+      <td>2014</td>
+      <td>6135</td>
+      <td>7</td>
+      <td>203.734590</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 10751...</td>
+      <td>6.650147</td>
+    </tr>
+    <tr>
+      <th>240</th>
+      <td>328</td>
+      <td>Finding Nemo</td>
+      <td>2003</td>
+      <td>6122</td>
+      <td>7</td>
+      <td>85.688789</td>
+      <td>[{"id": 16, "name": "Animation"}, {"id": 10751...</td>
+      <td>6.649535</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>46</td>
+      <td>X-Men: Days of Future Past</td>
+      <td>2014</td>
+      <td>6032</td>
+      <td>7</td>
+      <td>118.078691</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.645233</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>231</td>
+      <td>Monsters, Inc.</td>
+      <td>2001</td>
+      <td>5996</td>
+      <td>7</td>
+      <td>106.815545</td>
+      <td>[{"id": 16, "name": "Animation"}, {"id": 35, "...</td>
+      <td>6.643483</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>182</td>
+      <td>Ant-Man</td>
+      <td>2015</td>
+      <td>5880</td>
+      <td>7</td>
+      <td>120.093610</td>
+      <td>[{"id": 878, "name": "Science Fiction"}, {"id"...</td>
+      <td>6.637723</td>
+    </tr>
+    <tr>
+      <th>160</th>
+      <td>191</td>
+      <td>Harry Potter and the Prisoner of Azkaban</td>
+      <td>2004</td>
+      <td>5877</td>
+      <td>7</td>
+      <td>79.679601</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>6.637572</td>
+    </tr>
+    <tr>
+      <th>363</th>
+      <td>693</td>
+      <td>Gone Girl</td>
+      <td>2014</td>
+      <td>5862</td>
+      <td>7</td>
+      <td>143.041543</td>
+      <td>[{"id": 9648, "name": "Mystery"}, {"id": 53, "...</td>
+      <td>6.636813</td>
+    </tr>
+    <tr>
+      <th>216</th>
+      <td>276</td>
+      <td>Harry Potter and the Chamber of Secrets</td>
+      <td>2002</td>
+      <td>5815</td>
+      <td>7</td>
+      <td>132.397737</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>6.634414</td>
+    </tr>
+    <tr>
+      <th>179</th>
+      <td>216</td>
+      <td>Life of Pi</td>
+      <td>2012</td>
+      <td>5797</td>
+      <td>7</td>
+      <td>51.328145</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 18, "...</td>
+      <td>6.633487</td>
+    </tr>
+    <tr>
+      <th>260</th>
+      <td>356</td>
+      <td>Sherlock Holmes</td>
+      <td>2009</td>
+      <td>5766</td>
+      <td>7</td>
+      <td>57.834787</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.631879</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>85</td>
+      <td>Captain America: The Winter Soldier</td>
+      <td>2014</td>
+      <td>5764</td>
+      <td>7</td>
+      <td>72.225265</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.631775</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>239</td>
+      <td>Gravity</td>
+      <td>2013</td>
+      <td>5751</td>
+      <td>7</td>
+      <td>110.153618</td>
+      <td>[{"id": 878, "name": "Science Fiction"}, {"id"...</td>
+      <td>6.631096</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>114</td>
+      <td>Harry Potter and the Goblet of Fire</td>
+      <td>2005</td>
+      <td>5608</td>
+      <td>7</td>
+      <td>101.250416</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>6.623460</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>113</td>
+      <td>Harry Potter and the Order of the Phoenix</td>
+      <td>2007</td>
+      <td>5494</td>
+      <td>7</td>
+      <td>78.144395</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>6.617143</td>
+    </tr>
+    <tr>
+      <th>315</th>
+      <td>519</td>
+      <td>Now You See Me</td>
+      <td>2013</td>
+      <td>5487</td>
+      <td>7</td>
+      <td>71.124686</td>
+      <td>[{"id": 53, "name": "Thriller"}, {"id": 80, "n...</td>
+      <td>6.616748</td>
+    </tr>
+    <tr>
+      <th>214</th>
+      <td>274</td>
+      <td>Gladiator</td>
+      <td>2000</td>
+      <td>5439</td>
+      <td>7</td>
+      <td>95.301296</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 18, "nam...</td>
+      <td>6.614018</td>
+    </tr>
+    <tr>
+      <th>499</th>
+      <td>1465</td>
+      <td>The Maze Runner</td>
+      <td>2014</td>
+      <td>5371</td>
+      <td>7</td>
+      <td>131.815575</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 9648, "n...</td>
+      <td>6.610084</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>124</td>
+      <td>Frozen</td>
+      <td>2013</td>
+      <td>5295</td>
+      <td>7</td>
+      <td>165.125366</td>
+      <td>[{"id": 16, "name": "Animation"}, {"id": 12, "...</td>
+      <td>6.605592</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>Harry Potter and the Half-Blood Prince</td>
+      <td>2009</td>
+      <td>5293</td>
+      <td>7</td>
+      <td>98.885637</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>6.605472</td>
+    </tr>
+    <tr>
+      <th>508</th>
+      <td>1541</td>
+      <td>Toy Story</td>
+      <td>1995</td>
+      <td>5269</td>
+      <td>7</td>
+      <td>73.640445</td>
+      <td>[{"id": 16, "name": "Animation"}, {"id": 35, "...</td>
+      <td>6.604031</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>12</td>
+      <td>Pirates of the Caribbean: Dead Man's Chest</td>
+      <td>2006</td>
+      <td>5246</td>
+      <td>7</td>
+      <td>145.847379</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 14, "...</td>
+      <td>6.602639</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>101</td>
+      <td>X-Men: First Class</td>
+      <td>2011</td>
+      <td>5181</td>
+      <td>7</td>
+      <td>3.195174</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 878, "na...</td>
+      <td>6.598655</td>
+    </tr>
+    <tr>
+      <th>248</th>
+      <td>339</td>
+      <td>The Incredibles</td>
+      <td>2004</td>
+      <td>5152</td>
+      <td>7</td>
+      <td>77.817571</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.596851</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>628</td>
+      <td>Saving Private Ryan</td>
+      <td>1998</td>
+      <td>5048</td>
+      <td>7</td>
+      <td>76.041867</td>
+      <td>[{"id": 18, "name": "Drama"}, {"id": 36, "name...</td>
+      <td>6.590247</td>
+    </tr>
+    <tr>
+      <th>359</th>
+      <td>687</td>
+      <td>300</td>
+      <td>2006</td>
+      <td>4997</td>
+      <td>7</td>
+      <td>65.197968</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.586929</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>828</td>
+      <td>Kill Bill: Vol. 1</td>
+      <td>2003</td>
+      <td>4949</td>
+      <td>7</td>
+      <td>79.754966</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 80, "nam...</td>
+      <td>6.583756</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>74</td>
+      <td>Edge of Tomorrow</td>
+      <td>2014</td>
+      <td>4858</td>
+      <td>7</td>
+      <td>79.456485</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 878, "na...</td>
+      <td>6.577606</td>
+    </tr>
+    <tr>
+      <th>357</th>
+      <td>675</td>
+      <td>Jurassic Park</td>
+      <td>1993</td>
+      <td>4856</td>
+      <td>7</td>
+      <td>40.413191</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 878, ...</td>
+      <td>6.577468</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<p>Now we have implemented a basic rating system which gives pretty good recommendations based on various movies metrics.We see that three Christopher Nolan Films, <b>Inception</b>, <b>The Dark Knight</b> and <b>Interstellar</b> occur at the very top of our chart. The chart also indicates a strong bias of IMDB Users towards particular genres and directors.</p>
+
+<p>Now lets build recommendations based on particular movie genres.85% of movie genre ratings will be used to build our movie chart</p>
+
+
+<hr>
+
+<h2>Genre Based Recommendation</h2>
+
+<p>As we have seen above,we calculated the mean_vote and vote percentile for rating and listing movies,we will be using the same strategy to build recommendation</p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># Its returns movies if movie contains the specified genre</span>
+<span class="k">def</span> <span class="nf">genre_movies</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">genre</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="s">'movie_genres'</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">x</span> </code></pre></figure> 
+
+<p>Now lets write a function that returns top movies belonging to particular genre</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># it returns all movies of particular genre if they qualified movie criteria to be listed</span>
+<span class="k">def</span> <span class="nf">genre_recommend</span><span class="p">(</span><span class="n">genre</span><span class="p">,</span><span class="n">percentile</span><span class="p">):</span>
+    <span class="n">gen_movie</span> <span class="o">=</span> <span class="n">data_movies</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">ret_mov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">genre</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">gen_movie</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">vote_count</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="p">[</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+    <span class="n">vote_averages</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="p">[</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">vote_averages</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">vote_counts</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">percentile</span><span class="p">)</span>
+    <span class="n">gen_qualified</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="p">[(</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())][[</span><span class="s">'title'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'vote_count'</span><span class="p">,</span> <span class="s">'vote_average'</span><span class="p">,</span> <span class="s">'popularity'</span><span class="p">,</span> <span class="s">'genres'</span><span class="p">]]</span>
+    <span class="n">gen_qualified</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span> <span class="o">=</span> <span class="n">gen_qualified</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+    <span class="n">gen_qualified</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span> <span class="o">=</span> <span class="n">gen_qualified</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span>
+    <span class="n">gen_qualified</span><span class="p">[</span><span class="s">'wr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">gen_qualified</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">weighted_rating</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">gen_qualified</span> <span class="o">=</span> <span class="n">gen_qualified</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'wr'</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gen_qualified</span></code></pre></figure>    
+<p>Now lets check our recommendations.</p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">genre_recommend</span><span class="p">(</span><span class="s">'Science Fiction'</span><span class="p">,</span><span class="mf">0.85</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span></code></pre></figure> 
+
+<div class="table-responsive">
+ <table border="1" class="table table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>title</th>
+      <th>year</th>
+      <th>vote_count</th>
+      <th>vote_average</th>
+      <th>popularity</th>
+      <th>genres</th>
+      <th>wr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96</th>
+      <td>Inception</td>
+      <td>2010</td>
+      <td>13752</td>
+      <td>8</td>
+      <td>167.583710</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 53, "nam...</td>
+      <td>7.740771</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Interstellar</td>
+      <td>2014</td>
+      <td>10867</td>
+      <td>8</td>
+      <td>724.247784</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 18, "...</td>
+      <td>7.679307</td>
+    </tr>
+    <tr>
+      <th>2912</th>
+      <td>Star Wars</td>
+      <td>1977</td>
+      <td>6624</td>
+      <td>8</td>
+      <td>126.393695</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 28, "...</td>
+      <td>7.507603</td>
+    </tr>
+    <tr>
+      <th>2285</th>
+      <td>Back to the Future</td>
+      <td>1985</td>
+      <td>6079</td>
+      <td>8</td>
+      <td>76.603233</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 35, "...</td>
+      <td>7.471239</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>The Empire Strikes Back</td>
+      <td>1980</td>
+      <td>5879</td>
+      <td>8</td>
+      <td>78.517830</td>
+      <td>[{"id": 12, "name": "Adventure"}, {"id": 28, "...</td>
+      <td>7.456509</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Avatar</td>
+      <td>2009</td>
+      <td>11800</td>
+      <td>7</td>
+      <td>150.437577</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.801430</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>The Avengers</td>
+      <td>2012</td>
+      <td>11776</td>
+      <td>7</td>
+      <td>144.448633</td>
+      <td>[{"id": 878, "name": "Science Fiction"}, {"id"...</td>
+      <td>6.801066</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>Guardians of the Galaxy</td>
+      <td>2014</td>
+      <td>9742</td>
+      <td>7</td>
+      <td>481.098624</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 878, "na...</td>
+      <td>6.764424</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>Mad Max: Fury Road</td>
+      <td>2015</td>
+      <td>9427</td>
+      <td>7</td>
+      <td>434.278564</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 12, "nam...</td>
+      <td>6.757506</td>
+    </tr>
+    <tr>
+      <th>634</th>
+      <td>The Matrix</td>
+      <td>1999</td>
+      <td>8907</td>
+      <td>7</td>
+      <td>104.309993</td>
+      <td>[{"id": 28, "name": "Action"}, {"id": 878, "na...</td>
+      <td>6.745153</td>
+    </tr>
+  </tbody>
+</table>  
+</div>
+<p>Now our movie recommeder system recommmends movies based on a particular genre.this could serve as one of the strategy for recommending movies.But it provides no personalization for users and recommendations are purely genre based.Let's improve our system by using content like movies <code>overview</code>,<code>tagline</code> for recommendations</p>
 
 <hr/>
 <h2>Content Based Filtering</h2>
-<p>As we have already seen a couple of techniques for building recommendation engines we will be targetting a content based recommendation engine. we will be utilizing the keywords and plot of the movies to recommend the Movies.Lets start</p>
-
-<h4>1.1 Cleaning of Keywords</h4> 
-<p>Keywords will play an important role in the functioning of the engine. Indeed, recommendations will be based on similarity between films and to gauge such similarities, I will look for films described by the same keywords. Hence, the content of the plot_keywords variable deserves some attention since it will be extensively used.</p>
-
-<h4>1.1.1 Reducing words to their roots</h4>
-<p>
-We will be reducing words to their roots . This will help us to better infer from our model.Common
-NLP methodolgies are Stemming and Lemmatization. 
-</p>
+<p>As we have already seen a couple of techniques for building recommendation engines we will be targetting a content based recommendation engine. we will be utilizing the <code>tagline</code> and <code>overview</code> of the to recommend the Movies.Lets start building our content based recxommender system</p>
 
 
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># create a shallow copy so that we dont alter the original dataframe</span>
+<span class="n">content_movies</span> <span class="o">=</span> <span class="n">data_movies</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span></code></pre></figure>    
 
+<p>As you can infer we have created a auxilary dataframe to hold the overview and the tagline.Now lets merge these two coloumns and join them to ceate a description column in the content_movies dataframe.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># join overview and tagline</span>
+<span class="n">content_movies</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_movies</span><span class="p">[</span><span class="s">'tagline'</span><span class="p">]</span> <span class="o">+</span> <span class="n">content_movies</span><span class="p">[</span><span class="s">'overview'</span><span class="p">]</span>
+
+<span class="c">#remove missing data</span>
+<span class="n">content_movies</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_movies</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s">''</span><span class="p">)</span></code></pre></figure>    
+<p>We have joined the feature columns and remove useless data.Now we will extract features from the <code>description</code> using Tfidf(Term frequency inverse document frequency)</p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">analyzer</span><span class="o">=</span><span class="s">'word'</span><span class="p">,</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span><span class="n">min_df</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s">'english'</span><span class="p">)</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">content_movies</span><span class="p">[</span><span class="s">'description'</span><span class="p">])</span></code></pre></figure> 
+
+<p>Now lets see our tfidf matrix shape to analyze what what tfidf matrix really is</p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">shape</span></code></pre></figure>    
+
+<pre class="output">
+
+(4803, 128039)
+
+</pre>
+
+<p>we have got our tfidf matrix of shape <code>4803</code>x<code>128039</code>.the 4803 is total no of movies in our dataframe.128039 is size of feature veector i.e we have got 128039 features for a single movie.Now we have to predict how similiar a movie is to other movies using its feature vector.</p>
+   
+<hr>
+
+<h2>Cosine Similarity</h2>
+
+<p><b>Cosine Similarity</b> is a measure of similarity between two non zero vectors.It measures the cosine angle between two non zero vectors. <code>cosine 0</code>represents maximum similarity with value of cosine 1. cosine 0 represents least similarity.</p>
+<p>Cosine similarity between two vectors can be mathematically represented as </p>
+
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/a71c4add4abded66efd42b202c76f6a59944a587" alt="Cosine Similarity">
+
+<p>In our case we have calculated the Tfidf matrix where each row represents a feature vector of a particular movie.
+Since we need to predict similarity bewtween feature vectors of movies in Tfidf matrix ,we need to find the dot-product
+of tfidf matrix which will give us a cosine similarity score.This score denotes how similiar movies are to each other.</p>
+
+<p>We will be using sklean's linear_kernel which is faster than dot product and gives us the similarity score</p>
+
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sklearn.pairwise</span> <span class="kn">import</span> <span class="n">linear_kernel</span>
+<span class="n">cos_sim</span> <span class="o">=</span> <span class="n">linear_kernel</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="p">)</span></code></pre></figure>    
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">cos_sim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></code></pre></figure> 
+
+<pre class="output">
+  array([ 1.        ,  0.00680476,  0.        , ...,  0.        ,
+        0.00344913,  0.        ])
+</pre>   
+
+
+<p>Now lets build recommendation using our calculated similarity scores.Note that now movies will be recommended using the tagline and movie overview.This is a much better approach as compared to our previous approaches as now recommendations will much be user centric.</p>
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">improved_recommend</span><span class="p">(</span><span class="n">title</span><span class="p">):</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">indices</span><span class="p">[</span><span class="n">title</span><span class="p">]</span>
+    <span class="n">sim_scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">cos_sim</span><span class="p">[</span><span class="n">idx</span><span class="p">]))</span>
+    <span class="n">sim_scores</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">sim_scores</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">sim_scores</span> <span class="o">=</span> <span class="n">sim_scores</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">31</span><span class="p">]</span>
+    <span class="n">movie_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sim_scores</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">titles</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">movie_indices</span><span class="p">]</span></code></pre></figure>    
+
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">improved_recommend</span><span class="p">(</span><span class="s">'The Shawshank Redemption'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span></code></pre></figure>
+
+<pre class="output">
+637                     Les Misérables
+3785                            Prison
+609                        Escape Plan
+2868                          Fortress
+4727                      Penitentiary
+434                   The Longest Yard
+3978                          Amnesiac
+1187                   Bridge of Spies
+642                           Unbroken
+891                    Man on the Moon
+1779            The 40 Year Old Virgin
+791                         Goosebumps
+1171                Dumb and Dumber To
+1166                          Get Hard
+2570                 Ramona and Beezus
+1597                          Southpaw
+42                         Toy Story 3
+2798    The Boy in the Striped Pyjamas
+1860                Kiss of the Dragon
+3871                 A Christmas Story
+Name: title, dtype: object
+
+</pre>
+
+<p>It seems like recommedations have improved from previous approaches.Movies like <code>The Prison</code> and <code>Escape Plan</code> seems to have a similar story plot as <code>The Shawshank Redemption</code>.</p>
+
+<p>Here we come to the End of the Project.We have build a movie recommendation system that recommends movies based on user choice and similarity of movies.</p>
+
+<p>There are several approaches which could further improve the recommendations like using <code>Cast</code><code>Crew Members</code>,<code>Director</code> in the Description so that user will get much better recommendation.</p>
+
+<p>Also hyvrid approaches like using popularity as well as description of the movies to predict similarity .I might also try these approaches later.</p>
+
+<hr>
 
 <hr>
 <div style="text-align: center;
@@ -417,16 +1383,32 @@ Thankyou for reading !!
     margin: 1%;" class="fa fa-1x fa-quora"></i>
 </div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      </div>
 </div>
 </div>
             </div>
         </div>
+      </div>
         <!-- /#page-content-wrapper -->
-
-    </div>
-
-
+<script src="../css/blog.js" type="text/javascript"></script>
 
 </body>
 </html>
