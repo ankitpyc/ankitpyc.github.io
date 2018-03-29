@@ -1,3 +1,6 @@
+/*default css for project page*/
+
+
 /*Image banner*/
 .image-banner{
 	width : 100%;
@@ -7,6 +10,26 @@
 	align-items: center;
 
 }
+.Project_card{
+
+    margin: 2% auto;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+
+}
+.project_card_info{
+        padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.skills_card{
+    background: #f7f7f7;
+    text-align: left;
+    padding: 12px;
+    color: #847f7f;
+    border: 1px solid #e8e8e8;
+}
+/*githubsend*/
 .github_button{
 padding: 10px;
     width: 50%;
@@ -17,13 +40,14 @@ padding: 10px;
     font-weight: bold;
     border-top-right-radius: 0px;
 }
+/*notebook send*/
 .notebook_button{
-	background: black;
+    background: #4467b5;
     padding: 10px;
     color: white !important;
     border-radius: 2px;
     font-weight: bold;
     width: 50%;
     border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;;
 	}

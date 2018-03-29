@@ -31,10 +31,11 @@ permalink : /Projects/:title
             <div class="container-fluid">
                 <div class="row">
                     <div style="padding: 0px;" class="col-lg-12">
-                       <div style="height: 50%;width: 100%;position: relative; " class="image_overrelay">
-<div class="heading_container"><h1 class="project_heading" style="font-family: 'Roboto Condensed';color:white;">IMDB Movie Recommendation System</h1>
+                       <div  class="image_overrelay">
+<div class="heading_container">
+  <h1 class="project_heading">IMDB Movie Recommendation System</h1>
 </div>
-<img class="image-banner" src="https://cdn-images-1.medium.com/max/2000/1*9qGFK0jjigADvy4BF_PZ_A.jpeg">  
+<img class="image-banner" src="http://www.myfilmviews.com/wp-content/uploads/2014/09/Movli-main-page.jpg">  
 
 </div>
                    
@@ -43,12 +44,13 @@ permalink : /Projects/:title
                  <div class="row">
                     <div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-12 ">
 
-<div style="" class="skills">
+<div class="skills">
   Skills : python,NLP,Machine Learning,Data Visualization
 </div>
+<hr>
 <h2>About the Project</h2>
 <p>
-In this I will be building a Movie Recommender System based on IMDB Dataset.Recommender System are quite useful and popular these.wether it be an ecommerce company or food Delivery Service,Everyone requires a recommender system.It helps them to understand their customers while it also provides a smooth userflow for the users to go through the website.Throughout this Notebook ,I will be discussing various Approaches to build a recommender system ,common algorthims to build a recommender system and also a small demo of how recommendation will be shown to the user. 
+In this I will be building a Movie Recommender System based on IMDB Dataset.Recommender System are quite useful and popular these.whether  it be an E-commerce company or food Delivery Service,Everyone requires a recommender system.It helps them to understand their customers while it also provides a smooth user flow for the users to go through the website.Throughout this Notebook ,I will be discussing various Approaches to build a recommender system ,common algorithms to build a recommender system and also a small demo of how recommendation will be shown to the user. 
 <br>
 <hr>
 </p>
@@ -188,7 +190,7 @@ None
 <hr>
 
 <h1>Exploratory Data Analysis</h1>
-In this section we will be analyzing the feature columns , their distrubution over the dataset and what insigths do we get from the plots or charts
+In this section we will be analyzing the feature columns , their distribution over the dataset and what insights do we get from the plots or charts
 
 
 <h4> <b>1.1 Original language</b></h4>
@@ -229,11 +231,11 @@ for movies in data_movies['genres']:
 </li>
 <li>
 <h4>Content Based Filtering</h4>
-<p>Content-based filtering constructs a recommendation on the basis of a user's behavior.This defineitely requires user browser history ,what kinds of content and blogs he is reading and recommends based on the History.Suppose we were to build a blog recommendation and if a particular user reads blogs about linux , the system would recommend blogs like operating system , ubuntu and other unix based operating.This is what user may like.</p>
+<p>Content-based filtering constructs a recommendation on the basis of a user's behavior.This definitely requires user browser history ,what kinds of content and blogs he is reading and recommends based on the History.Suppose we were to build a blog recommendation and if a particular user reads blogs about linux , the system would recommend blogs like operating system , ubuntu and other unix based operating.This is what user may like.</p>
 </li>
 <li>
 <h4>Hybrid Approach</h4>
-<p>In hybrid based Approach , that combines both the Collaborative and Content based approach is more complex as compared to both above.The Content based filtering could be used if the user data is not mature enough to be compared with other user data and give a cold start to the system but slighlt shift towards Collaborative approach when the user data grows enough. </p>
+<p>In hybrid based Approach , that combines both the Collaborative and Content based approach is more complex as compared to both above.The Content based filtering could be used if the user data is not mature enough to be compared with other user data and give a cold start to the system but slight shift towards Collaborative approach when the user data grows enough. </p>
 </li>
 </ul>
 
@@ -243,16 +245,16 @@ for movies in data_movies['genres']:
 
 <h1>Weighted Voting Approach</h1>
 
-<p>Weighted Voting Approach is simple common approach which doesnot takes any user activity into account.
-It simply uses a predefined ranking formulae to rate movie based on thier votes,views etc.
+<p>Weighted Voting Approach is simple common approach which doesn't takes any user activity into account.
+It simply uses a predefined ranking formula to rate movie based on their votes,views etc.
 </p>
 <p>If we peek into our data,we have a lot of features like 
   <code>Vote Average</code>,
-  <code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work)written in quora.I will be using that approach for movies rating for recommendation.
+  <code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work) written in Quora.I will be using that approach for movies rating for recommendation.
 
 
 <h2>Building our Simple Engine</h2>
-<p>The rating Formuale for IMDB is</p>:
+<p>The rating formula for IMDB is</p>:
 <br/>
 <b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C where:</b> <br>
 <br/>
@@ -322,12 +324,12 @@ data_movies.head(1)
 </table>
 </div>
   
-<p>Lets calulate the <code>mean vote</code>,<code>average vote</code></p>.
+<p>Lets calculate the <code>mean vote</code>,<code>average vote</code></p>.
 
 
 {% highlight python %}
 vote_counts = data_movies[data_movies['vote_count'].notnull()]['vote_count'].astype('int')
-# we will be using minimum votes as 95% percentile of the maximum votes recieved
+# we will be using minimum votes as 95% percentile of the maximum votes received
 #calculating the average votes
 
 
@@ -361,7 +363,7 @@ qualified.shape
 </pre>
 
 <p>According to our criteria for listing movies we have <code>721</code> movies ready to be recommended to our user</p>.
-<p>Now we will use the standard IMDB rating formulae to calculate the weighted rating for all qualified movies.</p>
+<p>Now we will use the standard IMDB rating formula to calculate the weighted rating for all qualified movies.</p>
 
 
 {% highlight python %}
@@ -373,7 +375,7 @@ def weighted_rating(x):
 
 {% endhighlight %}    
 
-<p>we have defined our <code>weighted_rating</code> function which calcuates weighted rating for movies. </p>
+<p>we have defined our <code>weighted_rating</code> function which calculates weighted rating for movies. </p>
 
 
 {% highlight python %}
@@ -1236,19 +1238,19 @@ genre_recommend('Science Fiction',0.85).head(10)
   </tbody>
 </table>  
 </div>
-<p>Now our movie recommeder system recommmends movies based on a particular genre.this could serve as one of the strategy for recommending movies.But it provides no personalization for users and recommendations are purely genre based.Let's improve our system by using content like movies <code>overview</code>,<code>tagline</code> for recommendations</p>
+<p>Now our movie recommender system recommends movies based on a particular genre.this could serve as one of the strategy for recommending movies.But it provides no personalization for users and recommendations are purely genre based.Let's improve our system by using content like movies <code>overview</code>,<code>tagline</code> for recommendations</p>
 
 <hr/>
 <h2>Content Based Filtering</h2>
-<p>As we have already seen a couple of techniques for building recommendation engines we will be targetting a content based recommendation engine. we will be utilizing the <code>tagline</code> and <code>overview</code> of the to recommend the Movies.Lets start building our content based recxommender system</p>
+<p>As we have already seen a couple of techniques for building recommendation engines we will be targeting a content based recommendation engine. we will be utilizing the <code>tagline</code> and <code>overview</code> of the to recommend the Movies.Lets start building our content based recommender system</p>
 
 
 {% highlight python %}
-# create a shallow copy so that we dont alter the original dataframe
+# create a shallow copy so that we don't alter the original dataframe
 content_movies = data_movies.copy(False)
 {% endhighlight %}    
 
-<p>As you can infer we have created a auxilary dataframe to hold the overview and the tagline.Now lets merge these two coloumns and join them to ceate a description column in the content_movies dataframe.</p>
+<p>As you can infer we have created a auxiliary dataframe to hold the overview and the tagline.Now lets merge these two columns and join them to create a description column in the content_movies dataframe.</p>
 
 {% highlight python %}
 # join overview and tagline
@@ -1281,7 +1283,7 @@ tfidf_matrix.shape
 
 </pre>
 
-<p>we have got our tfidf matrix of shape <code>4803</code>x<code>128039</code>.the 4803 is total no of movies in our dataframe.128039 is size of feature veector i.e we have got 128039 features for a single movie.Now we have to predict how similiar a movie is to other movies using its feature vector.</p>
+<p>we have got our Tfidf matrix of shape <code>4803</code>x<code>128039</code>.the 4803 is total no of movies in our dataframe.128039 is size of feature vector i.e we have got 128039 features for a single movie.Now we have to predict how similar a movie is to other movies using its feature vector.</p>
    
 <hr>
 
@@ -1293,10 +1295,10 @@ tfidf_matrix.shape
 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/a71c4add4abded66efd42b202c76f6a59944a587" alt="Cosine Similarity">
 
 <p>In our case we have calculated the Tfidf matrix where each row represents a feature vector of a particular movie.
-Since we need to predict similarity bewtween feature vectors of movies in Tfidf matrix ,we need to find the dot-product
-of tfidf matrix which will give us a cosine similarity score.This score denotes how similiar movies are to each other.</p>
+Since we need to predict similarity between feature vectors of movies in Tfidf matrix ,we need to find the dot-product
+of tfidf matrix which will give us a cosine similarity score.This score denotes how similar movies are to each other.</p>
 
-<p>We will be using sklean's linear_kernel which is faster than dot product and gives us the similarity score</p>
+<p>We will be using sklearn's linear_kernel which is faster than dot product and gives us the similarity score</p>
 
 
 
@@ -1365,34 +1367,16 @@ Name: title, dtype: object
 
 </pre>
 
-<p>It seems like recommedations have improved from previous approaches.Movies like <code>The Prison</code> and <code>Escape Plan</code> seems to have a similar story plot as <code>The Shawshank Redemption</code>.</p>
+<p>It seems like recommendations have improved from previous approaches.Movies like <code>The Prison</code> and <code>Escape Plan</code> seems to have a similar story plot as <code>The Shawshank Redemption</code>.</p>
 
 <p>Here we come to the End of the Project.We have build a movie recommendation system that recommends movies based on user choice and similarity of movies.</p>
 
 <p>There are several approaches which could further improve the recommendations like using <code>Cast</code><code>Crew Members</code>,<code>Director</code> in the Description so that user will get much better recommendation.</p>
 
-<p>Also hyvrid approaches like using popularity as well as description of the movies to predict similarity .I might also try these approaches later.</p>
+<p>Also hybrid approaches like using popularity as well as description of the movies to predict similarity .I might also try these approaches later.</p>
 
 <hr>
 {% include footer.html %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                       </div>
 </div>
 </div>

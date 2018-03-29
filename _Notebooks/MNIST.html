@@ -1,10 +1,13 @@
 ---
 title : Handwritten
 permalink : /Projects/:title
+post_dirs: false
 ---
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/nav.css">
+ <link rel="stylesheet" href="../css/blog.css">   
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -20,46 +23,35 @@ permalink : /Projects/:title
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+             <div id="page-content-wrapper">
             <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
                 <span class="hamb-top"></span>
-    			<span class="hamb-middle"></span>
-				<span class="hamb-bottom"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
             </button>
             <div class="container-fluid">
                 <div class="row">
                     <div style="padding: 0px;" class="col-lg-12">
-                       <div style="
-    height: 50%;
-    width: 100%;
-    position: relative;  
-" class="image_overrelay">
-<div style="
-   
-position: absolute;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: -webkit-fill-available;
-    background: #22114ea6;
-
-"><h1 class="text-center" style="color:white;">Handwritten Digits Classification and Detection</h1>
+                       <div  class="image_overrelay">
+<div class="heading_container">
+  <h1 class="project_heading">HandWritten Digits Classification and Recognition</h1>
 </div>
-<img class="image-banner" src="http://simonwinder.com/wp-content/uploads/2015/07/mnistExamples.png">	
+<img class="image-banner" src="https://cdn-images-1.medium.com/max/672/1*_R6Qhi8dbLe8jvVKlGdHYw.png">  
 
 </div>
                    
                     </div>
                 </div>
                  <div class="row">
-                 	<div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+                    <div class="col-md-8 col-md-offset-2 col-sm-8 col-md-offset-2 col-xs-12 ">
+<div class="skills">Skills : Machine Learning,Convolution Neural Networks,Image Processing,Python</div>
+<hr>
+
 <h2>About the Task</h2>
 <p>
-This is first Project as an  intro to deep learning.Deep Learning has been quite around a bit and is solving really complex problems.Deep learning has enaabled to acheive a sate of art performances oer various tasks like human face recognintion,object Detection and several NLP taks.
+This is first Project as an  intro to deep learning.Deep Learning has been quite around a bit and is solving really complex problems.Deep learning has enabled to achieve a sate of art performances oer various tasks like human face recognition,object Detection and several NLP tasks.
 
-This projects involves deep learning for recognition of handwritten digits . Later we shall also see how to deploy this model as an app .so that it could be used in a real life scenario.
+This projects involves deep learning for recognition of handwritten digits . Later we shall also see how to deploy this model as an web app .so that it could be used in a real life scenario.
 <br>
 <hr>
 </p>
@@ -93,7 +85,7 @@ Digits_train = pd.read_csv('../input/train.csv')
 Digits_test = pd.read_csv('../input/test.csv')
 {% endhighlight %}
 
-<p>Lets see how many training and testing samples we have got how many featues we have </p>
+<p>Lets see how many training and testing samples we have got how many features we have </p>
 {% highlight python%}
 Data = pd.concat([Digits_train,Digits_test],axis=0)
 Data.info()
@@ -144,7 +136,7 @@ pixel123        0
 pixel784        0
 </pre>
 
-<p>We dont have any missing values in the train dataset.as we can see we have columns as label and pixel values from 1 to 784.Basically the MNIST dataset that we are using for classification is having 28x28 images which have been flattened to vector of pixels.
+<p>We don't have any missing values in the train dataset.as we can see we have columns as label and pixel values from 1 to 784.Basically the MNIST dataset that we are using for classification is having 28x28 images which have been flattened to vector of pixels.
 </p>
 
 {% highlight python %}
@@ -153,8 +145,8 @@ Digits_train = Digits_train.drop(['label'],axis=1)
 {% endhighlight %}
 
 
-<p>Now lets visulaize some of the digits in the Data.As we have seen that the data provided to us are in format of <code>
-[sample,784 pixels]</code>.But inorder to visualize those images ,we need to reshape them as 28*28 images .
+<p>Now lets visualize some of the digits in the Data.As we have seen that the data provided to us are in format of <code>
+[sample,784 pixels]</code>.But in order to visualize those images ,we need to reshape them as 28*28 images .
 Lets see how its done
 </p>
 {% highlight python %}
@@ -176,7 +168,7 @@ plt.show()
 
 <hr>
 <h1>Data Preprocessing</h1>
-<P>Now as we have visualized some of the data in the dataset.Lets gets ready for training our classifier on but lets wait.we need to preprocess our data so that our model is easy to train and  results are much better . </P>
+<P>Now as we have visualized some of the data in the dataset.Lets gets ready for training our classifier on but lets wait.we need to pre-process our data so that our model is easy to train and  results are much better . </P>
 
 <p>we need to normalize our images because of varying intensities of pixel values.We know that pixel value ranges from 
 <code>0-255</code>.and images which we are dealing with are greyscaled images i.e most of them would e having pixel values as 0 or 255.Normalization basically compresses these varying intensities of pixel values .
@@ -200,25 +192,25 @@ np.random.seed(seed)
 <p>Convolutional Neural Networks are very similar to ordinary Neural Networks.Each neuron receives some inputs, performs a dot product and optionally follows it with a non-linearity. </p>
 
 <p>We could also use a traditional Neural Network like the feed forward neural network . But just imagine the situation.<
-the first layer of our Network would be a input layer consisting of our feature vector(input vectors).In our case feature vectors are the raw image pixels.28x28 pixels i.e 784 raw pixel values .and if we would be having a colured image of RGB channel this would resut in <code>2352</code> length feature vector.And our network would be having multiple hidden layers ,this even worsens the scenario. 
+the first layer of our Network would be a input layer consisting of our feature vector(input vectors).In our case feature vectors are the raw image pixels.28x28 pixels i.e 784 raw pixel values .and if we would be having a colored  image of RGB channel this would result in <code>2352</code> length feature vector.And our network would be having multiple hidden layers ,this even worsens the scenario. 
 </p>
-<p>Convolutional Neural Networks on the other hand exloits spatial relationship between the pixel values.Unlike  </p>
+<p>Convolutional Neural Networks on the other hand exploits spatial relationship between the pixel values.Unlike  </p>
 
 <hr>
 
 <h1>Model Building</h1>
 <p>We woluld be using <a href="https://keras.io/">Keras</a> and <a href="https://www.tensorflow.org/">Tensorflow</a> for Building Convolutional Neural Networks.</p>
    <h3>Preprocessing for Keras</h3>
-   <p>For keras some preprocessing is required for feeding our data into model.we need to put our input images into a a partiular format.images we have are currently in form <code>[height,width,channel]</code> but keras need it input in a format <code>[no of samples,height,widht,channels]</code> </p>
+   <p>For keras some preprocessing is required for feeding our data into model.we need to put our input images into a a particular format.images we have are currently in form <code>[height,width,channel]</code> but keras need it input in a format <code>[no of samples,height,width,channels]</code> </p>
    {% highlight python%}
    # reshapes values into [no of samples,height,width,channel]
    images = Digits_train.values.reshape(-1,28,28,1)
-   # no of samples  =  1 indicates that we havent choosen our size and we can choose any random no of samples for training
+   # no of samples  =  1 indicates that we haven't chosen our size and we can choose any random no of samples for training
    {% endhighlight %}   
 
    <h3>Encoding Labels</h3>
    <p>We would be evaluating our model's perfomance on a multiclass classification metric. i.e cross entropy with logits 
-    keras has this evaluation metric predifined.but it requires labels to <code>one-hot-encoded</code>.
+    keras has this evaluation metric predefined.but it requires labels to <code>one-hot-encoded</code>.
     So lets convert our labels into one hot encoded vectors.
     {% highlight python%}
     from keras.utils.np_utils import to_categorical
@@ -286,11 +278,11 @@ _________________________________________________________________
 
 <hr>
 <h1>Compile and Run our model</h1>
-<p>Since we have now defined our model , we will just need to define the loss function evaluation metrics and epochs.</p> {%highlight pyhton%}
+<p>Since we have now defined our model , we will just need to define the loss function evaluation metrics and epochs.</p> {%highlight python%}
 model = CNN_model()
 model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 {% endhighlight %}
- {%highlight pyhton%}
+ {%highlight python%}
 history = model.fit(img,labels,epochs=10, batch_size =50,validation_split=0.2,verbose=2,shuffle=False)
 {% endhighlight %}
 
@@ -330,11 +322,11 @@ plt.legend()
 <img src="{{site.baseurl}}{{"../static_assets/Mnist/acc.png" }}" >
 <p>The above graph clearly indicates how out model performs  both on the test set and validation set.we have used 20% of our training data as our validation set</p>
 <p>Clearly our model performs well on the train set with accuracy of about <code>97.13%</code> and on our validation set
-<code>98.86%</code>>.Overfitting occours when accuracy on the train data is higher than the validation dataset or the test dataset</p>
+<code>98.86%</code>>.Overfitting occurs when accuracy on the train data is higher than the validation dataset or the test dataset</p>
 
 <hr>
 <h1>Predictions</h1>
-<p>Now we will check our predictions on the testing dataset .lets verify by classifying one image from the dataset as well as plottting it.</p>
+<p>Now we will check our predictions on the testing dataset .lets verify by classifying one image from the dataset as well as plotting it.</p>
 <p>But before predicting our output we need to transform our test data into format data and do some preprocessing i.e normalizing pixel intensities.</p>
 
 {% highlight python %}
@@ -347,7 +339,7 @@ plt.imshow(Digits_test[4][:,:,0])
 {% endhighlight %}
 
 <img src="{{site.baseurl}}{{"../static_assets/Mnist/prediction.png"}}">
-<p>Clearly the image shows that the image is that of number 3.Lets verify it by predciting it</p>
+<p>Clearly the image shows that the image is that of number 3.Lets verify it by predicting it</p>
 {% highlight python %}
 label = model.predict(Digits_test[4].reshape(-1,28,28,1))
 print label
@@ -357,55 +349,15 @@ print label
         5.45060850e-13, 7.55617506e-08, 2.06700043e-12, 1.03831745e-07,
         1.64455578e-08, 2.63139732e-09]], dtype=float32)
 </pre>
-<p>In the last layer of Convolutional Neural Networks ,we have used a softmax classifier.It output probabilities of various classes i.e Ten probabilities coressponding to digits <code>0-9</code>.If you observe carefully the index 3 of the array has the probability 0.99 which is the number 3 class of our dataset.</p>
+<p>In the last layer of Convolutional Neural Networks ,we have used a softmax classifier.It output probabilities of various classes i.e Ten probabilities corresponding to digits <code>0-9</code>.If you observe carefully the index 3 of the array has the probability 0.99 which is the number 3 class of our dataset.</p>
+
+
+<p>Check here for the MNIST <a href="https://ankitpyc.github.io/Projects/Mnist-part-2.html">Recognition App</a> </p>
+{% include footer.html %}
 </div>
 
 
-
-
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 </div>
             </div>
@@ -413,91 +365,7 @@ print label
         <!-- /#page-content-wrapper -->
 
     </div>
-<style type="text/css">
-*{
-font-family: 'Ubuntu';
-line-height: 1.6;
-}
-@media only screen and (max-width: 600px) {
-    p{
-    	font-size: 13px !important;
-    }
-	h1{
-	font-size : 23px;
-	}
-}
-.image-banner{
-        width: 100%;
-    height: 100%;
-    max-width: 100%;
-    background-size: cover !important;
-}
-pre{
-	font-size: 15px;
-	margin-top: 2% auto;
-	display: block;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    border: none;
-    line-height: 1.5;
-    color: #292b2c;
+<script src="../css/blog.js" type="text/javascript"></script>
 
-}
-img{
-    max-width: 100%;
-}
-p {
-    font-size: 18px;
-    color: dimgrey;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    line-height: 2;
-}
-	.Posts{
-		padding :20px;
-		margin: 8%;
-
-	}
-	body{
-		line-height: 1.5;
-		padding: 0px;
-		margin:0px;
-	}
-	.output{
-		color: white;
-		background: black;
-	}
-
-</style>
-<script type="text/javascript">
-	$(document).ready(function () {
-  var trigger = $('.hamburger'),
-      overlay = $('.overlay'),
-     isClosed = false;
-
-    trigger.click(function () {
-      hamburger_cross();      
-    });
-
-    function hamburger_cross() {
-
-      if (isClosed == true) {          
-        overlay.hide();
-        trigger.removeClass('is-open');
-        trigger.addClass('is-closed');
-        isClosed = false;
-      } else {   
-        overlay.show();
-        trigger.removeClass('is-closed');
-        trigger.addClass('is-open');
-        isClosed = true;
-      }
-  }
-  
-  $('[data-toggle="offcanvas"]').click(function () {
-        $('#wrapper').toggleClass('toggled');
-  });  
-});
-</script>
 </body>
 </html>
