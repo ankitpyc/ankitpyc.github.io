@@ -9,12 +9,18 @@ title: Projects
 
  <link rel="stylesheet" href="../css/blog.css">   
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/tango.css">
 <!------ Include the above in your HEAD tag ---------->
+
+<style>
+    p{
+        font-size: 14px !important;
+    }
+</style>
 
     <div id="wrapper">
         <div class="overlay"></div>
@@ -30,18 +36,12 @@ title: Projects
                 <span class="hamb-middle"></span>
                 <span class="hamb-bottom"></span>
             </button>
-<div style="
-    margin: auto;
-    margin-top: 27%;
-    text-align: left;
-    padding: 20px;
-    color: #776d6d;
-    font-size: x-large;
-"><span style="
+<div class="project_headmast"><span style="
     font-size: xx-large;
-    color: black;
+    color: #c3c3c3;
     margin: 2% auto;
-">Projects</span> A selection of cool stuff I've worked on.</div>
+">Projects</span> <br> A selection of cool stuff I've worked on.</div>
+<hr style="width: 90%;">
 <div class="card_layouts container">
         <div class="row">
 
@@ -52,8 +52,8 @@ title: Projects
          <img style="width: 100%;border-radius: 4px;" src="{{projects.image_path}}" alt="{{ project.title }}">
     	<div style="display: flex;flex-direction: column;" class="project_card_info">   
     	
-        <h3 style="font-size: large;">{{projects.title}}</h3>
-
+        <h2 style="font-size: 22px;
+    font-weight: 600;">{{projects.title}}</h2>
     {{ projects.content }}
     <div  style="
     width: 100%;

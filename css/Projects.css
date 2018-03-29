@@ -15,6 +15,7 @@
     margin: 2% auto;
     border: 1px solid #dfdfdf;
     border-radius: 4px;
+    width: 90%;
 
 }
 .project_card_info{
@@ -40,6 +41,15 @@ padding: 10px;
     font-weight: bold;
     border-top-right-radius: 0px;
 }
+.project_headmast{
+margin: 4% 11%;
+    text-align: left;
+    padding: 20px;
+    color: #776d6d;
+    font-size: x-large;
+    background: #fdfdfd;
+    border-radius: 5px;
+}
 /*notebook send*/
 .notebook_button{
     background: #4467b5;
@@ -49,11 +59,17 @@ padding: 10px;
     font-weight: bold;
     width: 50%;
     border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;;
+    border-bottom-left-radius: 0px;
 	}
     @media only screen and (max-width: 700px) {
-  
-    
+  .project_headmast{
+background: none;
+    margin: 10% 8%;
+
+}
+ .Project_card{
+width: 100%;
+}   
     p {
         font-size: 14px !important;
     }

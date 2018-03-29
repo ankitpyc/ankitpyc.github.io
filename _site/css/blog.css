@@ -1,3 +1,6 @@
+*{
+    font-family: system-ui;
+}
 html,
 body {
     padding: 0px;
@@ -6,7 +9,9 @@ body {
     line-height: 1.6;
 }
 
-
+h1,h2,h3,h4,h5,h6{
+    font-family: 'PT Sans' !important;
+}
 
 /*//Heading Overrelay*/
 
@@ -61,7 +66,8 @@ img {
 /*default paragrah settings for projects*/
 
 p {
-    font-size: 14px !important;
+    font-family: system-ui;
+    font-size: 18px !important;
     color: #333232;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -84,7 +90,7 @@ p {
 .project_heading {
     font-family: 'Roboto Condensed';
     color: white;
-    font-size: xxx-large;
+    font-size: -webkit-xxx-large;
     text-align: left;
     padding: 10px;
 }
@@ -102,7 +108,7 @@ p {
 }
 
 .image_overrelay {
-    height: 78%;
+    height: 88%;
     width: 100%;
     position: relative;
 }
@@ -126,7 +132,7 @@ p {
         color: #757272;
     }
     p {
-        font-size: 13px !important;
+        font-size: 14px !important;
     }
     h1 {
         font-size: 23px;
