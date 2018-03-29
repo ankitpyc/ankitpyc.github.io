@@ -110,7 +110,7 @@ p {
 
 /*Media specific queries for devices smaller than 600px*/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .image_overrelay {
         height: 50%;
         width: 100%;
