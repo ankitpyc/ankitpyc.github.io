@@ -1,44 +1,66 @@
 ---
-layout: post
-title:  "Logistic Regression"
-date:   2018-03-27 21:40:08 +0530
-tags :
- classification
- linear
+title:  "Skip Gram Model"
+date:   2018-03-15 23:40:08 +0530
+tags : 
+  NLP
 post_description: This is my post description 
-categories: jekyll update
-permalink : pretty
+permalink : /blogs/:title
 ---
-<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/nav.css">
+ <link rel="stylesheet" href="../css/blog.css">   
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/tango.css">
+<!------ Include the above in your HEAD tag ---------->
+
+    <div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+{% include sidebar.html %}
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+             <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div class="container-fluid">
+                <div class="row">
+                    <div style="padding: 0px;" class="col-lg-12">
+                       <div  class="image_overrelay">
+<div class="heading_container">
+    <h1 class="project_heading">Building MNIST App using Flask</h1>
+</div>
+
+<img class="image-banner" src="https://cdn-images-1.medium.com/max/2000/1*9qGFK0jjigADvy4BF_PZ_A.jpeg">  
+
+</div>
+                   
+                    </div>
+                </div>
+                 <div class="row">
+                  
 
 
-</head>
-<body>
-	
-</body>
-</html>
-<!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+{% include footer.html%}
+</div>
+</div>
+</div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
 
-Jekyll also offers powerful support for code snippets:
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+<script src="../css/blog.js" type="text/javascript"></script>
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
- -->

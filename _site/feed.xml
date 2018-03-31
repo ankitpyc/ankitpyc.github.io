@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-29T21:53:43+05:30</updated><id>http://localhost:4000/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Logistic Regression</title><link href="http://localhost:4000/pretty" rel="alternate" type="text/html" title="Logistic Regression" /><published>2018-03-27T21:40:08+05:30</published><updated>2018-03-27T21:40:08+05:30</updated><id>http://localhost:4000/Logistic-Regression</id><content type="html" xml:base="http://localhost:4000/pretty">&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-01T01:44:26+05:30</updated><id>http://localhost:4000/</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">What I learned from DeepLearning.ai Part1</title><link href="http://localhost:4000/pretty" rel="alternate" type="text/html" title="What I learned from DeepLearning.ai Part1" /><published>2018-03-19T21:40:08+05:30</published><updated>2018-03-19T21:40:08+05:30</updated><id>http://localhost:4000/Deep-Learning.ai-Part1</id><content type="html" xml:base="http://localhost:4000/pretty">&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 	&lt;meta charset=&quot;UTF-8&quot; /&gt;
@@ -30,39 +30,133 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 [jekyll-docs]: https://jekyllrb.com/docs/home
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
- --&gt;</content><author><name></name></author><category term="classification" /><category term="linear" /><summary type="html">&amp;lt;!DOCTYPE html&amp;gt; Document [jekyll-docs]: https://jekyllrb.com/docs/home [jekyll-gh]: https://github.com/jekyll/jekyll [jekyll-talk]: https://talk.jekyllrb.com/</summary></entry><entry><title type="html">What I learned from DeepLearning.ai Part1</title><link href="http://localhost:4000/pretty" rel="alternate" type="text/html" title="What I learned from DeepLearning.ai Part1" /><published>2018-03-19T21:40:08+05:30</published><updated>2018-03-19T21:40:08+05:30</updated><id>http://localhost:4000/Deep-Learning.ai-Part1</id><content type="html" xml:base="http://localhost:4000/pretty">&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
-&lt;html lang=&quot;en&quot;&gt;
+ --&gt;</content><author><name></name></author><category term="DeepLearning" /><summary type="html">&amp;lt;!DOCTYPE html&amp;gt; Document [jekyll-docs]: https://jekyllrb.com/docs/home [jekyll-gh]: https://github.com/jekyll/jekyll [jekyll-talk]: https://talk.jekyllrb.com/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.viblo.asia/486f5192-7782-44e0-a796-8f5c9deaac7c.png" /></entry><entry><title type="html">Skip Gram Model</title><link href="http://localhost:4000/blogs/Logistic-Regression" rel="alternate" type="text/html" title="Skip Gram Model" /><published>2018-03-15T23:40:08+05:30</published><updated>2018-03-15T23:40:08+05:30</updated><id>http://localhost:4000/blogs/Logistic-Regression</id><content type="html" xml:base="http://localhost:4000/blogs/Logistic-Regression">&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-	&lt;meta charset=&quot;UTF-8&quot; /&gt;
-	&lt;title&gt;Document&lt;/title&gt;
-	&lt;link href=&quot;https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; id=&quot;bootstrap-css&quot; /&gt;
+&lt;script src=&quot;//code.jquery.com/jquery-1.11.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../css/nav.css&quot; /&gt;
+ &lt;link rel=&quot;stylesheet&quot; href=&quot;../css/blog.css&quot; /&gt;   
+&lt;link href=&quot;https://fonts.googleapis.com/css?family=PT+Sans&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css&quot; /&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+&lt;script src=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../css/tango.css&quot; /&gt;
+&lt;!------ Include the above in your HEAD tag ----------&gt;
+
+    &lt;div id=&quot;wrapper&quot;&gt;
+        &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+    
+        &lt;!-- Sidebar --&gt;
+  &lt;nav class=&quot;navbar navbar-inverse navbar-fixed-top&quot; id=&quot;sidebar-wrapper&quot; role=&quot;navigation&quot;&gt;
+            &lt;ul class=&quot;nav sidebar-nav&quot;&gt;
+               &lt;li class=&quot;&quot; style=&quot;
+    text-align: center;
+    background: #000000;
+&quot;&gt; 
+                 &lt;img src=&quot;https://scontent.fbho1-1.fna.fbcdn.net/v/t1.0-1/p160x160/24176670_1494666630649404_7505247795837322239_n.jpg?_nc_cat=0&amp;amp;oh=8b160fed68b34d89bfa5587f3fc6d403&amp;amp;oe=5B32B2C8&quot; style=&quot;
+    border-radius: 200px;
+    height: 100px;
+    width: 100px;
+    margin: 14% auto;
+    padding: 9px;
+    border: 1px double #664e90;
+&quot; /&gt;
+        
+                &lt;/li&gt;
+                &lt;li class=&quot;sidebar-brand&quot;&gt;
+                    &lt;a href=&quot;#&quot;&gt;
+                       Ankit Mishra
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;https://ankitpyc.github.io/&quot;&gt;Home&lt;/a&gt;
+		    &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;https://ankitpyc.github.io/Projects&quot;&gt;Profile&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                   &lt;a href=&quot;https://ankitpyc.github.io/About&quot;&gt;About&lt;/a&gt; 
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;#&quot;&gt;Contact me&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href=&quot;https://twitter.com/maridlcrmn&quot;&gt;Follow me&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div style=&quot;height: 10%;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    align-items: center;
+    display: flex;
+    color: white !important;
+    justify-content: space-around;&quot; class=&quot;footer-nav&quot;&gt;
+                &lt;a href=&quot;&quot;&gt;&lt;i class=&quot;fa fa-1x fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href=&quot;&quot;&gt;&lt;i class=&quot;fa fa-1x fa-facebook&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                &lt;a href=&quot;&quot;&gt; &lt;i class=&quot;fa fa-1x fa-gmail&quot;&gt;&lt;/i&gt; &lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/nav&gt;
+        &lt;!-- /#sidebar-wrapper --&gt;
+
+        &lt;!-- Page Content --&gt;
+             &lt;div id=&quot;page-content-wrapper&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;hamburger is-closed&quot; data-toggle=&quot;offcanvas&quot;&gt;
+                &lt;span class=&quot;hamb-top&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hamb-middle&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;hamb-bottom&quot;&gt;&lt;/span&gt;
+            &lt;/button&gt;
+            &lt;div class=&quot;container-fluid&quot;&gt;
+                &lt;div class=&quot;row&quot;&gt;
+                    &lt;div style=&quot;padding: 0px;&quot; class=&quot;col-lg-12&quot;&gt;
+                       &lt;div class=&quot;image_overrelay&quot;&gt;
+&lt;div class=&quot;heading_container&quot;&gt;
+    &lt;h1 class=&quot;project_heading&quot;&gt;Building MNIST App using Flask&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;img class=&quot;image-banner&quot; src=&quot;https://cdn-images-1.medium.com/max/2000/1*9qGFK0jjigADvy4BF_PZ_A.jpeg&quot; /&gt;  
+
+&lt;/div&gt;
+                   
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                 &lt;div class=&quot;row&quot;&gt;
+                  
 
 
-&lt;/head&gt;
-&lt;body&gt;
-	
-&lt;/body&gt;
-&lt;/html&gt;
-&lt;!-- You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+&lt;hr /&gt;
+&lt;div style=&quot;text-align: center;
+    font-size: medium;&quot;&gt;
+Thankyou for reading !!
+&lt;div&gt;
+&lt;div style=&quot;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+&quot;&gt;
+&lt;i style=&quot;text-align: center;
+    margin: 1%;&quot; class=&quot;fa fa-1x fa-github&quot;&gt;&lt;/i&gt;	
+&lt;i style=&quot;text-align: center;
+    margin: 1%;&quot; class=&quot;fa fa-1x fa-facebook&quot;&gt;&lt;/i&gt;
+&lt;i style=&quot;text-align: center;
+    margin: 1%;&quot; class=&quot;fa fa-1x fa-quora&quot;&gt;&lt;/i&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- /#page-content-wrapper --&gt;
 
-Jekyll also offers powerful support for code snippets:
 
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;script src=&quot;../css/blog.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
- --&gt;</content><author><name></name></author><category term="DeepLearning" /><summary type="html">&amp;lt;!DOCTYPE html&amp;gt; Document [jekyll-docs]: https://jekyllrb.com/docs/home [jekyll-gh]: https://github.com/jekyll/jekyll [jekyll-talk]: https://talk.jekyllrb.com/</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.viblo.asia/486f5192-7782-44e0-a796-8f5c9deaac7c.png" /></entry><entry><title type="html">An introduction to Stemming and Lematization</title><link href="http://localhost:4000/jekyll/update/2018/03/15/welcome-to-jekyll.html" rel="alternate" type="text/html" title="An introduction to Stemming and Lematization" /><published>2018-03-15T23:40:08+05:30</published><updated>2018-03-15T23:40:08+05:30</updated><id>http://localhost:4000/jekyll/update/2018/03/15/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/03/15/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;/head&gt;&lt;/html&gt;</content><author><name></name></author><category term="NLP" /><summary type="html"></summary></entry><entry><title type="html">An introduction to Stemming and Lematization</title><link href="http://localhost:4000/jekyll/update/2018/03/15/welcome-to-jekyll.html" rel="alternate" type="text/html" title="An introduction to Stemming and Lematization" /><published>2018-03-15T23:40:08+05:30</published><updated>2018-03-15T23:40:08+05:30</updated><id>http://localhost:4000/jekyll/update/2018/03/15/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/03/15/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 

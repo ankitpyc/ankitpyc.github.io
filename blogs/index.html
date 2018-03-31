@@ -86,8 +86,8 @@ body, html {
 <ul class="list-group">
 {% for post in site.posts %}
 <li class="list-group-item">
-<h3 class="post_heading">{{post.title}}</h3><span class="date">{{ post.date | date: "%b %d, %Y" }}</span> 
-
+<a href="{{post.url}}" class="post_heading">{{post.title}}</h3><span class="date">{{ post.date | date: "%b %d, %Y" }}</span> 
+</a>
 <br>
 <img style="height: 200;
     width: auto;display: block;margin: 3% auto;"  src="{{post.image}}" alt="">
