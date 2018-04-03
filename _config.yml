@@ -13,23 +13,28 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
+title: ankitpyc.github.io
+email: ankitmishra471@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+  
+baseurl: "" 
+url: "" 
+github_username:  ankitpyc
 
 # Build settings
 markdown: kramdown
 highhlighter : rogue
 theme: minima
+social:
+  name: Ankit Mishra
+  links:
+    - https://www.facebook.com/ankit.mishra.180625
+    - https://www.linkedin.com/in/ankit-mishra-8a8350a0/
+    - https://plus.google.com/u/0/110361027721529754503
+    - https://github.com/ankitpyc
 plugins:
   - jekyll-feed 
+  - jekyll-seo-tag
 collections :
   project_details: 
   Notebooks:
