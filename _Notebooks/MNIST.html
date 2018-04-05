@@ -1,5 +1,5 @@
 ---
-title : Handwritten Digits Classification description : Classification of Handwritten Digits using Deep Convolutional Neural Network along with image preprocessing and Normalization permalink : /Projects/:title author : ankitpyc post_dirs: false 
+title : Handwritten Digits Classification description : Classification of Handwritten Digits using Deep Convolutional Neural Network along with image preprocessing and Normalization permalink : /Projects/:title author : ankitpyc post_dirs: false
 ---
 <title>Handwritten Digits Classification</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -139,7 +139,11 @@ pixel784        0
               <h1>Train Test Split</h1>
               <p>Now lets split our train test data and ensure reproducibility by seeding.As data provided to us is already split into train and test .Just put a random seed and start training the Model</p>
 
-              {% highlight python %} # Now lets set a random seed so that our results are reproducible seed = 5 np.random.seed(seed) {% endhighlight %}
+              {% highlight python %}
+              # Now lets set a random seed so that our results are reproducible
+              seed = 5 
+              np.random.seed(seed)
+              {% endhighlight %}
 
               <hr>
               <h1>Convolutional Neural Networks</h1>

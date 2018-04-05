@@ -65,12 +65,29 @@ post_dirs: false
 
           <p>The Dataset we are using for this project can be found <a href="#">here</a>.The Dataset comprises of 2 csv files.Lets import our libraries and see what data we have in the csv file</p>
 
-          {% highlight python %} # linear algebra import numpy as np # data processing, CSV file I/O (e.g. pd.read_csv) import pandas as pd # for visualizations and plotting graphs import matplotlib.pyplot as plt import seaborn as sns #setting the style of grids
-          sns.set_style('whitegrid') {% endhighlight %}
+          {% highlight python %} 
+          # linear algebra import numpy as np 
+          # data processing, CSV file I/O (e.g. pd.read_csv) 
+          import pandas as pd 
+          # for visualizations and plotting graphs 
+          import matplotlib.pyplot as plt 
+          import seaborn as sns 
+          #setting the style of grids
+          sns.set_style('whitegrid') 
+          {% endhighlight %}
 
           <p>There are two files <code>tmdb_5000_movies.csv</code> and <code>tmdb_5000_credits.csv</code>.Lets go through them one by one</p>
-          {% highlight python %} #Load the First csv File data_movies = pd.read_csv('Data/tmdb_5000_movies.csv') #Load the second csv File data_credits = pd.read_csv('Data/tmdb_5000_credits.csv') {% endhighlight %} {% highlight python %} #Print the first 1 rows
-          of the data_movies data_movies.head(1) {% endhighlight %}
+          {% highlight python %} 
+          #Load the First csv File 
+          data_movies = pd.read_csv('Data/tmdb_5000_movies.csv') 
+          #Load the second csv File 
+          data_credits = pd.read_csv('Data/tmdb_5000_credits.csv') 
+          {% endhighlight %} 
+          {% highlight python %} 
+          #Print the first 1 rows
+          of the data_movies 
+          data_movies.head(1) 
+          {% endhighlight %}
 
           <table border="1" class="table table-responsive table-bordered">
             <thead>
@@ -178,15 +195,26 @@ None
           <h4> <b>1.1 Original language</b></h4>
           <p>Lets find out what is most popular language in which films are produced</p>
 
-          {% highlight python %} fig = plt.figure(figsize=(8,8)) sns.countplot(y=data_movies['original_language'],data=data_movies) {% endhighlight %}
+          {% highlight python %} 
+          fig = plt.figure(figsize=(8,8)) 
+          sns.countplot(y=data_movies['original_language'],data=data_movies) 
+          {% endhighlight %}
 
           <img src="{{site.baseurl}}{{" ../static_assets/Recommender_Systems/Languages.png " }}">
 
           <h4> <b>1.2 Popular Genres</b></h4>
 
           <p>In this section we will analyze which genre is most common among movies. i.e on which genre most of the movies are based.</p>
-          {% highlight python %} import ast genres_movies = dict() for movies in data_movies['genres']: movie = ast.literal_eval(movies) for genre in movie: if(genre['name'] not in genres_movies.keys()): genres_movies[genre['name']] = 1 else: genres_movies[genre['name']]
-          = genres_movies[genre['name']]+1 {% endhighlight %}
+          {% highlight python %} 
+          import ast genres_movies = dict() 
+          for movies in data_movies['genres']: 
+            movie = ast.literal_eval(movies) 
+            for genre in movie: 
+              if(genre['name'] not in genres_movies.keys()): 
+                genres_movies[genre['name']] = 1 
+              else: 
+                genres_movies[genre['name']]= genres_movies[genre['name']]+1 
+          {% endhighlight %}
 
           <img src="{{static.url}}{{" ../static_assets/Recommender_Systems/genres.png "}}" alt="">
 
@@ -238,7 +266,9 @@ None
 
           <p>Now lets peek again into our movies data </p>
 
-          {% highlight python %} data_movies.head(1) {% endhighlight %}
+          {% highlight python %} 
+          data_movies.head(1) 
+          {% endhighlight %}
 
           <div style="overflow: scroll;">
             <table border="1" class="table table-responsive table-bordered">
@@ -295,17 +325,28 @@ None
             </table>
           </div>
 
-          <p>Lets calculate the <code>mean vote</code>,<code>average vote</code></p>. {% highlight python %} vote_counts = data_movies[data_movies['vote_count'].notnull()]['vote_count'].astype('int') # we will be using minimum votes as 95% percentile of
-          the maximum votes received #calculating the average votes vote_averages = data_movies[data_movies['vote_average'].notnull()]['vote_average'].astype('int') # setting minimum vote requirements to be 85 percentile of the votes of the movies minimum_votes
-          = votes_count.quantile(0.85) print 'minimum_votes :',minimum_votes {% endhighlight %}
+          <p>Lets calculate the <code>mean vote</code>,<code>average vote</code></p>. 
+          {% highlight python %}
+           vote_counts = data_movies[data_movies['vote_count'].notnull()]['vote_count'].astype('int') 
+           # we will be using minimum votes as 95% percentile of
+          the maximum votes received 
+          #calculating the average votes 
+          vote_averages = data_movies[data_movies['vote_average'].notnull()]['vote_average'].astype('int') 
+          # setting minimum vote requirements to be 85 percentile of the votes of the movies minimum_votes = votes_count.quantile(0.85) 
+          print 'minimum_votes :',minimum_votes 
+          {% endhighlight %}
           <pre class="output">
  1300
 </pre>
 
           <p>Now we have calculated the minimum vote requirements for the movies to be listed in our chart.Let's extract all the movies from our dataframe which qualifies above criteria</p>
 
-          {% highlight python %} qualified = data_movies[(data_movies['vote_count'] >= m) & (data_movies['vote_count'].notnull()) & (data_movies['vote_average'].notnull())][['title', 'year', 'vote_count', 'vote_average', 'popularity', 'genres']] qualified['vote_count']
-          = qualified['vote_count'].astype('int') qualified['vote_average'] = qualified['vote_average'].astype('int') qualified.shape {% endhighlight %}
+          {% highlight python %} 
+          qualified = data_movies[(data_movies['vote_count'] >= m) & (data_movies['vote_count'].notnull()) & (data_movies['vote_average'].notnull())][['title', 'year', 'vote_count', 'vote_average', 'popularity', 'genres']] 
+          qualified['vote_count'] = qualified['vote_count'].astype('int')
+           qualified['vote_average'] = qualified['vote_average'].astype('int') 
+           qualified.shape 
+           {% endhighlight %}
 
 
           <pre class="output">
@@ -316,7 +357,12 @@ None
           <p>Now we will use the standard IMDB rating formula to calculate the weighted rating for all qualified movies.</p>
 
 
-          {% highlight python %} def weighted_rating(x): v = x['vote_count'] R = x['vote_average'] return (v/(v+m) * R) + (m/(m+v) * C) {% endhighlight %}
+          {% highlight python %} 
+          def weighted_rating(x): 
+            v = x['vote_count'] 
+            R = x['vote_average'] 
+            return (v/(v+m) * R) + (m/(m+v) * C)
+            {% endhighlight %}
 
           <p>we have defined our <code>weighted_rating</code> function which calculates weighted rating for movies. </p>
 
@@ -1033,11 +1079,17 @@ None
 
           <p>Now lets write a function that returns top movies belonging to particular genre</p>
 
-          {% highlight python %} # it returns all movies of particular genre if they qualified movie criteria to be listed def genre_recommend(genre,percentile): gen_movie = data_movies.apply(lambda x : ret_mov(x,genre),axis=1) gen_movie = gen_movie.dropna() vote_count
-          = gen_movie[gen_movie['vote_count'].notnull()]['vote_count'].astype('int') vote_averages = gen_movie[gen_movie['vote_average'].notnull()]['vote_average'].astype('int') c = vote_averages.mean() m = vote_counts.quantile(percentile) gen_qualified
-          = gen_movie[(gen_movie['vote_count'] >= m) & (gen_movie['vote_count'].notnull()) & (gen_movie['vote_average'].notnull())][['title', 'year', 'vote_count', 'vote_average', 'popularity', 'genres']] gen_qualified['vote_count'] = gen_qualified['vote_count'].astype('int')
-          gen_qualified['vote_average'] = gen_qualified['vote_average'].astype('int') gen_qualified['wr'] = gen_qualified.apply(lambda x:weighted_rating(x),axis=1) gen_qualified = gen_qualified.sort_values('wr',ascending=False) return gen_qualified {%
-          endhighlight %}
+          {% highlight python %} 
+          # it returns all movies of particular genre if they qualified movie criteria to be listed 
+          def genre_recommend(genre,percentile): 
+            gen_movie = data_movies.apply(lambda x : ret_mov(x,genre),axis=1) gen_movie = gen_movie.dropna() 
+            vote_count= gen_movie[gen_movie['vote_count'].notnull()]['vote_count'].astype('int') vote_averages = gen_movie[gen_movie['vote_average'].notnull()]['vote_average'].astype('int') 
+            c = vote_averages.mean() m = vote_counts.quantile(percentile) 
+            gen_qualified = gen_movie[(gen_movie['vote_count'] >= m) & (gen_movie['vote_count'].notnull()) & (gen_movie['vote_average'].notnull())][['title', 'year', 'vote_count', 'vote_average', 'popularity', 'genres']] 
+            gen_qualified['vote_count'] = gen_qualified['vote_count'].astype('int')
+            gen_qualified['vote_average'] = gen_qualified['vote_average'].astype('int') gen_qualified['wr'] = gen_qualified.apply(lambda x:weighted_rating(x),axis=1) 
+            gen_qualified = gen_qualified.sort_values('wr',ascending=False) return gen_qualified 
+          {%endhighlight %}
           <p>Now lets check our recommendations.</p>
 
 
@@ -1178,12 +1230,17 @@ None
           <p>We have joined the feature columns and remove useless data.Now we will extract features from the <code>description</code> using Tfidf(Term frequency inverse document frequency)</p>
 
 
-          {% highlight python %} from sklearn.feature_extraction.text import TfidfVectorizer tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english') tfidf_matrix = tf.fit_transform(content_movies['description']) {% endhighlight %}
+          {% highlight python %} 
+          from sklearn.feature_extraction.text import TfidfVectorizer 
+          tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english') tfidf_matrix = tf.fit_transform(content_movies['description']) 
+          {% endhighlight %}
 
           <p>Now lets see our tfidf matrix shape to analyze what what tfidf matrix really is</p>
 
 
-          {% highlight python %} tfidf_matrix.shape {% endhighlight %}
+          {% highlight python %} 
+          tfidf_matrix.shape 
+          {% endhighlight %}
 
           <pre class="output">
 
@@ -1211,7 +1268,13 @@ None
 
 
 
-          {% highlight python %} from sklearn.pairwise import linear_kernel cos_sim = linear_kernel(tfidf_matrix) {% endhighlight %} {% highlight python %} cos_sim[0] {% endhighlight %}
+          {% highlight python %} 
+          from sklearn.pairwise import linear_kernel 
+          cos_sim = linear_kernel(tfidf_matrix) 
+          {% endhighlight %} 
+          {% highlight python %} 
+          cos_sim[0] 
+          {% endhighlight %}
 
           <pre class="output">
   array([ 1.        ,  0.00680476,  0.        , ...,  0.        ,
@@ -1223,8 +1286,17 @@ None
             much be user centric.</p>
 
 
-          {% highlight python %} def improved_recommend(title): idx = indices[title] sim_scores = list(enumerate(cos_sim[idx])) sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True) sim_scores = sim_scores[1:31] movie_indices = [i[0] for i in sim_scores]
-          return titles.iloc[movie_indices] {% endhighlight %} {% highlight python %} improved_recommend('The Shawshank Redemption').head(20) {% endhighlight %}
+          {% highlight python %} 
+          def improved_recommend(title): 
+            idx = indices[title] 
+            sim_scores = list(enumerate(cos_sim[idx])) 
+            sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True) 
+            sim_scores = sim_scores[1:31] movie_indices = [i[0] for i in sim_scores]
+            return titles.iloc[movie_indices] 
+            {% endhighlight %} 
+            {% highlight python %} 
+            improved_recommend('The Shawshank Redemption').head(20) 
+            {% endhighlight %}
 
           <pre class="output">
 637                     Les Misérables
