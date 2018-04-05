@@ -100,12 +100,17 @@
           <hr>
           <h2>About the Project</h2>
           <p>In this Project we will be building a Sentiment Analyzer that will be used to judge sentiment of movie reviews.</p>
-          The dataset has been taken from the rotten tomatoes website.We will be dealing will Natural language processing in python and will be sung several modules of python for NLP.This notebook aims at cleaning data as we are dealing with raw reviews.Lets start
+
+         <p> The dataset has been taken from the rotten tomatoes website.We will be dealing will Natural language processing in python and will be sung several modules of python for NLP.This notebook aims at cleaning data as we are dealing with raw reviews.Lets start</p>
           <h2>Exploration and Analysis</h2>
           <p>Lets import our libraries</p>
 
 
-          <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span> 
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> </code></pre></figure>
 
           <p>we are having only one data file <code>train.tsv</code> . Now tsv(tab seprate values) are another extension of data files just like .xls or .csv. Pandas has a special function read_table which allows us to deal with these files/
             <p>
@@ -113,7 +118,9 @@
               <p>lets see what we have in these files</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'train.tsv'</span><span class="p">)</span> <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s">'train.tsv'</span><span class="p">)</span> 
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> </code></pre></figure>
 
               <table style="overflow-x:scroll;" border="1" class="table table-responsive">
                 <thead>
@@ -179,11 +186,24 @@
 
               <p>For visualization purpose lets convert the numeric columns to categorical.Lets write a method to convert each row of pandas dataframe to numerical</p>
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="k">def</span> <span class="nf">num_sen</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span> <span class="k">return</span> <span class="s">"negative"</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span> <span class="k">return</span> <span class="s">"somewhat negative"</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span> <span class="k">return</span> <span class="s">"neutral"</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span> <span class="k">return</span> <span class="s">"positive"</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span> <span class="k">return</span> <span class="s">"somewhat positive"</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="k">def</span> <span class="nf">num_sen</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> 
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="s">"negative"</span> 
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="s">"somewhat negative"</span> 
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="s">"neutral"</span> 
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="s">"positive"</span> 
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">4</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="s">"somewhat positive"</span> </code></pre></figure>
 
               <p>Now we will analyze the distribution of various sentiments of dataset</p>
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">data</span><span class="p">[</span><span class="s">'Sentiment'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'Sentiment'</span><span class="p">]</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">num_sen</span><span class="p">)</span> <span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">Sentiment</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">data</span><span class="p">[</span><span class="s">'Sentiment'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'Sentiment'</span><span class="p">]</span><span class="o">.</span><span class="nb">map</span><span class="p">(</span><span class="n">num_sen</span><span class="p">)</span> 
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">Sentiment</span><span class="p">)</span> </code></pre></figure>
 
 
               <img src="../static_assets/Sentiment Analysis/count.png" alt="">
@@ -203,20 +223,31 @@
 
               <p>Now we will split each sentence into tokens of words.</p>
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">positive</span> <span class="o">=</span> <span class="n">df_sentiments</span><span class="p">[</span><span class="s">'Phrase'</span><span class="p">]</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">))</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">positive</span> <span class="o">=</span> <span class="n">df_sentiments</span><span class="p">[</span><span class="s">'Phrase'</span><span class="p">]</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">))</span> </code></pre></figure>
 
 
               <p>After this we will count the words which occur in positive sentiments and their counts.this will help us understand what positive sentence mainly comprises of and what do we actually have in them.</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">positive_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">positive</span><span class="p">:</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">positive_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> <span class="n">positive_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">else</span><span class="p">:</span> <span class="n">positive_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">positive_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">positive_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> 
+<span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">positive</span><span class="p">:</span> 
+  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">positive_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span> 
+      <span class="n">positive_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> 
+    <span class="k">else</span><span class="p">:</span> 
+      <span class="n">positive_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">positive_dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span> </code></pre></figure>
 
               <p>Framing the results into dataset for visualization.</p>
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">positive_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">x</span><span class="p">,</span><span class="n">positive_dict</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">positive_dict</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'word'</span><span class="p">,</span><span class="s">'count'</span><span class="p">])</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">positive_counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">x</span><span class="p">,</span><span class="n">positive_dict</span><span class="p">[</span><span class="n">x</span><span class="p">]]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">positive_dict</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'word'</span><span class="p">,</span><span class="s">'count'</span><span class="p">])</span> </code></pre></figure>
 
               <p>Lets do a barplot</p>
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">positive_counts</span><span class="p">[</span><span class="s">'word'</span><span class="p">][:</span><span class="mi">100</span><span class="p">],</span><span class="n">x</span><span class="o">=</span><span class="n">positive_counts</span><span class="p">[</span><span class="s">'count'</span><span class="p">][:</span><span class="mi">100</span><span class="p">])</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">positive_counts</span><span class="p">[</span><span class="s">'word'</span><span class="p">][:</span><span class="mi">100</span><span class="p">],</span><span class="n">x</span><span class="o">=</span><span class="n">positive_counts</span><span class="p">[</span><span class="s">'count'</span><span class="p">][:</span><span class="mi">100</span><span class="p">])</span> </code></pre></figure>
 
               <img src="../static_assets/Sentiment Analysis/positive_count.png" alt="">
 
@@ -237,8 +268,8 @@
 
               <ul>
                 <li>
-                  <b>Stopwords Punctuations and special characters</b>
-                  <p>Stopwords are words which are very repetitive and useless.These words means nothing, unless of course we're searching for someone who is maybe lacking confidence, is confused, or hasn't practiced much speaking. We all do it, you can
+                  <b>Stop words Punctuations and special characters</b>
+                  <p>Stop words are words which are very repetitive and useless.These words means nothing, unless of course we're searching for someone who is maybe lacking confidence, is confused, or hasn't practiced much speaking. We all do it, you can
                     hear me saying "umm" or "uhh" </p>
 
 
@@ -256,10 +287,29 @@
                 library <code>re</code> for removing symbols and special characters and Numbers.</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="kn">import</span> <span class="nn">re</span> <span class="c"># lets define a function that does this def clean_reviews(review): # removing the punctuation and special symbols review = re.sub('[^A-Za-z]+',' ',review) # converting words to lowercase review = review.lower() # converting</span>
-              <span class="n">sentences</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">words</span> <span class="n">review</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span> <span class="c"># removing the stop words review_cleaned = [words for words in review if words not in stopwords.words('english')] # Stemming if(not(Lemma)): #stemming words so that we can get into the</span>
-              <span class="n">root</span> <span class="n">word</span> <span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span> <span class="n">review_cleaned</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">]</span> <span class="k">return</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">words</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">])</span> <span class="c">#Lemmatizing else: Lemmatizer = WordNetLemmatizer() review_cleaned = [Lemmatizer.lemmatize(words)</span>
-              <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">]</span> <span class="n">rev</span> <span class="o">=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">words</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">])</span> <span class="k">return</span> <span class="n">rev</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="kn">import</span> <span class="nn">re</span> 
+<span class="c"># lets define a function that does this </span>
+<span class="k">def</span> <span class="nf">clean_reviews</span><span class="p">(</span><span class="n">review</span><span class="p">):</span> 
+  <span class="c"># removing the punctuation and special symbols </span>
+  <span class="n">review</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'[^A-Za-z]+'</span><span class="p">,</span><span class="s">' '</span><span class="p">,</span><span class="n">review</span><span class="p">)</span> 
+  <span class="c"># converting words to lowercase </span>
+  <span class="n">review</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> 
+  <span class="c"># converting sentences to list of words </span>
+  <span class="n">review</span> <span class="o">=</span> <span class="n">review</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span> 
+  <span class="c"># removing the stop words </span>
+  <span class="n">review_cleaned</span> <span class="o">=</span> <span class="p">[</span><span class="n">words</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review</span> <span class="k">if</span> <span class="n">words</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">)]</span> 
+  <span class="c"># Stemming </span>
+  <span class="k">if</span><span class="p">(</span><span class="ow">not</span><span class="p">(</span><span class="n">Lemma</span><span class="p">)):</span> 
+    <span class="c">#stemming words so that we can get into the</span>
+    <span class="n">root</span> <span class="n">word</span> <span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span> 
+    <span class="n">review_cleaned</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>  <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">]</span> 
+    <span class="k">return</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">words</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">])</span> 
+  <span class="c">#Lemmatizing </span>
+  <span class="k">else</span><span class="p">:</span> 
+    <span class="n">Lemmatizer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span> 
+    <span class="n">review_cleaned</span> <span class="o">=</span> <span class="p">[</span><span class="n">Lemmatizer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">]</span> <span class="n">rev</span> <span class="o">=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">words</span> <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">review_cleaned</span><span class="p">])</span> 
+    <span class="k">return</span> <span class="n">rev</span> </code></pre></figure>
 
               <p>The above function processes each of the raw positive raw reviews it the data and return the cleaned review.we have set <code>Lemma = 1</code>so that i could easily switch using the same function</p>
 
@@ -299,7 +349,7 @@
 27        also good gander occasionally amuses none amou...
 28        also good gander occasionally amuses none amou...
 29
- upto no of postive reviews
+ upto no of positive reviews
 </pre>
 
 
@@ -310,7 +360,9 @@
 
               <p>Now lets clean all the reviews by applying the <code>clean_reviews</code> to all sentiments and create a new column in the dataframe 'cleaned_reviews'</p>
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">data</span><span class="p">[</span><span class="s">'cleaned_reviews'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'Phrase'</span><span class="p">]</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">clean_reviews</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="n">data</span><span class="p">[</span><span class="s">'cleaned_reviews'</span><span class="p">]</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">data</span><span class="p">[</span><span class="s">'cleaned_reviews'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'Phrase'</span><span class="p">]</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">clean_reviews</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">data</span><span class="p">[</span><span class="s">'cleaned_reviews'</span><span class="p">]</span> </code></pre></figure>
 
               <p>It takes some 3-5 minutes to process as it has 1,50,000 reviews.Now we will be using our cleaned reviews as feature and start building our predictive model using various NLP techniques</p>
 
@@ -330,12 +382,19 @@
 
               <p>Now we will be building a sklearn pipeline to use both the Bag of Words and Tfidf to calculate feature vectors</p>
               <hr>
-              <h2>Building a Sentiment Classifier</h2> <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="kn">from</span> <span class="nn">sklearn.pipleline</span> <span class="kn">import</span> <span class="n">pipeline</span> <span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">Tfidf</span><span class="p">,</span><span class="n">CountVectorizer</span> </code></pre></figure>
+              <h2>Building a Sentiment Classifier</h2> 
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="kn">from</span> <span class="nn">sklearn.pipleline</span> <span class="kn">import</span> <span class="n">pipeline</span> 
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">Tfidf</span><span class="p">,</span><span class="n">CountVectorizer</span> </code></pre></figure>
 
               <p> <code>TfIdf</code> and <code>CountVectorizer</code> are the sklearn implementation of Tfidf and Bag of Words implementation of sklearn. </p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">BOW</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span> <span class="n">BOW_Features</span> <span class="o">=</span> <span class="n">BOW</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s">'cleaned_reviews'</span><span class="p">]))</span> </code></pre></figure> <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">BOW_Features</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">BOW</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span> 
+<span class="n">BOW_Features</span> <span class="o">=</span> <span class="n">BOW</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s">'cleaned_reviews'</span><span class="p">]))</span> </code></pre></figure> 
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">BOW_Features</span> </code></pre></figure>
 
               <pre class="output">
 <156060x5000 sparse matrix of type '<type 'numpy.int64'>'with 524767 stored elements in Compressed Sparse Row format>
@@ -346,7 +405,10 @@
               <p>Now we will fit a TfIdf vectorizer on the bag of words feature</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">tfidf</span> <span class="o">=</span> <span class="n">Tfidf</span><span class="p">()</span> <span class="n">tfidf_features</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">)</span> <span class="n">tfidf_features</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">tfidf</span> <span class="o">=</span> <span class="n">Tfidf</span><span class="p">()</span> 
+<span class="n">tfidf_features</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">max_features</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">)</span> 
+<span class="n">tfidf_features</span> </code></pre></figure>
               <pre class="output">
 <156060x2000 sparse matrix of type '<type 'numpy.float64'>'with 419006 stored elements in Compressed Sparse Row format>
 </pre>
@@ -356,15 +418,22 @@
               <h2>Train Test Split</h2>
 
               <p>We will split our whole tfidf sparse matrix into train and test using sklearn's <code>train_test_split</code></p>
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">tfidf_features</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">'Sentiment'</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> 
+<span class="kn">import</span> <span class="n">train_test_split</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">tfidf_features</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s">'Sentiment'</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span> </code></pre></figure>
               <p>Lets train our model on Multinomial Naive Bayes which is used for Multi classification Problem.</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span><span class="p">()</span> <span class="n">model_naive</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span> <span class="n">model_naive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span><span class="p">()</span> 
+<span class="n">model_naive</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span> 
+<span class="n">model_naive</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span> </code></pre></figure>
 
               <p>Now lets predict the values in the test set and see its accuracy</p>
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">predictions</span> <span class="o">=</span> <span class="n">model_naive</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model_naive</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> 
+<span class="n">accuracy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">)</span> </code></pre></figure>
               <pre class="output">
 0.562
 </pre>
@@ -375,12 +444,18 @@
               <p>As we have seen naive Bayes is not giving better predictions,Lets use random forest an ensemble of Decision Trees.</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="n">model_randomf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="n">model_randomf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> 
+<span class="kn">import</span> <span class="n">RandomForestClassifier</span> 
+<span class="n">model_randomf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> 
+<span class="n">model_randomf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span> </code></pre></figure>
 
               <p>Lets check the predictions and accuracy of our random forest model.</p>
 
 
-              <figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">predictions</span> <span class="o">=</span> <span class="n">model_randomf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="k">print</span> <span class="s">"accuracy :"</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model_randomf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> 
+<span class="k">print</span> <span class="s">"accuracy :"</span><span class="p">,</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">)</span> </code></pre></figure>
               <pre class="output">
 accuracy : 0.6189708737864078
 </pre>
