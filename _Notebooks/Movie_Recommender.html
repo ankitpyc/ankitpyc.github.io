@@ -357,12 +357,12 @@ None
           <p>Now we will use the standard IMDB rating formula to calculate the weighted rating for all qualified movies.</p>
 
 
-          {% highlight python %} 
-          def weighted_rating(x): 
-            v = x['vote_count'] 
-            R = x['vote_average'] 
-            return (v/(v+m) * R) + (m/(m+v) * C)
-            {% endhighlight %}
+{% highlight python %} 
+      def weighted_rating(x): 
+          v = x['vote_count'] 
+          R = x['vote_average'] 
+          return (v/(v+m) * R) + (m/(m+v) * C)
+{% endhighlight %}
 
           <p>we have defined our <code>weighted_rating</code> function which calculates weighted rating for movies. </p>
 

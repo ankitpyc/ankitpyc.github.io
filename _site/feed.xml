@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-04T00:16:39+05:30</updated><id>http://localhost:4000/</id><title type="html">ankitpyc.github.io</title><subtitle></subtitle><entry><title type="html">What I learned from DeepLearning.ai Part1</title><link href="http://localhost:4000/pretty" rel="alternate" type="text/html" title="What I learned from DeepLearning.ai Part1" /><published>2018-03-19T21:40:08+05:30</published><updated>2018-03-19T21:40:08+05:30</updated><id>http://localhost:4000/Deep-Learning.ai-Part1</id><content type="html" xml:base="http://localhost:4000/pretty">&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-04-05T23:28:07+05:30</updated><id>http://localhost:4000/</id><title type="html">ankitpyc.github.io</title><subtitle></subtitle><entry><title type="html">What I learned from DeepLearning.ai Part1</title><link href="http://localhost:4000/pretty" rel="alternate" type="text/html" title="What I learned from DeepLearning.ai Part1" /><published>2018-03-19T21:40:08+05:30</published><updated>2018-03-19T21:40:08+05:30</updated><id>http://localhost:4000/Deep-Learning.ai-Part1</id><content type="html" xml:base="http://localhost:4000/pretty">&lt;p&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/p&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 	&lt;meta charset=&quot;UTF-8&quot; /&gt;
@@ -47,13 +47,13 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
         &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
     
         &lt;!-- Sidebar --&gt;
-  &lt;nav class=&quot;navbar navbar-inverse navbar-fixed-top&quot; id=&quot;sidebar-wrapper&quot; role=&quot;navigation&quot;&gt;
-            &lt;ul class=&quot;nav sidebar-nav&quot;&gt;
-               &lt;li class=&quot;&quot; style=&quot;
+&lt;nav class=&quot;navbar navbar-inverse navbar-fixed-top&quot; id=&quot;sidebar-wrapper&quot; role=&quot;navigation&quot;&gt;
+  &lt;ul class=&quot;nav sidebar-nav&quot;&gt;
+    &lt;li class=&quot;&quot; style=&quot;
     text-align: center;
     background: #000000;
-&quot;&gt; 
-                 &lt;img src=&quot;https://scontent.fbho1-1.fna.fbcdn.net/v/t1.0-1/p160x160/24176670_1494666630649404_7505247795837322239_n.jpg?_nc_cat=0&amp;amp;oh=8b160fed68b34d89bfa5587f3fc6d403&amp;amp;oe=5B32B2C8&quot; style=&quot;
+&quot;&gt;
+      &lt;img src=&quot;https://scontent.fbho1-1.fna.fbcdn.net/v/t1.0-1/p160x160/24176670_1494666630649404_7505247795837322239_n.jpg?_nc_cat=0&amp;amp;oh=8b160fed68b34d89bfa5587f3fc6d403&amp;amp;oe=5B32B2C8&quot; style=&quot;
     border-radius: 200px;
     height: 100px;
     width: 100px;
@@ -61,30 +61,30 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
     padding: 9px;
     border: 1px double #664e90;
 &quot; /&gt;
-        
-                &lt;/li&gt;
-                &lt;li class=&quot;sidebar-brand&quot;&gt;
-                    &lt;a href=&quot;#&quot;&gt;
+
+    &lt;/li&gt;
+    &lt;li class=&quot;sidebar-brand&quot;&gt;
+      &lt;a href=&quot;#&quot;&gt;
                        Ankit Mishra
                     &lt;/a&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                    &lt;a href=&quot;https://ankitpyc.github.io/&quot;&gt;Home&lt;/a&gt;
-		    &lt;/li&gt;
-                &lt;li&gt;
-                    &lt;a href=&quot;https://ankitpyc.github.io/Projects&quot;&gt;Profile&lt;/a&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                   &lt;a href=&quot;https://ankitpyc.github.io/About&quot;&gt;About&lt;/a&gt; 
-                &lt;/li&gt;
-                &lt;li&gt;
-                    &lt;a href=&quot;#&quot;&gt;Contact me&lt;/a&gt;
-                &lt;/li&gt;
-                &lt;li&gt;
-                    &lt;a href=&quot;https://twitter.com/maridlcrmn&quot;&gt;Follow me&lt;/a&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;div style=&quot;height: 10%;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;https://ankitpyc.github.io/&quot;&gt;Home&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;https://ankitpyc.github.io/Projects&quot;&gt;Profile&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;https://ankitpyc.github.io/About&quot;&gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;#&quot;&gt;Contact me&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a href=&quot;https://twitter.com/maridlcrmn&quot;&gt;Follow me&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div style=&quot;height: 10%;
     text-align: center;
     width: 100%;
     position: absolute;
@@ -93,11 +93,12 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
     display: flex;
     color: white !important;
     justify-content: space-around;&quot; class=&quot;footer-nav&quot;&gt;
-                &lt;a href=&quot;&quot;&gt;&lt;i class=&quot;fa fa-1x fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                &lt;a href=&quot;&quot;&gt;&lt;i class=&quot;fa fa-1x fa-facebook&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                &lt;a href=&quot;&quot;&gt; &lt;i class=&quot;fa fa-1x fa-gmail&quot;&gt;&lt;/i&gt; &lt;/a&gt;
-            &lt;/div&gt;
-        &lt;/nav&gt;
+    &lt;a href=&quot;&quot;&gt;&lt;i class=&quot;fa fa-1x fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;a href=&quot;&quot;&gt;&lt;i class=&quot;fa fa-1x fa-facebook&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+    &lt;a href=&quot;&quot;&gt; &lt;i class=&quot;fa fa-1x fa-gmail&quot;&gt;&lt;/i&gt; &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
         &lt;!-- /#sidebar-wrapper --&gt;
 
         &lt;!-- Page Content --&gt;
