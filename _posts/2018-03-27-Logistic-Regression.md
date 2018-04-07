@@ -3,7 +3,7 @@ title:  "Skip Gram Model"
 date:   2018-03-15 23:40:08 +0530
 tags : 
   NLP
-post_description: This is my post description 
+post_description: An extension of the algorithm was developed by Leo Breiman[7] and Adele Cutler,[8] and "Random Forests" is their trademark.[9] The extension combines Breiman's "bagging" idea and random selection of features, introduced first by Ho[1] and later independently by Amit and Geman[10] in order to construct a collection of decision trees with controlled variance.
 permalink : /blogs/:title
 ---
 <html lang="en">

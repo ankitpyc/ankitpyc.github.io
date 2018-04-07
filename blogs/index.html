@@ -6,43 +6,71 @@ title: Projects
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/nav.css">
 <link rel="stylesheet" href="../css/Projects.css">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto+Slab" rel="stylesheet">
-
+{% seo %}
 <style>
 	* {
-		font-family: 'Montserrat';
+		line-height: 1.6;
 	}
 
 	.tags {
-		background: #f3f3f3;
-		font-size: x-small;
-		padding: 5px 8px;
-		border-radius: 4px;
-		color: #8a8686;
-		font-weight: 600;
+	    font-size: x-small;
+    font-family: system-ui;
+    padding: 5px 8px;
+    color: #676b6a;
+    font-weight: 400;
 	}
+.display_profile{
+	margin: auto;
+    display: block;
+    text-align: -webkit-center;
+    padding: 10px;
+    font-family: 'PT Sans';
+    background: #982525;
+    border-bottom: 1px solid #dfdfdf;
+    color: white;
+    padding: 20px;
 
+}
 	.post_heading {
-		display: inline-block;
-		color: #777777;
+		font-family: 'PT Sans';
+    color: #bd4c61;
+
+	}
+	.post_heading:hover {
+		text-decoration : none;
 	}
 
 	.description {
-		font-family: 'Roboto Slab';
+		font-size: small;
+		font-family: 'system-ui';
+	}
+
+	.read_more{
+	background: transparent;
+    border: 1px solid #da5252;
+    display: block;
+    padding: 6px 21px;
+    font-weight: 700;
+    font-size: smaller;
+    color: #da5252;
+    margin: 3% 0%;
+	}
+	.read_more:hover{
+		background: #da5252;
+		color: white;
 	}
 
 	.date {
-		display: inline-block;
-		float: right;
-		margin-top: 3%;
-		color: #909090;
-		font-weight: 500;
-		font-size: small;
+	position: relative;
+    margin-top: 1%;
+    color: #909090;
+    font-weight: 500;
+    font-size: x-small;
+    float: right;
 	}
 
 	.list-group-item {
@@ -59,42 +87,35 @@ title: Projects
 		height: 100%;
 		background: #fff;
 	}
+	.blog-box{
+    border-bottom: : 1px solid #dfdfdf;
+    padding: 20px;
+    border-bottom: 1px solid #dfdfdf;: 
+}
+	/*.blog-box:first-child{
+		   border-top: 1px solid #dfdfdf;
+  
+	}*/
 </style>
 
-<div class="display_profile" style="
-
-    margin: auto;
-    display: block;
-    text-align: -webkit-center;
-    padding: 10px;
-    background: #fbfbfb;
-    border-bottom: 1px solid #dfdfdf;
-
-">
-	<img src="../static_assets/Profile_index/profile.jpg" alt="" style="
-    width: 100px;
-    height: 100px;
-    display: inline-block;
-">
-
-	<div style="display: inline-block;">
-		<h4 style="
-    display: inline-block;
-">Ankit Mishra</h4>
-		<br>
-		<a href="https://ankitpyc.github.io" style="
-    line-height: 1.5;
-">ankitpyc.github.io</a>
+<div class="display_profile">
+	<div style="text-align: left;
+    margin-left: 3%;">
+<h1>The Machine Learning Blog</h1>	
 	</div>
 
 </div>
 <div style="margin: 4% auto;
-    width: 70%;">
-	<ul class="list-group">
+    width: 80%;">
+
 		{% for post in site.posts %}
-		<li class="list-group-item">
-			<a href="{{post.url}}" class="post_heading">{{post.title}}</h3><span class="date">{{ post.date | date: "%b %d, %Y" }}</span>
+		<div class="blog-box">
+			<a style="font-size: x-large;" href="{{post.url}}" class="post_heading">{{post.title}}</h3><span class="date">{{ post.date | date: "%b %d, %Y" }}</span>
+
 </a>
+<br>
+{% for tags in post.tags%}
+			<span class="tags"> <i class="fa fa-1x fa-tags"></i> {{tags}}</span> {% endfor%}
 			<br>
 			<img style="height: 200;
     width: auto;display: block;margin: 3% auto;" src="{{post.image}}" alt="">
@@ -104,13 +125,10 @@ title: Projects
 			<p class="description">
 				{{post.post_description}}
 			</p>
-			{% for tags in post.tags%}
-			<span class="tags">{{tags}}</span> {% endfor%}
+	<button class="read_more" >Read More</button>
 
-		</li>
-
+</div>
 
 		{% endfor %}
-	</ul>
 
 </div>
