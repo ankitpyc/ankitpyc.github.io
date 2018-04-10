@@ -1,7 +1,11 @@
 .nav-tabs {
   border-bottom: 0px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
@@ -76,7 +80,8 @@
   height: 300px;
   padding: 0;
   margin: 0;
-  box-shadow: 0 0 0 1px #444;
+  -webkit-box-shadow: 0 0 0 1px #444;
+          box-shadow: 0 0 0 1px #444;
 }
 
 #chart .bars li {
