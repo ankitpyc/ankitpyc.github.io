@@ -161,11 +161,11 @@ plt.imshow(imgs) plt.show()
               <h1>Train Test Split</h1>
               <p>Now lets split our train test data and ensure reproducibility by seeding.As data provided to us is already split into train and test .Just put a random seed and start training the Model</p>
 
-              {% highlight python %}
-              # Now lets set a random seed so that our results are reproducible
-              seed = 5 
-              np.random.seed(seed)
-              {% endhighlight %}
+{% highlight python %}
+# Now lets set a random seed so that our results are reproducible
+seed = 5 
+np.random.seed(seed)
+{% endhighlight %}
 
               <hr>
               <h1>Convolutional Neural Networks</h1>
@@ -262,6 +262,7 @@ _________________________________________________________________
 {%highlight python%} 
 model = CNN_model() 
 model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+
 {% endhighlight %} 
 {%highlight python%} 
 history = model.fit(img,labels,epochs=10, batch_size=50,validation_split=0.2,verbose=2,shuffle=False) 
