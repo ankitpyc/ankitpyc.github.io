@@ -8,7 +8,7 @@ title : Handwritten Digits Classification description : Classification of Handwr
 <link rel="stylesheet" href="../css/blog.css">
 <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> {% seo %}
 <meta name="theme-color" content="#22114ee0" />
-
+<link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -66,11 +66,11 @@ import pandas as pd
 
           <p>Now lets load the dataset</p>
 {% highlight python %} 
-#Load the Train Dataset Digits_train = pd.read_csv('../input/train.csv')
+#Load the Train Dataset 
+Digits_train = pd.read_csv('../input/train.csv')
 #Load the test Dataset Digits_test = pd.read_csv('../input/test.csv') 
 {% endhighlight %}
-
-          <p>Lets see how many training and testing samples we have got how many features we have </p>
+<p>Lets see how many training and testing samples we have got how many features we have </p>
 {% highlight python%} 
 Data = pd.concat([Digits_train,Digits_test],axis=0) 
 Data.info() 
