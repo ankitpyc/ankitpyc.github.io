@@ -58,14 +58,23 @@ title : Handwritten Digits Classification description : Classification of Handwr
           <h1>Exploring and Visualization</h1>
           <p>Now lets us begin by importing libraries of Python .We will be analyzing the data present and the features their types and the target variable </p>
 
-          {% highlight python %} # linear algebra import numpy as np # data processing, CSV file I/O (e.g. pd.read_csv) import pandas as pd # Input data files are available in the "../input/" directory. # For example, running this (by clicking run or pressing Shift+Enter)
-          will list the files in the input directory # Any results you write to the current directory are saved as output. {% endhighlight %}
+{% highlight python %} 
+# linear algebra import numpy as np 
+# data processing, CSV file I/O (e.g. pd.read_csv) 
+import pandas as pd 
+{% endhighlight %}
 
           <p>Now lets load the dataset</p>
-          {% highlight python %} #Load the Train Dataset Digits_train = pd.read_csv('../input/train.csv') #Load the test Dataset Digits_test = pd.read_csv('../input/test.csv') {% endhighlight %}
+{% highlight python %} 
+#Load the Train Dataset Digits_train = pd.read_csv('../input/train.csv')
+#Load the test Dataset Digits_test = pd.read_csv('../input/test.csv') 
+{% endhighlight %}
 
           <p>Lets see how many training and testing samples we have got how many features we have </p>
-          {% highlight python%} Data = pd.concat([Digits_train,Digits_test],axis=0) Data.info() {% endhighlight %}
+{% highlight python%} 
+Data = pd.concat([Digits_train,Digits_test],axis=0) 
+Data.info() 
+{% endhighlight %}
           <pre>
 <class 'pandas.core.frame.DataFrame'>
 Int64Index: 70000 entries, 0 to 27999
@@ -74,7 +83,9 @@ dtypes: float64(1), int64(784)
 memory usage: 419.8 MB
 </pre>
           <p>Now lets check wether we have any missing values or not</p>
-          {%highlight python%} Digits_train.isnull().sum() {% endhighlight %}
+{%highlight python%}
+Digits_train.isnull().sum() 
+{% endhighlight %}
           <pre class="output">
 		label       28000
 pixel0          0
