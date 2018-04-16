@@ -6,6 +6,12 @@
  }
 
  #mise {}
+.cursors{
+  opacity: 1;
+/*   display: none;
+*/   -webkit-animation: blink .7s infinite;
+      animation: blink .7s infinite;
+}
 
  .typed_wrap {
    display: block;
@@ -29,14 +35,13 @@
  }
 
  #typed {
-   position: absolute;
-   line-height: 1.8;
-   text-align: left;
-   font-size: larger;
-   color: #8c8888;
-   margin: 0% 1%;
-   ;
-   height: 50vh;
+      position: absolute;
+    line-height: 1.8;
+    text-align: left;
+    font-size: larger;
+    color: #8c8888;
+    margin: -4% 1%;
+    height: 50vh;
  }
 
  /*Add custom cursor so it auto inherits font styles*/
@@ -52,35 +57,38 @@
  /*Removes cursor that comes with typed.js*/
 
  .typed-cursor {
-   opacity: 0;
+   opacity: 1;
    display: none;
+   -webkit-animation: blink .7s infinite;
+      animation: blink .7s infinite;
+
  }
 
  /*Custom cursor animation*/
 
- @keyframes blink {
-   0% {
-     opacity: 1;
-   }
-   50% {
-     opacity: 0;
-   }
-   100% {
-     opacity: 1;
-   }
- }
+  @-webkit-keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 
- @-webkit-keyframes blink {
-   0% {
-     opacity: 1;
-   }
-   50% {
-     opacity: 0;
-   }
-   100% {
-     opacity: 1;
-   }
- }
+  @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 
  @-moz-keyframes blink {
    0% {

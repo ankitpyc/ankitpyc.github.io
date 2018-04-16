@@ -13,18 +13,18 @@ $(function() {
     smartBackspace: true,
     // loop: false,
     // // time before backspacing
-    // backDelay: 500,
-    // // loop
+    backDelay: 500,
+    // loop
     // // false = infinite
     // loopCount: 5,
     // // show cursor
-    // showCursor: true,
+    showCursor: true,
     // // character for cursor
-    cursorChar: "_",
+    cursorChar: "|",
     // attribute to type (null == text)
     // attr: null,
     // // either html or text
-    // contentType: 'html',
+    contentType: 'html',
     // // call when done callback function
     callback: function() {
       // show_profile_text();
