@@ -140,3 +140,14 @@
    background: #ecf0f1;
    color: #34495e;
  }
+@media only screen and (max-width: 600px) {
+  #typed {
+    position: absolute;
+    line-height: 1.8;
+    text-align: left;
+    font-size: larger;
+    color: #8c8888;
+    margin: -9% 3%;
+    height: 50vh;
+  }
+}
