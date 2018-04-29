@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="../css/blog.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="theme-color" content="#22114ee0" /> <!-- Begin Jekyll SEO tag v2.4.0 -->
-<title>Movie Recommendation Systems | ankitpyc.github.io</title>
+<title>Movie Recommendation System | ankitpyc.github.io</title>
 <meta name="generator" content="Jekyll v3.7.3" />
-<meta property="og:title" content="Movie Recommendation Systems" />
+<meta property="og:title" content="Movie Recommendation System" />
 <meta name="author" content="ankitpyc" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Building Recommendations system using NLP and Machine Learning" />
@@ -15,9 +15,9 @@
 <meta property="og:url" content="http://localhost:4000/Projects/Movie_Recommender" />
 <meta property="og:site_name" content="ankitpyc.github.io" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2018-04-16T23:30:51+05:30" />
+<meta property="article:published_time" content="2018-04-29T14:51:33+05:30" />
 <script type="application/ld+json">
-{"description":"Building Recommendations system using NLP and Machine Learning","author":{"@type":"Person","name":"ankitpyc"},"@type":"BlogPosting","url":"http://localhost:4000/Projects/Movie_Recommender","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/static_assets/Profile_index/codename.jpg"},"name":"ankitpyc"},"headline":"Movie Recommendation Systems","dateModified":"2018-04-16T23:30:51+05:30","datePublished":"2018-04-16T23:30:51+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Projects/Movie_Recommender"},"@context":"http://schema.org"}</script>
+{"description":"Building Recommendations system using NLP and Machine Learning","author":{"@type":"Person","name":"ankitpyc"},"@type":"BlogPosting","url":"http://localhost:4000/Projects/Movie_Recommender","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/static_assets/Profile_index/codename.jpg"},"name":"ankitpyc"},"headline":"Movie Recommendation System","dateModified":"2018-04-29T14:51:33+05:30","datePublished":"2018-04-29T14:51:33+05:30","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/Projects/Movie_Recommender"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -141,15 +141,14 @@ and also a small demo of how recommendation will be shown to the user.
 <span class="n">data_movies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'Data/tmdb_5000_movies.csv'</span><span class="p">)</span> 
 <span class="c">#Load the second csv File </span>
 <span class="n">data_credits</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'Data/tmdb_5000_credits.csv'</span><span class="p">)</span> </code></pre></figure> 
+
 <figure class="highlight"><pre><code class="language-python" data-lang="python"> 
-<span class="c">#Print the first 1 rows</span>
-<span class="n">of</span> <span class="n">the</span> <span class="n">data_movies</span> 
+<span class="c">#Print the first 1 rows of the data_movies </span>
 <span class="n">data_movies</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> </code></pre></figure>
 
 <table border="1" class="table table-responsive table-bordered">
 <thead>
 <tr style="text-align: right;">
-<th></th>
 <th>budget</th>
 <th>genres</th>
 <th>homepage</th>
@@ -232,12 +231,12 @@ None
 
 <b>Some feature columns are explained as below:</b>
 <p>
-<code>genre</code>:states the genre of the film along with the genre id i.e comedy,drama <br>
-<code>budget</code>:budget of the movie <br>
-<code>homepage</code>:url of the movie website <br>
-<code>keywords</code>:indicates the plot of keywords which define the movies <br>
-<code>genre</code>:states the genre of the film along with the genre id i.e comedy,drama <br>
-<code>original_language</code>:s original language in which movie was produced <br>
+<code>genre</code>: states the genre of the film along with the genre id i.e comedy,drama <br>
+<code>budget</code>: budget of the movie <br>
+<code>homepage</code>: url of the movie website <br>
+<code>keywords</code>: indicates the plot of keywords which define the movies <br>
+<code>genre</code>: states the genre of the film along with the genre id i.e comedy,drama <br>
+<code>original_languages</code>: original language in which movie was produced <br>
 <code>popularity</code> : Popularity of movie <br>
 <code>vote_avg</code> : Average votes given to that movie <br>
 <code>vote_count</code> : total no of votes given to that movie <br>
@@ -305,15 +304,11 @@ user data and give a cold start to the system but slight shift towards Collabora
 </p>
 <p>If we peek into our data,we have a lot of features like
 <code>Vote Average</code>,
-<code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work) written in Quora.I will be using that approach
-for movies rating for recommendation.
-
+<code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work) written in Quora.I will be using that approach for movies rating for recommendation.
 
 <h2>Building our Simple Engine</h2>
-<p>The rating formula for IMDB is</p>:
-<br/>
-<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C where:</b> <br>
-<br/>
+<p>The rating formula for IMDB is :</p>
+<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C </b> <br>
 <code>R </code>: average for the movie (mean) = (Rating) <br>
 <code>v</code>:number of votes for the movie = (votes) <br>
 <code>m</code>: minimum votes required to be listed in the Top 250 (currently 25000) <br>
@@ -381,11 +376,11 @@ for movies rating for recommendation.
 
 <p>Lets calculate the <code>mean vote</code>,<code>average vote</code></p>. 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">vote_counts</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span> 
-<span class="c"># we will be using minimum votes as 95% percentile of</span>
-<span class="n">the</span> <span class="n">maximum</span> <span class="n">votes</span> <span class="n">received</span> 
+<span class="c"># we will be using minimum votes as 95% percentile of the maximum votes received </span>
 <span class="c">#calculating the average votes </span>
 <span class="n">vote_averages</span> <span class="o">=</span> <span class="n">data_movies</span><span class="p">[</span><span class="n">data_movies</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span> 
-<span class="c"># setting minimum vote requirements to be 85 percentile of the votes of the movies minimum_votes = votes_count.quantile(0.85) </span>
+<span class="c"># setting minimum vote requirements to be 85 percentile of the votes of the movies </span>
+<span class="n">minimum_votes</span> <span class="o">=</span> <span class="n">votes_count</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.85</span><span class="p">)</span> 
 <span class="k">print</span> <span class="s">'minimum_votes :'</span><span class="p">,</span><span class="n">minimum_votes</span> </code></pre></figure>
 <pre class="output">
 1300
@@ -417,7 +412,9 @@ for movies rating for recommendation.
 <p>we have defined our <code>weighted_rating</code> function which calculates weighted rating for movies. </p>
 
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">qualified</span><span class="p">[</span><span class="s">'wr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">qualified</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">weighted_rating</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="n">qualified</span> <span class="o">=</span> <span class="n">qualified</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'wr'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> </code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="n">qualified</span><span class="p">[</span><span class="s">'wr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">qualified</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">weighted_rating</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">qualified</span> <span class="o">=</span> <span class="n">qualified</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'wr'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> </code></pre></figure>
 
 <!-- table -->
 <div class="table-responsive">
@@ -1125,15 +1122,21 @@ top of our chart. The chart also indicates a strong bias of IMDB Users towards p
 <p>As we have seen above,we calculated the mean_vote and vote percentile for rating and listing movies,we will be using the same strategy to build recommendation</p>
 
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="c"># Its returns movies if movie contains the specified genre def genre_movies(x,genre): if genre in x['movie_genres']: return x </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> 
+<span class="c"># Its returns movies if movie contains the specified genre </span>
+<span class="k">def</span> <span class="nf">genre_movies</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">genre</span><span class="p">):</span> 
+  <span class="k">if</span> <span class="n">genre</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="s">'movie_genres'</span><span class="p">]:</span> 
+    <span class="k">return</span> <span class="n">x</span> </code></pre></figure>
 
 <p>Now lets write a function that returns top movies belonging to particular genre</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"> 
 <span class="c"># it returns all movies of particular genre if they qualified movie criteria to be listed </span>
 <span class="k">def</span> <span class="nf">genre_recommend</span><span class="p">(</span><span class="n">genre</span><span class="p">,</span><span class="n">percentile</span><span class="p">):</span> 
-  <span class="n">gen_movie</span> <span class="o">=</span> <span class="n">data_movies</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">ret_mov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">genre</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="n">gen_movie</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> 
-  <span class="n">vote_count</span><span class="o">=</span> <span class="n">gen_movie</span><span class="p">[</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span> <span class="n">vote_averages</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="p">[</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span> 
+  <span class="n">gen_movie</span> <span class="o">=</span> <span class="n">data_movies</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">ret_mov</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">genre</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+  <span class="n">gen_movie</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> 
+  <span class="n">vote_count</span><span class="o">=</span> <span class="n">gen_movie</span><span class="p">[</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span> 
+  <span class="n">vote_averages</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="p">[</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()][</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int'</span><span class="p">)</span> 
   <span class="n">c</span> <span class="o">=</span> <span class="n">vote_averages</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> 
   <span class="n">m</span> <span class="o">=</span> <span class="n">vote_counts</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">percentile</span><span class="p">)</span> 
   <span class="n">gen_qualified</span> <span class="o">=</span> <span class="n">gen_movie</span><span class="p">[(</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_count'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gen_movie</span><span class="p">[</span><span class="s">'vote_average'</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">())][[</span><span class="s">'title'</span><span class="p">,</span> <span class="s">'year'</span><span class="p">,</span> <span class="s">'vote_count'</span><span class="p">,</span> <span class="s">'vote_average'</span><span class="p">,</span> <span class="s">'popularity'</span><span class="p">,</span> <span class="s">'genres'</span><span class="p">]]</span> 
@@ -1275,14 +1278,17 @@ our system by using content like movies <code>overview</code>,<code>tagline</cod
 start building our content based recommender system</p>
 
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="c"># create a shallow copy so that we don't alter the original dataframe content_movies = data_movies.copy(False) </span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="c"># create a shallow copy so that we don't alter the original dataframe </span>
+ <span class="n">content_movies</span> <span class="o">=</span> <span class="n">data_movies</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span> 
+ </code></pre></figure>
 
 <p>As you can infer we have created a auxiliary dataframe to hold the overview and the tagline.Now lets merge these two columns and join them to create a description column in the content_movies dataframe.</p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"> 
 <span class="c"># join overview and tagline content_movies</span>
 <span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_movies</span><span class="p">[</span><span class="s">'tagline'</span><span class="p">]</span> <span class="o">+</span> <span class="n">content_movies</span><span class="p">[</span><span class="s">'overview'</span><span class="p">]</span> 
-<span class="c">#remove missing data content_movies['description'] = content_movies['description'].fillna('') </span></code></pre></figure>
+<span class="c">#remove missing data </span>
+<span class="n">content_movies</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span> <span class="o">=</span> <span class="n">content_movies</span><span class="p">[</span><span class="s">'description'</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s">''</span><span class="p">)</span> </code></pre></figure>
 <p>We have joined the feature columns and remove useless data.Now we will extract features from the <code>description</code> using Tfidf(Term frequency inverse document frequency)</p>
 
 
@@ -1380,7 +1386,7 @@ Name: title, dtype: object
 
 <p>Also hybrid approaches like using popularity as well as description of the movies to predict similarity .I might also try these approaches later.</p>
 
-<hr> 
+ 
 <hr>
 <div style="text-align: center;
     font-size: medium;">

@@ -1,5 +1,5 @@
 ---
-title : Movie Recommendation Systems
+title : Movie Recommendation System
 permalink : /Projects/:title
 description : Building Recommendations system using NLP and Machine Learning
 author : ankitpyc
@@ -83,16 +83,15 @@ data_movies = pd.read_csv('Data/tmdb_5000_movies.csv')
 #Load the second csv File 
 data_credits = pd.read_csv('Data/tmdb_5000_credits.csv') 
 {% endhighlight %} 
+
 {% highlight python %} 
-#Print the first 1 rows
-of the data_movies 
+#Print the first 1 rows of the data_movies 
 data_movies.head(1) 
 {% endhighlight %}
 
 <table border="1" class="table table-responsive table-bordered">
 <thead>
 <tr style="text-align: right;">
-<th></th>
 <th>budget</th>
 <th>genres</th>
 <th>homepage</th>
@@ -175,12 +174,12 @@ None
 
 <b>Some feature columns are explained as below:</b>
 <p>
-<code>genre</code>:states the genre of the film along with the genre id i.e comedy,drama <br>
-<code>budget</code>:budget of the movie <br>
-<code>homepage</code>:url of the movie website <br>
-<code>keywords</code>:indicates the plot of keywords which define the movies <br>
-<code>genre</code>:states the genre of the film along with the genre id i.e comedy,drama <br>
-<code>original_language</code>:s original language in which movie was produced <br>
+<code>genre</code>: states the genre of the film along with the genre id i.e comedy,drama <br>
+<code>budget</code>: budget of the movie <br>
+<code>homepage</code>: url of the movie website <br>
+<code>keywords</code>: indicates the plot of keywords which define the movies <br>
+<code>genre</code>: states the genre of the film along with the genre id i.e comedy,drama <br>
+<code>original_languages</code>: original language in which movie was produced <br>
 <code>popularity</code> : Popularity of movie <br>
 <code>vote_avg</code> : Average votes given to that movie <br>
 <code>vote_count</code> : total no of votes given to that movie <br>
@@ -250,15 +249,11 @@ user data and give a cold start to the system but slight shift towards Collabora
 </p>
 <p>If we peek into our data,we have a lot of features like
 <code>Vote Average</code>,
-<code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work) written in Quora.I will be using that approach
-for movies rating for recommendation.
-
+<code>Vote Count</code>,<code>Popularity</code></p>.After a lot of search for IMDB genuine Approach to rate movies, i found one on a [Answer](https://www.quora.com/How-does-IMDbs-rating-system-work) written in Quora.I will be using that approach for movies rating for recommendation.
 
 <h2>Building our Simple Engine</h2>
-<p>The rating formula for IMDB is</p>:
-<br/>
-<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C where:</b> <br>
-<br/>
+<p>The rating formula for IMDB is :</p>
+<b>weighted rating (WR) = (v ÷ (v+m)) × R + (m ÷ (v+m)) × C </b> <br>
 <code>R </code>: average for the movie (mean) = (Rating) <br>
 <code>v</code>:number of votes for the movie = (votes) <br>
 <code>m</code>: minimum votes required to be listed in the Top 250 (currently 25000) <br>
@@ -328,11 +323,11 @@ data_movies.head(1)
 <p>Lets calculate the <code>mean vote</code>,<code>average vote</code></p>. 
 {% highlight python %}
 vote_counts = data_movies[data_movies['vote_count'].notnull()]['vote_count'].astype('int') 
-# we will be using minimum votes as 95% percentile of
-the maximum votes received 
+# we will be using minimum votes as 95% percentile of the maximum votes received 
 #calculating the average votes 
 vote_averages = data_movies[data_movies['vote_average'].notnull()]['vote_average'].astype('int') 
-# setting minimum vote requirements to be 85 percentile of the votes of the movies minimum_votes = votes_count.quantile(0.85) 
+# setting minimum vote requirements to be 85 percentile of the votes of the movies 
+minimum_votes = votes_count.quantile(0.85) 
 print 'minimum_votes :',minimum_votes 
 {% endhighlight %}
 <pre class="output">
@@ -367,7 +362,10 @@ def weighted_rating(x):
 <p>we have defined our <code>weighted_rating</code> function which calculates weighted rating for movies. </p>
 
 
-{% highlight python %} qualified['wr'] = qualified.apply(weighted_rating, axis=1) qualified = qualified.sort_values('wr', ascending=False).head(100) {% endhighlight %}
+{% highlight python %} 
+qualified['wr'] = qualified.apply(weighted_rating, axis=1) 
+qualified = qualified.sort_values('wr', ascending=False).head(100) 
+{% endhighlight %}
 
 <!-- table -->
 <div class="table-responsive">
@@ -1075,15 +1073,22 @@ top of our chart. The chart also indicates a strong bias of IMDB Users towards p
 <p>As we have seen above,we calculated the mean_vote and vote percentile for rating and listing movies,we will be using the same strategy to build recommendation</p>
 
 
-{% highlight python %} # Its returns movies if movie contains the specified genre def genre_movies(x,genre): if genre in x['movie_genres']: return x {% endhighlight %}
+{% highlight python %} 
+# Its returns movies if movie contains the specified genre 
+def genre_movies(x,genre): 
+  if genre in x['movie_genres']: 
+    return x 
+{% endhighlight %}
 
 <p>Now lets write a function that returns top movies belonging to particular genre</p>
 
 {% highlight python %} 
 # it returns all movies of particular genre if they qualified movie criteria to be listed 
 def genre_recommend(genre,percentile): 
-  gen_movie = data_movies.apply(lambda x : ret_mov(x,genre),axis=1) gen_movie = gen_movie.dropna() 
-  vote_count= gen_movie[gen_movie['vote_count'].notnull()]['vote_count'].astype('int') vote_averages = gen_movie[gen_movie['vote_average'].notnull()]['vote_average'].astype('int') 
+  gen_movie = data_movies.apply(lambda x : ret_mov(x,genre),axis=1) 
+  gen_movie = gen_movie.dropna() 
+  vote_count= gen_movie[gen_movie['vote_count'].notnull()]['vote_count'].astype('int') 
+  vote_averages = gen_movie[gen_movie['vote_average'].notnull()]['vote_average'].astype('int') 
   c = vote_averages.mean() 
   m = vote_counts.quantile(percentile) 
   gen_qualified = gen_movie[(gen_movie['vote_count'] >= m) & (gen_movie['vote_count'].notnull()) & (gen_movie['vote_average'].notnull())][['title', 'year', 'vote_count', 'vote_average', 'popularity', 'genres']] 
@@ -1227,14 +1232,18 @@ our system by using content like movies <code>overview</code>,<code>tagline</cod
 start building our content based recommender system</p>
 
 
-{% highlight python %} # create a shallow copy so that we don't alter the original dataframe content_movies = data_movies.copy(False) {% endhighlight %}
+{% highlight python %}
+ # create a shallow copy so that we don't alter the original dataframe 
+ content_movies = data_movies.copy(False) 
+ {% endhighlight %}
 
 <p>As you can infer we have created a auxiliary dataframe to hold the overview and the tagline.Now lets merge these two columns and join them to create a description column in the content_movies dataframe.</p>
 
 {% highlight python %} 
 # join overview and tagline content_movies
 ['description'] = content_movies['tagline'] + content_movies['overview'] 
-#remove missing data content_movies['description'] = content_movies['description'].fillna('') 
+#remove missing data 
+content_movies['description'] = content_movies['description'].fillna('') 
 {% endhighlight %}
 <p>We have joined the feature columns and remove useless data.Now we will extract features from the <code>description</code> using Tfidf(Term frequency inverse document frequency)</p>
 
@@ -1339,7 +1348,7 @@ Name: title, dtype: object
 
 <p>Also hybrid approaches like using popularity as well as description of the movies to predict similarity .I might also try these approaches later.</p>
 
-<hr> {% include footer.html %}
+ {% include footer.html %}
 </div>
 </div>
 </div>
