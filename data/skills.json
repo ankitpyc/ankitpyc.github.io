@@ -1,0 +1,18 @@
+{
+  "data_science": [
+    { "name": "Sklearn", "level": 80 },
+    { "name": "Pandas", "level": 70 },
+    { "name": "Numpy", "level": 70 },
+    { "name": "Statistics", "level": 70 },
+    { "name": "Python", "level": 80 },
+    { "name": "ML Algorithms", "level": 70 }
+  ],
+  "software_development": [
+    { "name": "Html", "level": 80 },
+    { "name": "Css", "level": 70 },
+    { "name": "Js", "level": 60 },
+    { "name": "Bootstrap", "level": 90 },
+    { "name": "Python", "level": 70 },
+    { "name": "C++", "level": 60 }
+  ]
+}
