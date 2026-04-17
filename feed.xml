@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>devkernels — Ankit Mishra</title>
+    <link>https://ankitpyc.github.io/blog</link>
+    <description>Engineering deep-dives on distributed systems, AI infrastructure, and cloud architecture.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Apr 2026 21:37:00 GMT</lastBuildDate>
+    <atom:link href="https://ankitpyc.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>The reason most coding agents fail isn&apos;t the model — it&apos;s the architecture</title>
+      <link>https://ankitpyc.github.io/blog/the-reason-most-coding-agents-fail-isnt-the-model-its-the-ar</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/the-reason-most-coding-agents-fail-isnt-the-model-its-the-ar</guid>
+      <description></description>
+      <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
+      <category>system-design</category>
+    </item>
+    <item>
+      <title>Where Are Your Agents Actually Breaking in Production? (Real Failure Points, Ranked)</title>
+      <link>https://ankitpyc.github.io/blog/where-are-your-agents-actually-breaking-in-production-real-f</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/where-are-your-agents-actually-breaking-in-production-real-f</guid>
+      <description></description>
+      <pubDate>Sun, 12 Apr 2026 00:00:00 GMT</pubDate>
+      <category>system-design</category>
+    </item>
+    <item>
+      <title>Freestyle Sandboxes for Coding Agents — What Devs Actually Need to Know</title>
+      <link>https://ankitpyc.github.io/blog/freestyle-sandboxes-for-coding-agents-what-devs-actually-nee</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/freestyle-sandboxes-for-coding-agents-what-devs-actually-nee</guid>
+      <description></description>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate>
+      <category>dev-productivity</category>
+    </item>
+    <item>
+      <title>Multi-Agent AI is a Distributed Systems Problem — Here&apos;s the Architecture No One Talks About</title>
+      <link>https://ankitpyc.github.io/blog/multiagent-ai-is-a-distributed-systems-problem-heres-the-arc</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/multiagent-ai-is-a-distributed-systems-problem-heres-the-arc</guid>
+      <description></description>
+      <pubDate>Tue, 07 Apr 2026 00:00:00 GMT</pubDate>
+      <category>system-design</category>
+    </item>
+    <item>
+      <title>Mistakes Devs Make with AI Agent Memory (And How to Fix Them)</title>
+      <link>https://ankitpyc.github.io/blog/mistakes-devs-make-with-ai-agent-memory-and-how-to-fix-them</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/mistakes-devs-make-with-ai-agent-memory-and-how-to-fix-them</guid>
+      <description></description>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
+      <category>system-design</category>
+    </item>
+    <item>
+      <title>How OpenClaw&apos;s Multi-Agent Architecture Actually Works Under the Hood</title>
+      <link>https://ankitpyc.github.io/blog/how-openclaws-multiagent-architecture-actually-works-under-t</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/how-openclaws-multiagent-architecture-actually-works-under-t</guid>
+      <description></description>
+      <pubDate>Sun, 05 Apr 2026 00:00:00 GMT</pubDate>
+      <category>ai-ml</category>
+    </item>
+    <item>
+      <title>Anthropic Just Banned OpenClaw from Claude Subscriptions — What This Means for AI Builders</title>
+      <link>https://ankitpyc.github.io/blog/anthropic-just-banned-openclaw-from-claude-subscriptions-wha</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/anthropic-just-banned-openclaw-from-claude-subscriptions-wha</guid>
+      <description></description>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 GMT</pubDate>
+      <category>ai-ml</category>
+    </item>
+    <item>
+      <title>How I Set Up a 6-Agent AI System That Runs 24/7 on a Single VPS</title>
+      <link>https://ankitpyc.github.io/blog/building-multi-agent-ai-system</link>
+      <guid isPermaLink="true">https://ankitpyc.github.io/blog/building-multi-agent-ai-system</guid>
+      <description>A detailed walkthrough of configuring OpenClaw&apos;s multi-agent orchestration platform — from agent design and memory architecture to Telegram integration, voice pipelines, and the operational patterns that emerged from running it continuously.</description>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 GMT</pubDate>
+      <category>AI Systems</category>
+      <category>Architecture</category>
+      <category>Redis</category>
+      <category>pgvector</category>
+      <category>OpenClaw</category>
+    </item>
+  </channel>
+</rss>
