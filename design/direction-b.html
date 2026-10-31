@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ankit Mishra — Direction B, The Datasheet</title>
+<meta name="description" content="Design comp: technical-datasheet direction for ankitmishra.dev">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DIRECTION B — "THE DATASHEET"
+   A component datasheet / lab instrument. Hairline rules form a
+   visible grid; the page is a frame, not a stack of cards. One
+   superfamily (IBM Plex) so sans and mono share metrics and sit
+   on the same baseline inside a table cell.
+   TOKENS — port straight into tailwind.config.js theme.extend
+   ============================================================ */
+:root{
+  /* --- colour: cool neutral, one signal blue, three statuses -- */
+  --bg:         #FFFFFF;
+  --panel:      #F5F8FA;   /* readout strip, tl;dr, code */
+  --panel-2:    #EBF0F4;   /* table zebra / inconclusive row */
+  --ink:        #0D141B;
+  --ink-2:      #39454F;
+  --ink-3:      #68757F;
+  --rule:       #DCE3E9;   /* hairline grid */
+  --rule-2:     #B4C0C9;   /* structural rule */
+  --accent:     #0B5FA4;
+  --accent-sunk:#E6F0F8;
+  --ok:   #197A4A;  --warn: #8A6410;  --dead: #A5342A;
+  /* --- chart series (validated for CVD on this surface) ------ */
+  --s1:#1C6DB4; --s2:#C2610A; --s3:#8A3C8F;
+  --grid:#E6EBEF;
+
+  /* --- type scale: 1.22 ratio off a 17px sans body ----------- */
+  --t--2: 0.6875rem;  /* 11px  mono labels, tracked .14em */
+  --t--1: 0.8125rem;  /* 13px  tables, captions */
+  --t-0:  1.0625rem;  /* 17px  prose */
+  --t-1:  1.25rem;    /* 20px  h3 / lede */
+  --t-2:  1.5rem;     /* 24px  h2 */
+  --t-3:  2rem;       /* 32px  h1 */
+  --t-4:  clamp(2.4rem, 1.2rem + 4.6vw, 3.9rem);   /* name */
+  --t-readout: clamp(1.9rem, 1rem + 3.4vw, 2.9rem);/* big numbers */
+  --lh-prose: 1.6;
+  --lh-tight: 1.1;
+
+  --measure: 38rem;   /* ≈ 70ch at 17px Plex Sans */
+  --rail: 11rem;
+  --gutter: 16px;
+
+  --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11161B; --panel:#171E25; --panel-2:#1E262E;
+    --ink:#E6EBEF; --ink-2:#B2BDC6; --ink-3:#7E8B95;
+    --rule:#28313A; --rule-2:#3F4C57;
+    --accent:#6FAEE6; --accent-sunk:#152532;
+    --ok:#4FAE7C; --warn:#C79A3A; --dead:#E0786C;
+    --s1:#4E92CE; --s2:#C87F3A; --s3:#A869B0;
+    --grid:#232B33;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11161B; --panel:#171E25; --panel-2:#1E262E;
+  --ink:#E6EBEF; --ink-2:#B2BDC6; --ink-3:#7E8B95;
+  --rule:#28313A; --rule-2:#3F4C57;
+  --accent:#6FAEE6; --accent-sunk:#152532;
+  --ok:#4FAE7C; --warn:#C79A3A; --dead:#E0786C;
+  --s1:#4E92CE; --s2:#C87F3A; --s3:#A869B0;
+  --grid:#232B33;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:var(--t-0);line-height:var(--lh-prose);
+  -webkit-font-smoothing:antialiased;
+}
+.mono,code,pre,.num,.readout b,time,dd{font-family:var(--mono);font-variant-numeric:lining-nums tabular-nums}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+a:hover{border-bottom-color:var(--accent);background:var(--accent-sunk)}
+h1,h2,h3{margin:0;font-weight:600;line-height:var(--lh-tight);letter-spacing:-0.018em;text-wrap:balance}
+p{margin:0 0 1em}
+::selection{background:var(--accent-sunk);color:var(--ink)}
+
+/* mono label: the one repeating UI gesture in this direction */
+.lbl{font-family:var(--mono);font-size:var(--t--2);font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- page frame ---------- */
+.wrap{max-width:72rem;margin:0 auto;padding:0 var(--gutter)}
+.band{border-bottom:1px solid var(--rule)}
+.band.hard{border-bottom:1px solid var(--rule-2)}
+.rail{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);column-gap:2rem;
+  align-items:start;padding:1.6rem 0}
+.rail > .side{position:sticky;top:1rem}
+.prose{max-width:var(--measure)}
+@media (max-width:56rem){
+  .rail{grid-template-columns:minmax(0,1fr);row-gap:.5rem}
+  .rail > .side{position:static}
+}
+
+/* ---------- comp separator (NOT part of the design) ---------- */
+.comp{background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:var(--t--2);
+  letter-spacing:.22em;text-transform:uppercase;padding:.6rem var(--gutter);margin:0}
+.comp span{max-width:72rem;margin:0 auto;display:block}
+
+/* ---------- identity block ---------- */
+.ident{padding:2.4rem 0 1.6rem}
+.ident h1{font-size:var(--t-4);letter-spacing:-0.035em;line-height:.95;margin-bottom:.9rem}
+.ident .lede{font-size:var(--t-1);line-height:1.45;color:var(--ink-2);max-width:44rem;text-wrap:pretty}
+.ident .lede strong{color:var(--ink);font-weight:600}
+.idmeta{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin-bottom:1.1rem}
+
+/* ---------- readout strip: three findings as instrument readings --- */
+.readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--rule-2);border-bottom:1px solid var(--rule-2)}
+.readout{padding:1.35rem 1.4rem 1.4rem;border-left:1px solid var(--rule)}
+.readout:first-child{border-left:0;padding-left:0}
+.readout b{display:block;font-size:var(--t-readout);font-weight:500;line-height:1;
+  letter-spacing:-0.035em;color:var(--accent);margin:.35rem 0 .6rem}
+.readout p{font-size:var(--t--1);line-height:1.5;color:var(--ink-2);margin:0 0 .7rem}
+.readout .src{display:block}
+@media (max-width:52rem){
+  .readouts{grid-template-columns:minmax(0,1fr)}
+  .readout{border-left:0;border-top:1px solid var(--rule);padding:1.1rem 0}
+  .readout:first-child{border-top:0}
+}
+
+/* ---------- spec line for the hardware constraint ---------- */
+.hw{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);column-gap:2rem;
+  padding:1rem 0;font-family:var(--mono);font-size:var(--t--1);color:var(--ink-2);line-height:1.6}
+.hw b{color:var(--ink);font-weight:600}
+.hw span{overflow-wrap:anywhere}
+@media (max-width:56rem){.hw{grid-template-columns:minmax(0,1fr);row-gap:.35rem}}
+
+/* ---------- generic rows ---------- */
+table.grid{width:100%;border-collapse:collapse;font-size:var(--t--1)}
+table.grid caption{text-align:left;padding-bottom:.55rem;font-family:var(--mono);
+  font-size:var(--t--2);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+table.grid th{text-align:left;font-family:var(--mono);font-weight:500;font-size:var(--t--2);
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap;
+  border-bottom:1px solid var(--rule-2);padding:.45rem .9rem .45rem 0}
+table.grid td{border-bottom:1px solid var(--rule);padding:.55rem .9rem .55rem 0;vertical-align:baseline}
+table.grid td:last-child,table.grid th:last-child{padding-right:0}
+table.grid th.num,table.grid td.num{text-align:right;font-family:var(--mono);
+  font-variant-numeric:lining-nums tabular-nums;padding-right:0;padding-left:1rem}
+table.grid td.k{font-family:var(--mono);color:var(--ink-3);white-space:nowrap}
+table.grid td.main{font-size:var(--t-0);line-height:1.4}
+table.grid td.main .note{display:block;font-size:var(--t--1);color:var(--ink-3);
+  font-family:var(--sans);margin-top:.15rem}
+tr.incon td{background:var(--panel-2);color:var(--ink-2)}
+tr.retracted td.main > span:first-child{text-decoration:line-through;text-decoration-thickness:1px;color:var(--ink-3)}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* status chips: glyph + word + colour, never colour alone */
+.st{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);
+  font-size:var(--t--2);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.st::before{line-height:1;font-size:.95em}
+.st-m{color:var(--ok)}   .st-m::before{content:"\25A0"}  /* ■ */
+.st-p{color:var(--warn)} .st-p::before{content:"\25A4"}  /* ▤ */
+.st-r{color:var(--dead)} .st-r::before{content:"\25A1"}  /* □ */
+
+.linkline{display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;font-family:var(--mono);
+  font-size:var(--t--1);margin:0}
+.roles td.main i{font-style:normal;color:var(--ink-3)}
+.roles td.main i::before{content:" — "}
+
+/* ---------- experiment page ---------- */
+.exp h1{font-size:var(--t-3);max-width:34rem;margin:.5rem 0 .8rem}
+.tldr{background:var(--panel);border-top:2px solid var(--accent);
+  border-bottom:1px solid var(--rule);padding:1.1rem 1.2rem;margin:0 0 1.8rem;max-width:46rem}
+.tldr p{margin:0;font-size:var(--t-0)}
+.tldr p+p{margin-top:.6rem}
+.tldr .lbl{display:block;margin-bottom:.5rem}
+h2.sec{font-size:var(--t-2);margin:2.2rem 0 .6rem;display:flex;align-items:baseline;gap:.75rem}
+h2.sec .n{font-family:var(--mono);font-size:var(--t--2);letter-spacing:.14em;
+  color:var(--ink-3);font-weight:500}
+dl.spec{display:grid;grid-template-columns:11rem minmax(0,1fr);margin:.8rem 0 0;
+  border-top:1px solid var(--rule-2);font-size:var(--t--1);max-width:46rem}
+dl.spec dt{padding:.45rem 1rem .45rem 0;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:var(--t--2);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+dl.spec dd{margin:0;padding:.45rem 0;border-bottom:1px solid var(--rule);overflow-wrap:anywhere}
+@media (max-width:34rem){dl.spec{grid-template-columns:7.5rem minmax(0,1fr)}}
+
+.exp .scroll-x{max-width:52rem}
+figure{margin:1.6rem 0 2rem;max-width:48rem}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font-size:var(--t--1);color:var(--ink-3);border-top:1px solid var(--rule);
+  padding-top:.5rem;margin-top:.6rem;max-width:38rem}
+figcaption b{color:var(--ink-2);font-weight:600}
+.chart-grid{stroke:var(--grid);stroke-width:1}
+.chart-axis{stroke:var(--rule-2);stroke-width:1}
+.chart-tick{fill:var(--ink-3);font-family:var(--mono);font-size:11px;font-variant-numeric:lining-nums tabular-nums}
+.chart-axtitle{fill:var(--ink-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+.chart-lbl{font-family:var(--mono);font-size:12px;font-weight:500}
+.chart-note{fill:var(--ink-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.06em}
+.line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.l1{stroke:var(--s1)} .l2{stroke:var(--s2)} .l3{stroke:var(--s3)}
+.t1{fill:var(--s1)}   .t2{fill:var(--s2)}   .t3{fill:var(--s3)}
+.dot{stroke:var(--bg);stroke-width:2}
+.legend{display:flex;flex-wrap:wrap;gap:.3rem 1.4rem;font-family:var(--mono);
+  font-size:var(--t--2);letter-spacing:.06em;color:var(--ink-2);margin:.4rem 0 0}
+.legend span{display:inline-flex;align-items:center;gap:.45rem}
+.swatch{width:14px;height:3px;display:inline-block}
+
+.limits{border:1px solid var(--rule-2);border-left:3px solid var(--warn);
+  padding:1rem 1.1rem;margin:2rem 0;max-width:46rem;background:var(--panel)}
+.limits ol{margin:.5rem 0 0;padding-left:1.25rem;font-size:var(--t--1);line-height:1.55}
+.limits li{margin-bottom:.5rem} .limits li:last-child{margin-bottom:0}
+
+pre{background:var(--panel);border:1px solid var(--rule);padding:.9rem 1rem;overflow-x:auto;
+  font-size:var(--t--1);line-height:1.55;margin:.7rem 0 0;max-width:46rem}
+code{font-size:.92em}
+p code{background:var(--panel);border:1px solid var(--rule);padding:.05em .3em}
+
+footer.site{padding:1.2rem 0 3.5rem;font-family:var(--mono);font-size:var(--t--2);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:.4rem 1.5rem}
+</style>
+</head>
+<body>
+
+<p class="comp"><span>Comp separator · Direction B · Screen 1 of 3 — LANDING</span></p>
+
+<div class="band hard">
+<div class="wrap">
+  <header class="ident">
+    <p class="idmeta"><span class="lbl">ankitmishra.dev</span><span class="lbl">Bengaluru, IST</span><span class="lbl">Updated 2026-10-28</span></p>
+    <h1>Ankit Mishra</h1>
+    <p class="lede">Senior Software Engineer at <strong>New Relic</strong>. I build the AI platform
+    and the evaluation ladder that sits on it — retrieval index, LLM judge, error budget — and
+    <strong>I measure every rung on a single 4-vCPU VPS with no GPU</strong>, then publish the data
+    and the one command that reproduces it.</p>
+  </header>
+</div>
+</div>
+
+<!-- ======================================================================
+     PLACEHOLDER CONTENT: the three readouts below are INVENTED numbers,
+     written only to exercise the typographic treatment. Every figure, date
+     and LAB id must be replaced with a real measured result before launch.
+     ====================================================================== -->
+<div class="wrap">
+  <div class="readouts">
+    <article class="readout">
+      <span class="lbl">LAB-014 · HNSW churn</span>
+      <b>0.71</b>
+      <p>Recall@10 on a 1M-vector HNSW index falls from <span class="mono">0.94</span> to
+      <span class="mono">0.71</span> once <span class="mono">40%</span> of vectors are replaced in
+      place — and only a full rebuild recovers it.</p>
+      <span class="lbl src">Measured 2026-10-14 · 12 seeds</span>
+    </article>
+    <article class="readout">
+      <span class="lbl">LAB-013 · Judge validity</span>
+      <b>κ 0.41</b>
+      <p>One frontier judge agrees with my human labels at <span class="mono">κ 0.78</span> pairwise
+      but <span class="mono">κ 0.41</span> on a 5-point helpfulness scale: the scale is what breaks,
+      not the model.</p>
+      <span class="lbl src">Measured 2026-09-30 · n=1,200</span>
+    </article>
+    <article class="readout">
+      <span class="lbl">LAB-012 · CPU inference</span>
+      <b>$0.00019</b>
+      <p>A 7B model at Q4_K_M on four vCPUs classifies a 600-token ticket for
+      <span class="mono">$0.00019</span> — <span class="mono">23×</span> cheaper than the hosted API
+      and <span class="mono">9×</span> slower. That is the entire trade.</p>
+      <span class="lbl src">Measured 2026-09-02 · n=5,000</span>
+    </article>
+  </div>
+</div>
+
+<div class="band">
+<div class="wrap">
+  <p class="hw"><span class="lbl">Test rig</span>
+  <span><b>4 vCPU AMD EPYC 7282 · 7.6 GB RAM · 80 GB NVMe · no GPU · Debian 12.7 · kernel 6.1.0-25.</b>
+  Every number on this site came off that box. If a result needs a cluster to exist, it is not here.</span></p>
+</div>
+</div>
+
+<div class="band">
+<div class="wrap">
+  <div class="hw"><span class="lbl">Elsewhere</span>
+  <p class="linkline"><a href="#">GitHub</a><a href="#">Email</a><a href="#">LinkedIn</a><a href="#">RSS</a><a href="#">CV (PDF)</a></p></div>
+</div>
+</div>
+
+<div class="band">
+<div class="wrap">
+  <section class="rail">
+    <div class="side"><span class="lbl">Latest writing</span></div>
+    <div class="scroll-x">
+      <table class="grid">
+        <tbody>
+          <tr><td class="k"><time datetime="2026-10-14">2026-10-14</time></td><td class="main"><a href="#exp">Recall decay is a churn problem, not an index problem</a></td><td class="k">LAB-014</td></tr>
+          <tr><td class="k"><time datetime="2026-09-30">2026-09-30</time></td><td class="main"><a href="#">Your LLM judge has a scale problem</a></td><td class="k">LAB-013</td></tr>
+          <tr><td class="k"><time datetime="2026-09-02">2026-09-02</time></td><td class="main"><a href="#">What one vCPU-hour of inference actually buys</a></td><td class="k">LAB-012</td></tr>
+          <tr><td class="k"><time datetime="2026-08-11">2026-08-11</time></td><td class="main"><a href="#">SLOs for systems that are allowed to be wrong</a></td><td class="k">LAB-010</td></tr>
+        </tbody>
+      </table>
+      <p class="linkline" style="margin-top:.8rem"><a href="#lab">All 18 findings in the lab →</a></p>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="band">
+<div class="wrap">
+  <section class="rail">
+    <div class="side"><span class="lbl">Record · 7 yrs</span></div>
+    <div>
+      <div class="scroll-x">
+      <table class="grid roles">
+        <tbody>
+          <tr><td class="k">2026 —</td><td class="main"><strong>New Relic</strong> · Senior Software Engineer <i>telemetry ingest and the internal AI eval platform; Go, Kafka, Valkey</i></td></tr>
+          <tr><td class="k">2025 – 26</td><td class="main"><strong>Oracle</strong> · Senior Member of Technical Staff <i>OCI data-plane control services; Java, Postgres, Kubernetes</i></td></tr>
+          <tr><td class="k">2022 – 25</td><td class="main"><strong>Goldman Sachs</strong> · Vice President, SDE III <i>risk and pricing pipelines at firm scale; Java, Spark, Kafka</i></td></tr>
+          <tr><td class="k">2020 – 22</td><td class="main"><strong>Paytm</strong> · SDE II <i>payments ledger and reconciliation; Go, Postgres, Redis</i></td></tr>
+          <tr><td class="k">2019 – 20</td><td class="main"><strong>FICO</strong> · Software Engineer <i>decision-platform rules execution; Java</i></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="prose" style="margin-top:1.3rem">Mostly <strong>Java</strong> and <strong>Go</strong>,
+      with <strong>Python</strong> when the experiment is itself the deliverable. Kafka and Postgres
+      are the defaults I argue against before I agree with them; Redis and Valkey hold the things that
+      must be fast and are allowed to be stale; Spark when the data stops fitting on one machine, and
+      Kubernetes when the team stops fitting in one room.</p>
+    </div>
+  </section>
+</div>
+</div>
+
+<p class="comp"><span>Comp separator · Direction B · Screen 2 of 3 — /LAB INDEX</span></p>
+
+<div class="band hard" id="lab">
+<div class="wrap">
+  <header class="ident">
+    <p class="idmeta"><span class="lbl">/lab</span><span class="lbl">18 experiments</span><span class="lbl">11 measured · 5 preliminary · 2 retracted</span></p>
+    <h1 style="font-size:var(--t-3)">The Lab</h1>
+    <p class="lede" style="font-size:var(--t-0)">Every experiment run on the box, including the ones
+    that did not work. <strong>Measured</strong> means the data and the reproduction command are
+    committed. <strong>Preliminary</strong> means the number is real but the run count is not yet
+    defensible. <strong>Retracted</strong> means I was wrong — those rows stay here on purpose.</p>
+  </header>
+</div>
+</div>
+
+<div class="wrap">
+  <div class="scroll-x" style="padding:1.4rem 0">
+  <table class="grid">
+    <caption>Sorted by last update, not by how well it turned out</caption>
+    <thead>
+      <tr><th scope="col">ID</th><th scope="col">Finding</th><th scope="col">Status</th><th scope="col">Updated</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="k">LAB-014</td><td class="main"><a href="#exp">HNSW recall@10 drops 0.94 → 0.71 at 40% churn; only a full rebuild recovers it</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-10-14</td></tr>
+      <tr><td class="k">LAB-013</td><td class="main"><a href="#">Judge–human agreement is κ 0.78 pairwise but κ 0.41 on a 5-point scale</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-09-30</td></tr>
+      <tr><td class="k">LAB-012</td><td class="main"><a href="#">CPU inference costs $0.00019 per 600-token classification, 23× under the hosted API</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-09-02</td></tr>
+      <tr><td class="k">LAB-011</td><td class="main"><a href="#">Q4_K_M loses 1.8 points of judge agreement against Q8_0</a><span class="note">Inside the noise at 4 seeds; needs 3 more before I will call it.</span></td><td><span class="st st-p">Preliminary</span></td><td class="k">2026-08-22</td></tr>
+      <tr><td class="k">LAB-010</td><td class="main"><a href="#">A 99.0% &ldquo;answer is acceptable&rdquo; SLO burns its monthly budget in 4.2 days</a><span class="note">Traffic replay only; not yet validated against live load.</span></td><td><span class="st st-p">Preliminary</span></td><td class="k">2026-08-11</td></tr>
+      <tr><td class="k">LAB-009</td><td class="main"><a href="#">Hybrid BM25 + dense beats dense alone by 6.1 points nDCG@10 at α = 0.35</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-07-19</td></tr>
+      <tr><td class="k">LAB-008</td><td class="main"><a href="#">A cross-encoder reranker recovers 61% of churn-degraded recall for +38 ms p95</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-06-30</td></tr>
+      <tr><td class="k">LAB-007</td><td class="main"><a href="#">pgvector IVFFlat at 1M rows wants lists = 1024, not √n = 1000 — worth 2.4 points</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-06-02</td></tr>
+      <tr class="retracted"><td class="k">LAB-006</td><td class="main"><span>Embedding-model version bumps drift retrieval by 9 points without reindexing</span><span class="note">Retracted 2026-05-15: my eval set leaked into the fine-tune. The effect is real, the magnitude was not. Superseded by LAB-009.</span></td><td><span class="st st-r">Retracted</span></td><td class="k">2026-05-15</td></tr>
+      <tr><td class="k">LAB-005</td><td class="main"><a href="#">Batch size 8 is the knee for CPU inference throughput; 16 costs p99 and buys nothing</a></td><td><span class="st st-m">Measured</span></td><td class="k">2026-04-28</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<p class="comp"><span>Comp separator · Direction B · Screen 3 of 3 — EXPERIMENT PAGE</span></p>
+
+<div class="band hard" id="exp">
+<div class="wrap">
+  <header class="ident exp">
+    <p class="idmeta"><span class="lbl">LAB-014</span><span class="lbl">Vector retrieval</span>
+      <span class="st st-m">Measured</span>
+      <span class="lbl">2026-10-14 · rev 2026-10-21</span></p>
+    <h1>HNSW recall@10 falls to 0.71 after 40% churn, and only a full rebuild brings it back</h1>
+  </header>
+</div>
+</div>
+
+<div class="wrap">
+<article class="exp" style="padding:1.6rem 0 0">
+
+  <section class="tldr">
+    <span class="lbl">TL;DR</span>
+    <p>Deleting and re-inserting vectors degrades an HNSW index far faster than inserting new ones.
+    At 40% cumulative churn on 1M vectors, recall@10 goes <span class="mono">0.943 → 0.713</span>.
+    Periodic repacking holds <span class="mono">0.861</span> for 18% of steady-state CPU. A full
+    rebuild restores <span class="mono">0.941</span> in 51 minutes on this box.</p>
+    <p>If your corpus churns, budget for rebuilds. Treat the index as a cache with a TTL, not as a
+    database.</p>
+  </section>
+
+  <div class="prose">
+    <h2 class="sec"><span class="n">§01</span>The question</h2>
+    <p>Every vector-database benchmark I could find measures a <em>static</em> index: build once,
+    query, report recall against queries-per-second. Production corpora are not static. Documents are
+    edited, re-embedded and written back, which in HNSW is a delete plus an insert — and a delete in
+    HNSW is usually a tombstone, not a removal.</p>
+    <p>So: how far does recall@10 fall as a function of cumulative churn, and which of the three
+    things you can actually do about it is worth doing?</p>
+  </div>
+
+  <h2 class="sec"><span class="n">§02</span>Setup</h2>
+  <div class="prose">
+    <p>One machine, nothing else running on it, every version pinned. 1,000,000 MS MARCO v2 passages
+    embedded with <code>bge-small-en-v1.5</code> (384-d, cosine). Churn is simulated by sampling
+    without replacement, re-embedding with 2% token-level noise, deleting, re-inserting.</p>
+  </div>
+  <dl class="spec">
+    <dt>Host</dt><dd>Hetzner CPX31 · 4 vCPU AMD EPYC 7282 · 7.6 GB · 80 GB NVMe · no GPU</dd>
+    <dt>OS</dt><dd>Debian 12.7 · kernel 6.1.0-25-amd64</dd>
+    <dt>Index</dt><dd>hnswlib 0.8.0 · M=16 · efConstruction=200 · efSearch=64</dd>
+    <dt>Embedder</dt><dd>bge-small-en-v1.5 @ 5c38ec7 · onnxruntime 1.19.2 · int8 dynamic</dd>
+    <dt>Corpus</dt><dd>MS MARCO v2 passages · 1,000,000 rows · 384-d cosine</dd>
+    <dt>Ground truth</dt><dd>exact k-NN · faiss 1.8.0 IndexFlatIP · 5,000 held-out queries</dd>
+    <dt>Runs</dt><dd>12 seeds per arm · median reported · IQR in Table 1</dd>
+  </dl>
+
+  <h2 class="sec"><span class="n">§03</span>Result</h2>
+  <div class="prose">
+    <p>The no-maintenance curve does not decay smoothly. It is flat to about 20% churn, falls off a
+    cliff between 30% and 40%, then flattens at a lower level — the graph has lost connectivity it
+    cannot repair by itself.</p>
+  </div>
+
+  <figure>
+    <svg viewBox="0 0 720 368" role="img" aria-labelledby="cT cD" preserveAspectRatio="xMidYMid meet">
+      <title id="cT">Recall@10 against cumulative churn for three maintenance strategies</title>
+      <desc id="cD">With no maintenance recall@10 falls from 0.943 at zero churn to 0.713 at 40 percent
+      churn and 0.618 at 100 percent. Repacking every 10 percent holds 0.861 at 40 percent churn and
+      0.822 at 100 percent. A full rebuild triggered at 40 percent churn restores 0.941 and reaches
+      0.869 by 100 percent churn.</desc>
+
+      <g class="chart-grid">
+        <line x1="64" y1="300" x2="688" y2="300"/>
+        <line x1="64" y1="242.2" x2="688" y2="242.2"/>
+        <line x1="64" y1="184.4" x2="688" y2="184.4"/>
+        <line x1="64" y1="126.6" x2="688" y2="126.6"/>
+        <line x1="64" y1="68.8" x2="688" y2="68.8"/>
+        <line x1="188.8" y1="40" x2="188.8" y2="312"/>
+        <line x1="313.6" y1="40" x2="313.6" y2="312"/>
+        <line x1="438.4" y1="40" x2="438.4" y2="312"/>
+        <line x1="563.2" y1="40" x2="563.2" y2="312"/>
+      </g>
+      <g class="chart-tick" text-anchor="end">
+        <text x="54" y="304">0.55</text>
+        <text x="54" y="246.2">0.65</text>
+        <text x="54" y="188.4">0.75</text>
+        <text x="54" y="130.6">0.85</text>
+        <text x="54" y="72.8">0.95</text>
+      </g>
+      <g class="chart-axis">
+        <line x1="64" y1="40" x2="64" y2="312"/>
+        <line x1="64" y1="312" x2="688" y2="312"/>
+        <line x1="64" y1="312" x2="64" y2="318"/>
+        <line x1="188.8" y1="312" x2="188.8" y2="318"/>
+        <line x1="313.6" y1="312" x2="313.6" y2="318"/>
+        <line x1="438.4" y1="312" x2="438.4" y2="318"/>
+        <line x1="563.2" y1="312" x2="563.2" y2="318"/>
+        <line x1="688" y1="312" x2="688" y2="318"/>
+      </g>
+      <g class="chart-tick" text-anchor="middle">
+        <text x="64" y="332">0</text><text x="188.8" y="332">20</text><text x="313.6" y="332">40</text>
+        <text x="438.4" y="332">60</text><text x="563.2" y="332">80</text><text x="688" y="332">100</text>
+      </g>
+      <text class="chart-axtitle" x="64" y="356">Cumulative churn — % of vectors replaced</text>
+      <text class="chart-axtitle" x="64" y="26">Recall@10</text>
+
+      <line x1="313.6" y1="40" x2="313.6" y2="312" stroke="var(--rule-2)" stroke-width="1" stroke-dasharray="2 4"/>
+      <text class="chart-note" x="319" y="52">rebuild triggered</text>
+
+      <polyline class="line l3" points="64,72.9 126.4,79.3 188.8,97.2 251.2,131.3 313.6,205.8"/>
+      <line class="l3" x1="313.6" y1="205.8" x2="313.6" y2="74.1" stroke-width="2" stroke-dasharray="3 3"/>
+      <polyline class="line l3" points="313.6,74.1 438.4,87.4 563.2,105.3 688,115.7"/>
+      <polyline class="line l2" points="64,72.9 126.4,75.8 188.8,85.6 251.2,96.0 313.6,120.3 438.4,130.1 563.2,138.8 688,142.8"/>
+      <polyline class="line l1" points="64,72.9 126.4,79.3 188.8,97.2 251.2,131.3 313.6,205.8 438.4,234.1 563.2,253.2 688,260.7"/>
+
+      <g class="dot">
+        <circle class="t1" cx="313.6" cy="205.8" r="4.5"/>
+        <circle class="t2" cx="313.6" cy="120.3" r="4.5"/>
+        <circle class="t3" cx="313.6" cy="74.1" r="4.5"/>
+      </g>
+
+      <text class="chart-lbl t3" x="688" y="110" text-anchor="end" dy="-8">full rebuild · 0.869</text>
+      <text class="chart-lbl t2" x="688" y="142.8" text-anchor="end" dy="18">repack 10% · 0.822</text>
+      <text class="chart-lbl t1" x="688" y="260.7" text-anchor="end" dy="18">no maintenance · 0.618</text>
+    </svg>
+    <p class="legend" aria-hidden="true">
+      <span><i class="swatch" style="background:var(--s1)"></i>No maintenance</span>
+      <span><i class="swatch" style="background:var(--s2)"></i>Repack every 10% churn</span>
+      <span><i class="swatch" style="background:var(--s3)"></i>Full rebuild at 40% churn</span>
+    </p>
+    <figcaption><b>Figure 1.</b> Recall@10 against cumulative churn, 1M vectors, median of 12 seeds.
+    The cliff between 30% and 40% is the whole result; everything before it looks safe and is not.</figcaption>
+  </figure>
+
+  <div class="scroll-x">
+  <table class="grid">
+    <caption>Table 1 · Recall@10 and cost at 40% cumulative churn</caption>
+    <thead>
+      <tr><th scope="col">Arm</th><th scope="col" class="num">Recall@10</th><th scope="col" class="num">IQR</th>
+      <th scope="col" class="num">p95 query ms</th><th scope="col" class="num">CPU overhead</th><th scope="col" class="num">Recovery</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Baseline, no churn</td><td class="num">0.943</td><td class="num">0.004</td><td class="num">11.2</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>No maintenance</td><td class="num">0.713</td><td class="num">0.021</td><td class="num">10.8</td><td class="num">0%</td><td class="num">never</td></tr>
+      <tr><td>Repack every 10% churn</td><td class="num">0.861</td><td class="num">0.009</td><td class="num">12.1</td><td class="num">18%</td><td class="num">continuous</td></tr>
+      <tr><td>Full rebuild at 40%</td><td class="num">0.941</td><td class="num">0.005</td><td class="num">11.3</td><td class="num">spike</td><td class="num">51 min</td></tr>
+      <tr><td>Reranker over degraded index</td><td class="num">0.854</td><td class="num">0.013</td><td class="num">49.4</td><td class="num">6%</td><td class="num">immediate</td></tr>
+      <tr class="incon"><td>efSearch 64 → 256, degraded ‡</td><td class="num">0.731</td><td class="num">0.048</td><td class="num">38.7</td><td class="num">0%</td><td class="num">immediate</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="prose" style="font-size:var(--t--1);color:var(--ink-3);margin-top:.6rem">‡ <strong>Inconclusive.</strong>
+  Raising efSearch moved the median by 0.018 with an IQR of 0.048 — the arms overlap and 12 seeds does
+  not separate them. I am not claiming this helps and not claiming it does not; it needs its own run.</p>
+
+  <section class="limits">
+    <span class="lbl">Limitations</span>
+    <ol>
+      <li>One embedding model, one corpus. <span class="mono">bge-small-en-v1.5</span> at 384-d may be
+      unusually sensitive to graph damage; a 1024-d model with more redundant neighbourhoods could
+      degrade differently, and I have not run it.</li>
+      <li>Churn is synthetic and uniformly sampled. Real corpora churn in hot spots — a few documents
+      edited constantly — which almost certainly concentrates the damage and makes these numbers optimistic.</li>
+      <li>7.6 GB of RAM forces <span class="mono">M=16</span>. A larger <span class="mono">M</span> builds a
+      more redundant graph that probably tolerates more churn; above <span class="mono">M=24</span> this box
+      swaps, which would have invalidated the latency column.</li>
+    </ol>
+  </section>
+
+  <h2 class="sec"><span class="n">§04</span>Reproduce</h2>
+  <div class="prose">
+    <p>One command. It pulls the pinned corpus shard, builds the index, runs all six arms and writes
+    <code>results.csv</code>. Budget about 6 hours on a comparable box.</p>
+  </div>
+<pre><code>docker run --rm -v "$PWD/out:/out" ghcr.io/ankitmishra/lab:014 \
+  --arms all --seeds 12 --corpus msmarco-v2-1m --out /out</code></pre>
+
+  <h2 class="sec"><span class="n">§05</span>Artifacts</h2>
+  <div class="scroll-x">
+  <table class="grid">
+    <tbody>
+      <tr><td class="main"><a href="#">results.csv</a></td><td class="k">6 arms × 12 seeds × 11 churn points</td><td class="num">42 KB</td></tr>
+      <tr><td class="main"><a href="#">queries-5000.jsonl</a></td><td class="k">held-out queries with exact k-NN truth</td><td class="num">18 MB</td></tr>
+      <tr><td class="main"><a href="#">churn-schedule.json</a></td><td class="k">per-seed sampling order</td><td class="num">2.1 MB</td></tr>
+      <tr><td class="main"><a href="#">lab-014/</a></td><td class="k">harness source, Dockerfile, lockfile</td><td class="num">—</td></tr>
+      <tr><td class="main"><a href="#">figure-1.svg</a></td><td class="k">regenerated from results.csv</td><td class="num">31 KB</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <footer class="site"><span>Ankit Mishra</span><span>Measured on one box</span><span>Source for this site on GitHub</span></footer>
+</article>
+</div>
+
+</body>
+</html>
