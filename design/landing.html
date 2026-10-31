@@ -90,14 +90,20 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       color-mix(in srgb,var(--ground) 6%,transparent) 78%),
     radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent 70%)}
 .cover-inner{position:relative;padding-block:clamp(4rem,9vw,7rem);width:100%}
+.mesh-edges path:nth-child(4n+1){stroke:var(--signal-dim);stroke-dasharray:3 13;
+  animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both,
+            current 2.8s 2.2s linear infinite}
+@keyframes current{to{stroke-dashoffset:-32}}
 .mesh-edges path{fill:none;stroke:var(--mesh);stroke-width:1.15;
   stroke-dasharray:1 0;animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both}
 .mesh-nodes circle{fill:var(--ground-3);stroke:var(--mesh-node);stroke-width:1.4;
   animation:settle .9s cubic-bezier(.16,1,.3,1) both}
-.mesh-nodes circle.hot{fill:var(--ground-2);stroke:var(--signal);stroke-width:1.8;
-  filter:drop-shadow(0 0 9px color-mix(in srgb,var(--signal) 55%,transparent))}
-.mp{fill:var(--event);r:3.4;offset-rotate:0deg;
-  filter:drop-shadow(0 0 7px color-mix(in srgb,var(--event) 70%,transparent));
+.mesh-nodes circle.hot{fill:var(--ground-2);stroke:var(--signal);stroke-width:2;
+  filter:drop-shadow(0 0 10px color-mix(in srgb,var(--signal) 60%,transparent));
+  animation:settle .9s cubic-bezier(.16,1,.3,1) both,pulse 3.4s 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.75}50%{opacity:1}}
+.mp{fill:var(--event);r:4.2;offset-rotate:0deg;
+  filter:drop-shadow(0 0 11px var(--event));
   animation-name:flow;animation-timing-function:linear;animation-iteration-count:infinite}
 @keyframes draw-mesh{from{stroke-dasharray:0 1400;opacity:0}}
 
@@ -125,6 +131,37 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     linear-gradient(180deg,var(--ground) 0%,color-mix(in srgb,var(--ground) 86%,transparent) 60%,
       color-mix(in srgb,var(--ground) 94%,transparent) 100%)}
   .coverfoot{position:static;background:none;backdrop-filter:none;margin-top:2.5rem}
+}
+
+@keyframes settle{from{opacity:.2;transform:translateY(8px)}}
+@keyframes flow{from{offset-distance:0%}to{offset-distance:100%}}
+.m1{offset-path:path("M 448 455 C 624 455 624 436 800 436");animation-duration:2.20s;animation-delay:0.71s}
+.m2{offset-path:path("M 800 436 C 976 436 976 716 1152 716");animation-duration:3.05s;animation-delay:0.87s}
+.m3{offset-path:path("M 1152 436 C 1328 436 1328 448 1504 448");animation-duration:3.29s;animation-delay:1.03s}
+.m4{offset-path:path("M 800 172 C 976 172 976 169 1152 169");animation-duration:2.97s;animation-delay:1.19s}
+.m5{offset-path:path("M 800 714 C 976 714 976 169 1152 169");animation-duration:2.61s;animation-delay:1.35s}
+.m6{offset-path:path("M 1152 169 C 1328 169 1328 448 1504 448");animation-duration:3.39s;animation-delay:1.51s}
+.m7{offset-path:path("M 448 160 C 624 160 624 590 800 590");animation-duration:3.08s;animation-delay:1.67s}
+.m8{offset-path:path("M 800 436 C 976 436 976 436 1152 436");animation-duration:2.57s;animation-delay:1.83s}
+.m9{offset-path:path("M 448 715 C 624 715 624 436 800 436");animation-duration:2.62s;animation-delay:1.99s}
+.m10{offset-path:path("M 800 590 C 976 590 976 436 1152 436");animation-duration:3.34s;animation-delay:2.15s}
+.m11{offset-path:path("M 448 715 C 624 715 624 590 800 590");animation-duration:2.76s;animation-delay:2.31s}
+.m12{offset-path:path("M 448 160 C 624 160 624 436 800 436");animation-duration:2.97s;animation-delay:2.47s}
+.m13{offset-path:path("M 800 714 C 976 714 976 436 1152 436");animation-duration:2.91s;animation-delay:2.63s}
+.m14{offset-path:path("M 800 306 C 976 306 976 716 1152 716");animation-duration:3.31s;animation-delay:2.79s}
+.m15{offset-path:path("M 448 160 C 624 160 624 714 800 714");animation-duration:2.03s;animation-delay:2.95s}
+.m16{offset-path:path("M 96 444 C 272 444 272 160 448 160");animation-duration:3.04s;animation-delay:3.11s}
+.m17{offset-path:path("M 800 172 C 976 172 976 716 1152 716");animation-duration:2.12s;animation-delay:3.27s}
+.m18{offset-path:path("M 448 455 C 624 455 624 590 800 590");animation-duration:3.13s;animation-delay:3.43s}
+.m19{offset-path:path("M 448 715 C 624 715 624 172 800 172");animation-duration:2.03s;animation-delay:3.59s}
+.m20{offset-path:path("M 96 444 C 272 444 272 715 448 715");animation-duration:2.23s;animation-delay:3.75s}
+
+/* Everything above animates from an already-correct resting state, so
+   switching it all off leaves the page intact rather than empty. */
+@media (prefers-reduced-motion:reduce){
+  .mark .orbit,.mesh-edges path,.mesh-edges path:nth-child(4n+1),
+  .mesh-nodes circle,.mesh-nodes circle.hot{animation:none}
+  .mp{animation:none;offset-distance:58%}
 }
 
 /* ── sections ────────────────────────────────────────────────────────── */
@@ -274,6 +311,17 @@ footer{border-top:1px solid var(--rule);padding-block:1.75rem;
         <circle class="mp m7" r="3"/>
         <circle class="mp m8" r="3"/>
         <circle class="mp m9" r="3"/>
+        <circle class="mp m10" r="3"/>
+        <circle class="mp m11" r="3"/>
+        <circle class="mp m12" r="3"/>
+        <circle class="mp m13" r="3"/>
+        <circle class="mp m14" r="3"/>
+        <circle class="mp m15" r="3"/>
+        <circle class="mp m16" r="3"/>
+        <circle class="mp m17" r="3"/>
+        <circle class="mp m18" r="3"/>
+        <circle class="mp m19" r="3"/>
+        <circle class="mp m20" r="3"/>
       </g>
     </svg>
   </div>
