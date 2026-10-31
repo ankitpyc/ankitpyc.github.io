@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ankit Mishra — Software Engineer</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -53,9 +55,21 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
   background:var(--ground);z-index:21}
 .navrow{display:flex;align-items:baseline;gap:1.5rem;padding-block:.9rem;flex-wrap:wrap}
-.wordmark{font-family:var(--display);font-weight:700;font-size:.95rem;
-  letter-spacing:-.01em;margin-right:auto}
-.wordmark span{color:var(--signal)}
+.navrow a.wordmark{font-family:var(--display);font-weight:700;font-size:1.0625rem;
+  letter-spacing:-.015em;text-transform:none;margin-right:auto;display:inline-flex;
+  align-items:center;gap:.6rem;text-decoration:none;color:var(--fg)}
+.navrow a.wordmark span{color:var(--signal)}
+.mark{width:1.65rem;height:1.65rem;flex:none;display:block;overflow:visible}
+.mark .orbit{stroke:var(--fg-2);opacity:.75;transform-origin:16px 16px;
+  animation:spin-in 1.4s cubic-bezier(.16,1,.3,1) both}
+.mark .ring{stroke:var(--fg)}
+.mark .core{fill:var(--signal);transition:fill .18s cubic-bezier(.16,1,.3,1)}
+.navrow a.wordmark:hover .core{fill:var(--focus)}
+.navrow a.wordmark:hover .ring{stroke:var(--signal)}
+@keyframes spin-in{from{transform:rotate(-120deg);opacity:0}}
+/* The mark again at sign-off, quieter. */
+.endmark{width:1.1rem;height:1.1rem;opacity:.5;vertical-align:-.2em;margin-right:.5rem}
+.endmark .orbit{animation:none}
 .navrow a{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;
   text-transform:uppercase;color:var(--fg-2);text-decoration:none}
 .navrow a:hover{color:var(--signal)}
@@ -118,7 +132,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .p7{offset-path:path("M 680 128 C 722 128 722 86 764 86");animation-duration:1.3s;animation-delay:4.3s}
 
 @media (prefers-reduced-motion:reduce){
-  .node,.edge-live{animation:none}
+  .node,.edge-live,.mark .orbit{animation:none}
   .pip{animation:none;offset-distance:62%}
 }
 
@@ -187,7 +201,14 @@ footer{border-top:1px solid var(--rule);padding-block:1.75rem;
 <body>
 
 <nav><div class="shell navrow">
-  <span class="wordmark">dev<span>kernels</span></span>
+  <a class="wordmark" href="/" aria-label="devkernels — home">
+    <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <circle class="orbit" cx="16" cy="16" r="10" stroke-width="1.2" stroke-dasharray="3 3"/>
+      <circle class="ring" cx="16" cy="16" r="6" stroke-width="1.2"/>
+      <circle class="core" cx="16" cy="16" r="2.5"/>
+    </svg>
+    <span class="wm"><span style="color:var(--fg)">dev</span><span>kernels</span></span>
+  </a>
   <a href="#experience">Experience</a>
   <a href="#build">Work</a>
   <a href="/projects.html">Projects</a>
@@ -371,7 +392,11 @@ footer{border-top:1px solid var(--rule);padding-block:1.75rem;
 </section>
 
 <div class="shell"><footer>
-  <span>© 2026 devkernels — Ankit Mishra</span>
+  <span><svg class="mark endmark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <circle class="orbit" cx="16" cy="16" r="10" stroke-width="1.2" stroke-dasharray="3 3"/>
+      <circle class="ring" cx="16" cy="16" r="6" stroke-width="1.2"/>
+      <circle class="core" cx="16" cy="16" r="2.5"/>
+    </svg>© 2026 devkernels — Ankit Mishra</span>
   <span>Built and measured on one box</span>
 </footer></div>
 
