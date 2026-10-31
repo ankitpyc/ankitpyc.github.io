@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ankit Mishra — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+/* ── World: a dark instrument console. Ink-navy ground, one cyan signal for
+   structure, one amber for events in flight. Type does the hierarchy. ───── */
+:root{
+  --ground:#0B1014;      --ground-2:#121A20;    --ground-3:#18232A;
+  --fg:#E8EEF1;          --fg-2:#A8B6BF;        --fg-3:#6F818C;
+  --rule:#22303A;        --rule-2:#2E414D;
+  --signal:#3FD0C9;      --signal-dim:#1B6B68;  --event:#F2A93B;
+  --focus:#7FE3DE;
+  --display:"Archivo",system-ui,sans-serif;
+  --prose:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --measure:68ch;
+  --gut:max(20px,env(safe-area-inset-left,0px));
+  --gut-r:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--fg);
+  font-family:var(--prose);font-size:1.0625rem;line-height:1.65;
+  font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
+
+/* Browser surfaces belong to the design too. */
+::selection{background:var(--signal);color:var(--ground)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--ground)}
+::-webkit-scrollbar-thumb{background:var(--rule-2);border:3px solid var(--ground);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--fg-3)}
+html{scrollbar-color:var(--rule-2) var(--ground);scrollbar-width:thin}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+a{color:var(--fg);text-decoration-color:var(--rule-2);text-underline-offset:.22em;
+  text-decoration-thickness:1px;transition:color .18s cubic-bezier(.16,1,.3,1),
+  text-decoration-color .18s cubic-bezier(.16,1,.3,1)}
+a:hover{color:var(--signal);text-decoration-color:var(--signal)}
+
+.shell{max-width:76rem;margin:0 auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+.rule{border:0;border-top:1px solid var(--rule);margin:0}
+
+/* ── nav ─────────────────────────────────────────────────────────────── */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+  background:color-mix(in srgb,var(--ground) 86%,transparent);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+  background:var(--ground);z-index:21}
+.navrow{display:flex;align-items:baseline;gap:1.5rem;padding-block:.9rem;flex-wrap:wrap}
+.wordmark{font-family:var(--display);font-weight:700;font-size:.95rem;
+  letter-spacing:-.01em;margin-right:auto}
+.wordmark span{color:var(--signal)}
+.navrow a{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--fg-2);text-decoration:none}
+.navrow a:hover{color:var(--signal)}
+
+/* ── hero ────────────────────────────────────────────────────────────── */
+.hero{padding-block:clamp(3rem,7vw,6rem) clamp(2.5rem,5vw,4rem)}
+.hero h1{font-family:var(--display);font-weight:700;
+  font-size:clamp(2.5rem,7vw,4.75rem);line-height:.98;letter-spacing:-.04em;
+  margin:0 0 1.25rem;text-wrap:balance;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--signal)}
+.lede{font-size:clamp(1.0625rem,1.6vw,1.3125rem);line-height:1.55;color:var(--fg-2);
+  max-width:54ch;margin:0 0 2rem}
+.lede strong{color:var(--fg);font-weight:600}
+.herolinks{display:flex;gap:1.75rem;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.82rem;letter-spacing:.03em}
+
+/* ── hero figure: the pipeline, drawn at rest, animated once ─────────── */
+.rig{margin-top:clamp(2.5rem,5vw,4rem);border:1px solid var(--rule);
+  background:
+    radial-gradient(120% 140% at 15% 0%,var(--ground-2) 0%,var(--ground) 70%);
+  position:relative;overflow:hidden}
+.rig figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--fg-3);padding:.75rem 1rem;
+  border-top:1px solid var(--rule);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.rig .scroller{overflow-x:auto;overscroll-behavior-x:contain}
+.rig svg{display:block;width:100%;min-width:720px;height:auto}
+.rig .scroller::-webkit-scrollbar{height:8px}
+.edge{fill:none;stroke:var(--rule-2);stroke-width:1.25}
+.edge-live{fill:none;stroke:var(--signal-dim);stroke-width:1.5;
+  stroke-dasharray:1 0;animation:draw 1.5s cubic-bezier(.16,1,.3,1) both}
+.node rect{fill:var(--ground-2);stroke:var(--rule-2);stroke-width:1.25}
+.node.hot rect{stroke:var(--signal)}
+.node text{font-family:var(--mono);font-size:9.5px;letter-spacing:.055em;
+  fill:var(--fg-2);text-transform:uppercase}
+.node.hot text{fill:var(--fg)}
+.node tspan.sub{fill:var(--fg-3);font-size:8px;letter-spacing:.03em;text-transform:none}
+.pip{fill:var(--event)}
+.axlabel{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;
+  fill:var(--fg-3);text-transform:uppercase}
+.tickline{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 4}
+
+/* One authored moment: edges draw, nodes settle, then events run. */
+@keyframes draw{from{stroke-dasharray:0 260}}
+@keyframes settle{from{opacity:.25;transform:translateY(6px)}}
+@keyframes flow{from{offset-distance:0%}to{offset-distance:100%}}
+.node{animation:settle .7s cubic-bezier(.16,1,.3,1) both}
+.n1{animation-delay:.05s} .n2{animation-delay:.22s} .n3{animation-delay:.39s}
+.n4{animation-delay:.52s} .n5{animation-delay:.60s} .n6{animation-delay:.68s}
+.n7{animation-delay:.85s}
+.e1{animation-delay:.18s} .e2{animation-delay:.35s} .e3{animation-delay:.48s}
+.e4{animation-delay:.52s} .e5{animation-delay:.56s} .e6{animation-delay:.72s}
+.e7{animation-delay:.76s} .e8{animation-delay:.80s}
+.pip{offset-rotate:0deg;animation:flow 3.6s linear infinite;opacity:.9}
+.p1{offset-path:path("M 150 86 H 236");animation-duration:1.1s;animation-delay:1.5s}
+.p2{offset-path:path("M 330 86 H 416");animation-duration:1.1s;animation-delay:2.0s}
+.p3{offset-path:path("M 510 86 C 548 86 548 44 586 44");animation-duration:1.4s;animation-delay:2.5s}
+.p4{offset-path:path("M 510 86 H 586");animation-duration:1.2s;animation-delay:2.7s}
+.p5{offset-path:path("M 510 86 C 548 86 548 128 586 128");animation-duration:1.4s;animation-delay:2.9s}
+.p6{offset-path:path("M 680 44 C 722 44 722 86 764 86");animation-duration:1.3s;animation-delay:4.1s}
+.p7{offset-path:path("M 680 128 C 722 128 722 86 764 86");animation-duration:1.3s;animation-delay:4.3s}
+
+@media (prefers-reduced-motion:reduce){
+  .node,.edge-live{animation:none}
+  .pip{animation:none;offset-distance:62%}
+}
+
+/* ── sections ────────────────────────────────────────────────────────── */
+section{padding-block:clamp(3rem,6vw,5rem)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3vw,2rem);
+  letter-spacing:-.03em;line-height:1.1;margin:0 0 2rem;text-wrap:balance}
+.prose{max-width:var(--measure);font-size:1.125rem;line-height:1.7;color:var(--fg-2)}
+.prose strong{color:var(--fg);font-weight:600}
+
+/* experience: a real timeline, not cards */
+.role{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
+  padding-block:1.75rem;border-top:1px solid var(--rule)}
+.role:first-of-type{border-top:0}
+.when{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;color:var(--fg-3);
+  font-variant-numeric:tabular-nums;padding-top:.3rem}
+.when b{display:block;color:var(--signal);font-weight:500;margin-bottom:.15rem}
+.what h3{font-family:var(--display);font-weight:600;font-size:1.0625rem;margin:0 0 .1rem;
+  letter-spacing:-.01em}
+.what .org{font-family:var(--mono);font-size:.78rem;color:var(--fg-3);margin:0 0 .7rem;
+  letter-spacing:.03em}
+.what ul{margin:0;padding-left:1.05rem;color:var(--fg-2);font-size:1rem;line-height:1.6}
+.what li{margin-bottom:.35rem}
+.what li::marker{color:var(--rule-2)}
+
+/* what I build: a typographic list, not a 4-up card grid */
+.builds{display:grid;gap:0}
+.build{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
+  padding-block:1.6rem;border-top:1px solid var(--rule)}
+.build h3{font-family:var(--display);font-weight:600;font-size:1.0625rem;margin:0;
+  letter-spacing:-.01em}
+.build p{margin:0;color:var(--fg-2);font-size:1rem;max-width:58ch}
+
+/* stack: dense prose rows, not a wall of pills */
+.stack{display:grid;gap:0}
+.srow{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
+  padding-block:.9rem;border-top:1px solid var(--rule);align-items:baseline}
+.srow dt{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--fg-3)}
+.srow dd{margin:0;color:var(--fg-2);font-size:1rem;line-height:1.55}
+
+/* writing */
+.post{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
+  padding-block:1.4rem;border-top:1px solid var(--rule);align-items:baseline}
+.post .when{padding-top:0}
+.post h3{font-family:var(--display);font-weight:600;font-size:1.0625rem;margin:0;
+  letter-spacing:-.01em}
+.post a{text-decoration:none}
+
+/* contact */
+.contact h2{font-size:clamp(2rem,5vw,3.25rem);letter-spacing:-.04em;margin-bottom:1.5rem}
+.contact .lede{margin-bottom:2rem}
+footer{border-top:1px solid var(--rule);padding-block:1.75rem;
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:var(--fg-3);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+@media (max-width:48rem){
+  .rig figcaption{font-size:.64rem;letter-spacing:.06em}
+  .hero h1{max-width:none}
+  .role,.build,.srow,.post{grid-template-columns:1fr;gap:.45rem}
+  .when{padding-top:0}
+  .when b{display:inline;margin-right:.6rem}
+}
+</style>
+</head>
+<body>
+
+<nav><div class="shell navrow">
+  <span class="wordmark">dev<span>kernels</span></span>
+  <a href="#experience">Experience</a>
+  <a href="#build">Work</a>
+  <a href="/projects.html">Projects</a>
+  <a href="/blog.html">Blog</a>
+  <a href="/uses.html">Uses</a>
+  <a href="#contact">Contact</a>
+</div></nav>
+
+<header class="shell hero">
+  <h1>I build the pipes that <em>move the data</em>, and the agents that read it.</h1>
+  <p class="lede">Senior Software Engineer at <strong>New Relic</strong>. Seven years on
+  distributed systems, real-time CDC pipelines and AI infrastructure — at Oracle, Goldman
+  Sachs and Paytm. Currently running a six-agent system, 24/7, on a single VPS.</p>
+  <p class="herolinks">
+    <a href="https://github.com/ankitpyc">GitHub ↗</a>
+    <a href="https://linkedin.com/in/ankit-mishra-8a8350a0">LinkedIn ↗</a>
+    <a href="/blog.html">Writing ↗</a>
+  </p>
+
+  <figure class="rig">
+    <div class="scroller">
+    <svg viewBox="0 0 900 190" role="img"
+         aria-label="A streaming pipeline: change data capture feeds a log, which feeds an
+         orchestrator, which fans out to three agents and merges into a store.">
+      <line class="tickline" x1="40" y1="166" x2="860" y2="166"/>
+      <text class="axlabel" x="40" y="182">ingest</text>
+      <text class="axlabel" x="404" y="182">orchestrate</text>
+      <text class="axlabel" x="792" y="182">serve</text>
+
+      <path class="edge-live e1" d="M 150 86 H 236"/>
+      <path class="edge-live e2" d="M 330 86 H 416"/>
+      <path class="edge-live e3" d="M 510 86 C 548 86 548 44 586 44"/>
+      <path class="edge-live e4" d="M 510 86 H 586"/>
+      <path class="edge-live e5" d="M 510 86 C 548 86 548 128 586 128"/>
+      <path class="edge-live e6" d="M 680 44 C 722 44 722 86 764 86"/>
+      <path class="edge-live e7" d="M 680 86 H 764"/>
+      <path class="edge-live e8" d="M 680 128 C 722 128 722 86 764 86"/>
+
+      <g class="node n1"><rect x="40" y="66" width="110" height="40" rx="2"/>
+        <text x="56" y="84">goldengate<tspan class="sub" x="56" dy="14">cdc source</tspan></text></g>
+      <g class="node n2 hot"><rect x="236" y="66" width="94" height="40" rx="2"/>
+        <text x="252" y="84">kafka<tspan class="sub" x="252" dy="14">commit log</tspan></text></g>
+      <g class="node n3 hot"><rect x="416" y="66" width="94" height="40" rx="2"/>
+        <text x="432" y="84">dag<tspan class="sub" x="432" dy="14">topo sort</tspan></text></g>
+      <g class="node n4"><rect x="586" y="28" width="94" height="32" rx="2"/>
+        <text x="602" y="48">agent · 01</text></g>
+      <g class="node n5"><rect x="586" y="70" width="94" height="32" rx="2"/>
+        <text x="602" y="90">agent · 02</text></g>
+      <g class="node n6"><rect x="586" y="112" width="94" height="32" rx="2"/>
+        <text x="602" y="132">agent · 03</text></g>
+      <g class="node n7 hot"><rect x="764" y="66" width="96" height="40" rx="2"/>
+        <text x="780" y="84">pgvector<tspan class="sub" x="780" dy="14">hybrid store</tspan></text></g>
+
+      <circle class="pip p1" r="2.75"/><circle class="pip p2" r="2.75"/>
+      <circle class="pip p3" r="2.75"/><circle class="pip p4" r="2.75"/>
+      <circle class="pip p5" r="2.75"/><circle class="pip p6" r="2.75"/>
+      <circle class="pip p7" r="2.75"/>
+    </svg>
+    </div>
+    <figcaption><span>Six agents · hybrid Redis + pgvector memory</span>
+      <span>one VPS · 4 vCPU · no GPU</span></figcaption>
+  </figure>
+</header>
+
+<hr class="rule">
+
+<section class="shell" id="about">
+  <h2>About</h2>
+  <p class="prose">Seven years shipping production systems at scale — from <strong>NPCI payment
+  integrations handling millions of daily transactions</strong> to real-time CDC pipelines.
+  I think in systems, ship in sprints, and obsess over the details that separate a demo from
+  a deployment. Right now that means a six-agent setup with hybrid Redis and pgvector memory,
+  Telegram bots and a voice pipeline, running 24/7 on a single box.</p>
+</section>
+
+<hr class="rule">
+
+<section class="shell" id="experience">
+  <h2>Experience</h2>
+
+  <div class="role"><div class="when"><b>Now</b>Aug 2026 —</div><div class="what">
+    <h3>Senior Software Engineer</h3><p class="org">New Relic · Bengaluru</p>
+    <ul><li>Own an SLI/SLO evaluation service — time-based and event-driven indicators over
+    a Kafka stream, with Valkey holding per-window state.</li>
+    <li>Designed the coordination between a periodic scheduler and an event consumer that can
+    disagree about the same minute.</li></ul></div></div>
+
+  <div class="role"><div class="when">Jan 2025 — Jul 2026</div><div class="what">
+    <h3>Senior Member of Technical Staff</h3><p class="org">Oracle · Bengaluru</p>
+    <ul><li>Real-time CDC streaming pipelines with GoldenGate and a WebSocket event layer —
+    sub-second propagation.</li>
+    <li>Architected a DAG-based orchestration engine: topological sort, concurrent stage
+    execution, cycle detection, stateful failure recovery.</li></ul></div></div>
+
+  <div class="role"><div class="when">Dec 2023 — Jan 2025</div><div class="what">
+    <h3>Vice President (SDE III)</h3><p class="org">Goldman Sachs · Bengaluru</p>
+    <ul><li>Metadata-driven generic interface for account lifecycle events — cut deployment
+    overhead across onboarding flows.</li>
+    <li>Reduced MTTR by 30% with a Grafana and Prometheus stack for trading-platform
+    reconciliation.</li></ul></div></div>
+
+  <div class="role"><div class="when">Aug 2022 — Dec 2023</div><div class="what">
+    <h3>Associate (SSE)</h3><p class="org">Goldman Sachs · Bengaluru</p>
+    <ul><li>Post-account-opening workflows from scratch — 60% operational risk reduction,
+    99% SLA compliance.</li></ul></div></div>
+
+  <div class="role"><div class="when">Jul 2021 — Aug 2022</div><div class="what">
+    <h3>Software Engineer → Senior Software Engineer</h3><p class="org">Paytm · Noida</p>
+    <ul><li>FasTag issuance and payment workflows handling millions of daily transactions
+    through NPCI.</li>
+    <li>In-memory centralised config store for real-time URL and property updates across
+    payment services; circuit breakers to stop cascading failure.</li></ul></div></div>
+
+  <div class="role"><div class="when">Jul 2019 — Jul 2021</div><div class="what">
+    <h3>Software Engineer</h3><p class="org">FICO · Bangalore</p>
+    <ul><li>Backend services for customer onboarding and loan repayment — 60% reduction in
+    onboarding time.</li></ul></div></div>
+
+  <div class="role"><div class="when">2017 — 2019</div><div class="what">
+    <h3>Master of Technology</h3><p class="org">NIT Bhopal</p></div></div>
+</section>
+
+<hr class="rule">
+
+<section class="shell" id="build">
+  <h2>What I build</h2>
+  <div class="builds">
+    <div class="build"><h3>Multi-agent systems</h3>
+      <p>Six specialised agents on one VPS — hybrid Redis and pgvector memory, Telegram
+      front end, voice pipeline, scheduled passes that run without me.</p></div>
+    <div class="build"><h3>Data engineering</h3>
+      <p>CDC pipelines with GoldenGate and Apache Iceberg; real-time replication, and the
+      coordination problems that appear when two clocks disagree.</p></div>
+    <div class="build"><h3>Cloud infrastructure</h3>
+      <p>Terraform, OCI, distributed system design, and production deployments that have to
+      survive someone else's outage.</p></div>
+    <div class="build"><h3>Developer tools</h3>
+      <p>CLI tools in Go, voice cloning with XTTS-v2, and local LLM inference tuned for
+      machines without a GPU.</p></div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="shell" id="stack">
+  <h2>Stack</h2>
+  <dl class="stack">
+    <div class="srow"><dt>Languages</dt><dd>Java · Go · Python · TypeScript · Rust (learning)</dd></div>
+    <div class="srow"><dt>Streaming &amp; data</dt><dd>Apache Kafka · Apache Spark · PostgreSQL · pgvector · Redis / Valkey · Elasticsearch · Flyway</dd></div>
+    <div class="srow"><dt>Infrastructure</dt><dd>Kubernetes · Docker · Terraform · OCI · systemd · Jenkins</dd></div>
+    <div class="srow"><dt>Observability</dt><dd>Prometheus · Grafana · SLI/SLO design · incident response</dd></div>
+    <div class="srow"><dt>AI systems</dt><dd>LLM inference · Ollama · embeddings · retrieval · agent orchestration · evaluation harnesses</dd></div>
+  </dl>
+</section>
+
+<hr class="rule">
+
+<section class="shell" id="writing">
+  <h2>Writing</h2>
+  <div class="post"><div class="when">May 2026</div>
+    <h3><a href="https://ankitmishra471.substack.com/p/after-hnsw-three-failures-you-wont">After HNSW: three failures you won't see</a></h3></div>
+  <div class="post"><div class="when">May 2026</div>
+    <h3><a href="https://ankitmishra471.substack.com/archive">HNSW is the easy part</a></h3></div>
+  <div class="post"><div class="when">Mar 2025</div>
+    <h3><a href="/blog.html">How I set up a 6-agent AI system that runs 24/7</a></h3></div>
+  <p class="herolinks" style="margin-top:1.75rem"><a href="/blog.html">All posts ↗</a>
+    <a href="https://ankitmishra471.substack.com">The Dev Kernel ↗</a></p>
+</section>
+
+<hr class="rule">
+
+<section class="shell contact" id="contact">
+  <h2>Let's build something.</h2>
+  <p class="lede">Happiest talking about stream coordination, agent evaluation, or why your
+  index is quietly rotting.</p>
+  <p class="herolinks">
+    <a href="mailto:ankitmishra471@gmail.com">ankitmishra471@gmail.com</a>
+    <a href="https://github.com/ankitpyc">GitHub ↗</a>
+    <a href="https://linkedin.com/in/ankit-mishra-8a8350a0">LinkedIn ↗</a>
+  </p>
+</section>
+
+<div class="shell"><footer>
+  <span>© 2026 devkernels — Ankit Mishra</span>
+  <span>Built and measured on one box</span>
+</footer></div>
+
+</body>
+</html>
