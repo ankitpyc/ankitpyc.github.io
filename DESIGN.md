@@ -464,11 +464,21 @@ Quiet, sticky, hairline-bottomed.
 - **Shape:** full-bleed bar, radius 0, 1px `rule` bottom border, `position: sticky` at
   `top: env(safe-area-inset-top)`, `z-index: 20`. A `body::before` strip paints the
   safe-area inset in `ground` at `z-index: 21` so nothing shows through on notched devices.
-- **Background:** `color-mix(in srgb, ground 86%, transparent)` + `blur(14px)`.
+- **Background:** `var(--nav-bg)` / `var(--nav-blur)` — a `ground 86%` wash with
+  `blur(14px)` on dark, opaque `ground` with no blur on light, where a translucent
+  near-white bar smears the hairline it crosses instead of sitting on it.
 - **Layout:** `display: flex; align-items: baseline; gap: 1.5rem; padding-block: .9rem;
   flex-wrap: wrap`. The wordmark takes `margin-right: auto`; the links sit right.
 - **Links:** mono `.76rem`, tracking `.06em`, uppercase, `fg-2`, no underline; hover
   `signal`. No active/current state exists in the shipped markup.
+- **Phone:** **no hamburger.** Under 560px the wordmark takes a line of its own
+  (`flex: 1 0 100%`) and the four links sit as one mono row beneath it with the theme
+  switch pinned right by `margin-left: auto`; under 380px the type drops to `.66rem` and
+  the gap to `.78rem` so the row still holds at 320px. Left to wrap on its own the bar
+  stranded two links beside the wordmark and dropped two below, which reads as a bug.
+  A hamburger would hide a four-item nav behind a tap and cost a focus trap, an Escape
+  handler and an `aria-expanded` state to do it; the five-max nav rule exists precisely
+  so that menu is never needed.
 
 ### Wordmark + Mark (`a.wordmark`, `svg.mark`, `svg.mark.endmark`)
 - Archivo 700 at `wdth` 108, `1.0625rem`, tracking `-.015em`, mixed case, `fg`, no

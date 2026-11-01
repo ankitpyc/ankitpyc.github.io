@@ -162,6 +162,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .themer:hover{color:var(--signal)}
 .themer svg{display:block}
 
+/* Under ~560px the row wraps, and left to itself it wraps raggedly:
+   two links stranded beside the wordmark, two below. So the wrap is
+   made deliberate instead — the wordmark takes its own line, the four
+   links sit as one mono row beneath it with the switch pinned right.
+   No hamburger: it would hide a four-item nav behind a tap, and cost a
+   focus trap, an Escape handler and an aria-expanded state to do it. */
+@media (max-width:560px){
+  .navrow{gap:.95rem;row-gap:.6rem;padding-top:.8rem;padding-bottom:.7rem}
+  .navrow a.wordmark{flex:1 0 100%;margin-right:0}
+  .navrow a{font-size:.7rem;letter-spacing:.04em}
+  .themer{margin-left:auto}
+}
+@media (max-width:380px){
+  .navrow{gap:.78rem}
+  .navrow a{font-size:.66rem;letter-spacing:.03em}
+}
+
 
 /* The mark animates from an already-correct resting state, so switching it
    off leaves the page intact rather than empty. */
