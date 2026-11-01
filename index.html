@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
 /* ── World: a dark instrument console. Ink-navy ground, one cyan signal for
-   structure, one amber for events in flight. Type does the hierarchy. ───── */
+   structure, one amber for events in flight. Type does the hierarchy, and
+   full-bleed ground bands carry the section rhythm. ───────────────────── */
 :root{
   --ground:#0B1014;      --ground-2:#121A20;    --ground-3:#18232A;
   --fg:#E8EEF1;          --fg-2:#A8B6BF;        --fg-3:#6F818C;
@@ -58,7 +59,7 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
   backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
   background:var(--ground);z-index:21}
-.navrow{display:flex;align-items:baseline;gap:1.5rem;padding-block:.9rem;flex-wrap:wrap}
+.navrow{display:flex;align-items:baseline;gap:1.5rem;padding-top:.9rem;padding-bottom:.9rem;flex-wrap:wrap}
 .navrow a.wordmark{font-family:var(--display);font-weight:700;font-stretch:108%;
   font-variation-settings:"wdth" 108;font-size:1.0625rem;
   letter-spacing:-.015em;text-transform:none;margin-right:auto;display:inline-flex;
@@ -78,7 +79,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .navrow a{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;
   text-transform:uppercase;color:var(--fg-2);text-decoration:none}
 .navrow a:hover{color:var(--signal)}
+/* Where you are, said with luminance rather than with the accent. */
+.navrow a[aria-current=page]{color:var(--fg)}
 
+/* The mark animates from an already-correct resting state, so switching it
+   off leaves the page intact rather than empty. */
+@media (prefers-reduced-motion:reduce){
+  .mark .orbit{animation:none}
+}
 /* ── hero ────────────────────────────────────────────────────────────── */
 .cover{position:relative;isolation:isolate;overflow:hidden;
   min-height:clamp(32rem,86vh,54rem);display:flex;align-items:center;
@@ -93,7 +101,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       color-mix(in srgb,var(--ground) 46%,transparent) 48%,
       color-mix(in srgb,var(--ground) 6%,transparent) 78%),
     radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent 70%)}
-.cover-inner{position:relative;padding-block:clamp(4rem,9vw,7rem);width:100%}
+.cover-inner{position:relative;padding-top:clamp(4rem,9vw,7rem);padding-bottom:clamp(4rem,9vw,7rem);width:100%}
 .mesh-edges path:nth-child(4n+1){stroke:var(--signal-dim);stroke-dasharray:3 13;
   animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both,
             current 2.8s 2.2s linear infinite}
@@ -118,16 +126,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* Emphasis by luminance, not hue — the teal stays precious for links and
    live nodes instead of being spent on a slab of headline. */
 .hero h1 em{font-style:normal;color:var(--fg);font-weight:700}
-.lede{font-size:clamp(1.0625rem,1.6vw,1.3125rem);line-height:1.55;color:var(--fg-2);
-  max-width:52ch;margin:0 0 2rem;text-shadow:0 1px 14px var(--ground)}
-.lede strong{color:var(--fg);font-weight:600}
-.herolinks{display:flex;gap:1.75rem;flex-wrap:wrap;font-family:var(--mono);
-  font-size:.82rem;letter-spacing:.03em}
 .coverfoot{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--rule);
   background:color-mix(in srgb,var(--ground) 72%,transparent);backdrop-filter:blur(6px)}
-.coverfoot .shell{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
-  padding-block:.7rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;
-  text-transform:uppercase;color:var(--fg-3)}
+.coverfoot .shell{padding-top:.7rem;padding-bottom:.7rem}
 @media (max-width:48rem){
   /* .cover is a flex row; a static footer would become a sibling column
      and halve the headline's width. Stack instead. */
@@ -171,66 +172,195 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   .mp{animation:none;offset-distance:58%}
 }
 
-/* ── sections ────────────────────────────────────────────────────────── */
-section{padding-block:clamp(3rem,6vw,5rem)}
+
+/* ══ WIDGET KIT ═══════════════════════════════════════════════════════════
+   Every repeating thing on this site is one of the pieces below. They are
+   documented in DESIGN.md with their markup. Nothing here is a card: the
+   structure is full-bleed ground bands and 1px hairlines.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── band: a full-bleed section. The background reaches the viewport edge
+   so the boundary is a real edge; the content stays in .shell. ───────── */
+.band{border-top:1px solid var(--rule);padding-top:clamp(3rem,6vw,5rem);padding-bottom:clamp(3rem,6vw,5rem);
+  scroll-margin-top:4.5rem}
+/* Each band above the ground lifts the tertiary grey far enough to keep
+   4.5:1 on its own background: #6F818C holds 4.3:1 on #121A20 and 4.0:1 on
+   #18232A, and a row label is body-sized text, not decoration. */
+.band.b2{background:var(--ground-2);--fg-3:#798A94}
+.band.b3{background:var(--ground-3);--fg-3:#93A2AA}
+.band.tight{padding-top:clamp(2.25rem,4vw,3.25rem);padding-bottom:clamp(2.25rem,4vw,3.25rem)}
+.band.loose{padding-top:clamp(3.5rem,7vw,6rem);padding-bottom:clamp(3.5rem,7vw,6rem)}
+.band.tall{padding-top:clamp(4rem,8vw,7rem);padding-bottom:clamp(4rem,8vw,7rem)}
+.band.punct{padding-top:clamp(4.5rem,9vw,7.5rem);padding-bottom:clamp(4.5rem,9vw,7.5rem)}
+
+/* ── band label: a numbered instrument tag over the heading ──────────── */
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg-3);margin:0 0 .9rem;
+  font-variant-numeric:tabular-nums}
+.eyebrow i{font-style:normal;color:var(--fg-2)}
+
 h2{font-family:var(--display);font-weight:700;font-stretch:108%;
   font-variation-settings:"wdth" 108;font-size:clamp(1.5rem,3vw,2rem);
   letter-spacing:-.03em;line-height:1.1;margin:0 0 2rem;text-wrap:balance}
 .prose{max-width:var(--measure);font-size:1.125rem;line-height:1.7;color:var(--fg-2)}
 .prose strong{color:var(--fg);font-weight:600}
+.prose p{margin:0 0 1.2rem}
+.prose p:last-child{margin-bottom:0}
 
-/* experience: a real timeline, not cards */
+/* ── plate: the page's one punctuation moment. Inverted, used once. ──── */
+.plate{background:var(--fg);color:var(--ground)}
+.plate h2{color:var(--ground)}
+.plate .lede{color:color-mix(in srgb,var(--ground) 82%,var(--fg));text-shadow:none}
+.plate .lede strong{color:var(--ground)}
+.plate .eyebrow{color:color-mix(in srgb,var(--ground) 65%,var(--fg))}
+.plate .eyebrow i{color:color-mix(in srgb,var(--ground) 82%,var(--fg))}
+.plate .mailto{color:var(--ground)}
+.plate a{color:var(--ground);
+  text-decoration-color:color-mix(in srgb,var(--ground) 35%,var(--fg))}
+.plate a:hover{color:var(--signal-dim);text-decoration-color:var(--signal-dim)}
+.plate :focus-visible{outline-color:var(--signal-dim)}
+.plate ::selection{background:var(--signal-dim);color:var(--fg)}
+
+/* ── spec plate: what the numbers were measured on ───────────────────── */
+.specplate{display:flex;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--fg-3);font-variant-numeric:tabular-nums}
+.specplate b{color:var(--fg-2);font-weight:400}
+
+/* ── status: measured / preliminary / retracted. A mono token on a
+   hairline, graded by luminance. Never a colour code. ───────────────── */
+.status{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;border-bottom:1px solid var(--rule-2);
+  padding-bottom:.18rem;color:var(--fg-2);white-space:nowrap}
+.status.measured{color:var(--fg);border-bottom-color:var(--fg-3)}
+.status.preliminary{color:var(--fg-2);border-bottom-color:var(--rule-2)}
+.status.retracted{color:var(--fg-3);border-bottom-color:var(--rule)}
+
+/* ── stat figure: the number a claim turns on ────────────────────────── */
+.stat{display:block;font-family:var(--display);font-weight:500;font-stretch:112%;
+  font-variation-settings:"wdth" 112;font-size:clamp(2rem,5vw,3.25rem);
+  line-height:1;letter-spacing:-.035em;color:var(--fg);
+  font-variant-numeric:tabular-nums;margin:0 0 .85rem}
+.stat .unit{font-family:var(--mono);font-size:.82rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--fg-3);margin-left:.55rem;
+  vertical-align:1.15em;white-space:nowrap}
+
+/* ── readout strip: the findings, as instrument readings ─────────────── */
+.readouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.5rem}
+.readout{border-left:1px solid var(--rule);padding-left:2.5rem}
+.readout:first-child{border-left:0;padding-left:0}
+.claim{margin:0 0 1rem;color:var(--fg-2);font-size:1.0625rem;line-height:1.6;
+  max-width:46ch}
+.claim strong{color:var(--fg);font-weight:600}
+.srcline{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:baseline;margin:0;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.03em}
+
+/* ── timeline row: dates left, role and org right, one line of substance ─ */
 .role{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
-  padding-block:1.75rem;border-top:1px solid var(--rule)}
+  padding-top:1.5rem;padding-bottom:1.5rem;border-top:1px solid var(--rule)}
 .role:first-of-type{border-top:0}
 .when{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;color:var(--fg-3);
   font-variant-numeric:tabular-nums;padding-top:.3rem}
 .when b{display:block;color:var(--signal);font-weight:500;margin-bottom:.15rem}
 .what h3{font-family:var(--display);font-weight:600;font-size:1.0625rem;margin:0 0 .1rem;
   letter-spacing:-.01em}
-.what .org{font-family:var(--mono);font-size:.78rem;color:var(--fg-3);margin:0 0 .7rem;
+.what .org{font-family:var(--mono);font-size:.78rem;color:var(--fg-3);margin:0;
   letter-spacing:.03em}
-.what ul{margin:0;padding-left:1.05rem;color:var(--fg-2);font-size:1rem;line-height:1.6}
-.what li{margin-bottom:.35rem}
-.what li::marker{color:var(--rule-2)}
+.what .did{margin:.55rem 0 0;color:var(--fg-2);font-size:1rem;line-height:1.6;
+  max-width:58ch}
+/* the same row, mirrored, so no two neighbouring bands share a silhouette */
+.role.rev{grid-template-columns:1fr 13rem}
+.role.rev .when{grid-area:1/2;text-align:right}
+.role.rev .what{grid-area:1/1}
 
-/* what I build: a typographic list, not a 4-up card grid */
-.builds{display:grid;gap:0}
-.build{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
-  padding-block:1.6rem;border-top:1px solid var(--rule)}
-.build h3{font-family:var(--display);font-weight:600;font-size:1.0625rem;margin:0;
-  letter-spacing:-.01em}
-.build p{margin:0;color:var(--fg-2);font-size:1rem;max-width:58ch}
-
-/* stack: dense prose rows, not a wall of pills */
-.stack{display:grid;gap:0}
+/* ── stack row: a label and a prose run, not a wall of pills ─────────── */
 .srow{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
-  padding-block:.9rem;border-top:1px solid var(--rule);align-items:baseline}
+  padding-top:.9rem;padding-bottom:.9rem;border-top:1px solid var(--rule);align-items:baseline}
 .srow dt{font-family:var(--mono);font-size:.74rem;letter-spacing:.09em;
   text-transform:uppercase;color:var(--fg-3)}
 .srow dd{margin:0;color:var(--fg-2);font-size:1rem;line-height:1.55}
 
-/* writing */
+/* ── writing row: date, title, the hook, where it was published ──────── */
 .post{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
-  padding-block:1.4rem;border-top:1px solid var(--rule);align-items:baseline}
-.post .when{padding-top:0}
-.post h3{font-family:var(--display);font-weight:600;font-size:1.0625rem;margin:0;
-  letter-spacing:-.01em}
+  padding-top:1.4rem;padding-bottom:1.4rem;border-top:1px solid var(--rule)}
+.post .when{padding-top:.25rem}
 .post a{text-decoration:none}
+.post .sum{margin:.45rem 0 0;color:var(--fg-2);font-size:1rem;line-height:1.55;
+  max-width:58ch}
+.post .where{margin:.5rem 0 0;font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3)}
 
-/* contact */
+/* ── findings row: one claim, its status and its source ──────────────── */
+.find{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
+  padding-top:1.75rem;padding-bottom:1.75rem;border-top:1px solid var(--rule)}
+.find .meta{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em;
+  color:var(--fg-3);font-variant-numeric:tabular-nums;padding-top:.3rem}
+.find .meta .status{display:inline-block;margin-bottom:.7rem}
+.find .meta time{display:block}
+.find .claim{max-width:58ch}
+
+/* ── repro block: the command, pinned, with its wall-clock. Defined for
+   the lab; no experiment has shipped, so nothing instantiates it yet. ── */
+.repro{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  padding-top:1.1rem;padding-bottom:1.1rem;font-family:var(--mono);font-size:.82rem;line-height:1.7;
+  color:var(--fg-2);overflow-x:auto}
+.repro .cmd{display:block;white-space:pre;color:var(--fg)}
+.repro .pinned{display:block;margin-top:.55rem;color:var(--fg-3)}
+.repro .clock{display:block;margin-top:.55rem;font-size:.72rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--fg-3)}
+
+/* ── chart frame: one chart carrying one claim, caption restating the
+   number. Defined for the lab; unused until there is a measurement. ──── */
+.figure{margin:0}
+.figure svg{display:block;width:100%;height:auto}
+.figure .axis{stroke:var(--rule-2);stroke-width:1}
+.figure .axis-label{fill:var(--fg-3);font-family:var(--mono);font-size:11px;
+  letter-spacing:.06em;text-transform:uppercase}
+.figure .series{fill:none;stroke:var(--fg-2);stroke-width:1.6}
+.figure .series-2{fill:none;stroke:var(--signal-dim);stroke-width:1.6}
+.figure figcaption{margin-top:.9rem;font-family:var(--mono);font-size:.74rem;
+  line-height:1.6;letter-spacing:.03em;color:var(--fg-3);max-width:58ch}
+.figure figcaption b{color:var(--fg-2);font-weight:500}
+
+/* ── lede and inline link row: shared by the cover and every page head ── */
+.lede{font-size:clamp(1.0625rem,1.6vw,1.3125rem);line-height:1.55;color:var(--fg-2);
+  max-width:52ch;margin:0 0 2rem;text-shadow:0 1px 14px var(--ground)}
+.lede strong{color:var(--fg);font-weight:600}
+.herolinks{display:flex;gap:1.75rem;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.82rem;letter-spacing:.03em}
+
+/* ── page head: the quiet counterpart to the homepage cover ──────────── */
+.pagehead{padding-top:clamp(3rem,6vw,4.5rem);padding-bottom:clamp(2rem,4vw,3rem)}
+.pagehead h1{font-family:var(--display);font-weight:500;font-stretch:112%;
+  font-variation-settings:"wdth" 112;font-size:clamp(2rem,5vw,3.25rem);
+  line-height:1.05;letter-spacing:-.04em;margin:0 0 1.25rem;text-wrap:balance;
+  max-width:24ch;color:var(--fg-2)}
+.pagehead h1 em{font-style:normal;color:var(--fg);font-weight:700}
+
+/* ── contact ─────────────────────────────────────────────────────────── */
 .contact h2{font-size:clamp(2rem,5vw,3.25rem);letter-spacing:-.04em;margin-bottom:1.5rem}
 .contact .lede{margin-bottom:2rem}
-footer{border-top:1px solid var(--rule);padding-block:1.75rem;
+.mailto{font-family:var(--mono);font-size:1rem;letter-spacing:.01em;
+  color:var(--fg);margin:0 0 1.5rem;user-select:all}
+footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75rem;
   font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;color:var(--fg-3);
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.stamp{font-variant-numeric:tabular-nums}
 
 @media (max-width:48rem){
-  .rig figcaption{font-size:.64rem;letter-spacing:.06em}
-  .hero h1{max-width:none}
-  .role,.build,.srow,.post{grid-template-columns:1fr;gap:.45rem}
-  .when{padding-top:0}
+  .pagehead h1{max-width:none}
+  .lede{max-width:none}
+  .role,.srow,.post,.find,.role.rev{grid-template-columns:1fr;gap:.45rem}
+  .role.rev .when{grid-area:auto;text-align:left}
+  .role.rev .what{grid-area:auto}
+  .when,.find .meta{padding-top:0}
   .when b{display:inline;margin-right:.6rem}
+  .find .meta .status{margin-bottom:.35rem}
+  .readouts{grid-template-columns:1fr;gap:0}
+  .readout{border-left:0;border-top:1px solid var(--rule);padding:1.6rem 0 0;
+    margin-top:1.6rem}
+  .readout:first-child{border-top:0;padding-top:0;margin-top:0}
+  .claim{max-width:none}
 }
 </style>
 </head>
@@ -245,12 +375,10 @@ footer{border-top:1px solid var(--rule);padding-block:1.75rem;
     </svg>
     <span class="wm"><span style="color:var(--fg)">dev</span><span>kernels</span></span>
   </a>
-  <a href="#experience">Experience</a>
-  <a href="#build">Work</a>
-  <a href="/projects.html">Projects</a>
-  <a href="/blog.html">Blog</a>
-  <a href="/uses.html">Uses</a>
-  <a href="#contact">Contact</a>
+  <a href="/findings.html">Findings</a>
+  <a href="/writing.html">Writing</a>
+  <a href="/about.html">About</a>
+  <a href="https://github.com/ankitpyc">GitHub ↗</a>
 </div></nav>
 
 <header class="cover">
@@ -342,131 +470,181 @@ footer{border-top:1px solid var(--rule);padding-block:1.75rem;
     <p class="herolinks">
       <a href="https://github.com/ankitpyc">GitHub ↗</a>
       <a href="https://linkedin.com/in/ankit-mishra-8a8350a0">LinkedIn ↗</a>
-      <a href="/blog.html">Writing ↗</a>
+      <a href="/writing.html">Writing ↗</a>
     </p>
   </div>
 
-  <div class="coverfoot"><div class="shell">
+  <div class="coverfoot"><div class="shell specplate">
     <span>goldengate → kafka → dag → agents → pgvector</span>
-    <span>one VPS · 4 vCPU · no GPU</span>
+    <span>4 vCPU · 7.6 GB · no GPU · read 1 Nov 2026</span>
   </div></div>
 </header>
 
-<section class="shell" id="about">
-  <h2>About</h2>
-  <p class="prose">Seven years shipping production systems at scale — from <strong>NPCI payment
-  integrations handling millions of daily transactions</strong> to real-time CDC pipelines.
-  I think in systems, ship in sprints, and obsess over the details that separate a demo from
-  a deployment. Right now that means a six-agent setup with hybrid Redis and pgvector memory,
-  Telegram bots and a voice pipeline, running 24/7 on a single box.</p>
-</section>
-
-<hr class="rule">
-
-<section class="shell" id="experience">
-  <h2>Experience</h2>
-
-  <div class="role"><div class="when"><b>Now</b>Aug 2026 —</div><div class="what">
-    <h3>Senior Software Engineer</h3><p class="org">New Relic · Bengaluru</p>
-    <ul><li>Own an SLI/SLO evaluation service — time-based and event-driven indicators over
-    a Kafka stream, with Valkey holding per-window state.</li>
-    <li>Designed the coordination between a periodic scheduler and an event consumer that can
-    disagree about the same minute.</li></ul></div></div>
-
-  <div class="role"><div class="when">Jan 2025 — Jul 2026</div><div class="what">
-    <h3>Senior Member of Technical Staff</h3><p class="org">Oracle · Bengaluru</p>
-    <ul><li>Real-time CDC streaming pipelines with GoldenGate and a WebSocket event layer —
-    sub-second propagation.</li>
-    <li>Architected a DAG-based orchestration engine: topological sort, concurrent stage
-    execution, cycle detection, stateful failure recovery.</li></ul></div></div>
-
-  <div class="role"><div class="when">Dec 2023 — Jan 2025</div><div class="what">
-    <h3>Vice President (SDE III)</h3><p class="org">Goldman Sachs · Bengaluru</p>
-    <ul><li>Metadata-driven generic interface for account lifecycle events — cut deployment
-    overhead across onboarding flows.</li>
-    <li>Reduced MTTR by 30% with a Grafana and Prometheus stack for trading-platform
-    reconciliation.</li></ul></div></div>
-
-  <div class="role"><div class="when">Aug 2022 — Dec 2023</div><div class="what">
-    <h3>Associate (SSE)</h3><p class="org">Goldman Sachs · Bengaluru</p>
-    <ul><li>Post-account-opening workflows from scratch — 60% operational risk reduction,
-    99% SLA compliance.</li></ul></div></div>
-
-  <div class="role"><div class="when">Jul 2021 — Aug 2022</div><div class="what">
-    <h3>Software Engineer → Senior Software Engineer</h3><p class="org">Paytm · Noida</p>
-    <ul><li>FasTag issuance and payment workflows handling millions of daily transactions
-    through NPCI.</li>
-    <li>In-memory centralised config store for real-time URL and property updates across
-    payment services; circuit breakers to stop cascading failure.</li></ul></div></div>
-
-  <div class="role"><div class="when">Jul 2019 — Jul 2021</div><div class="what">
-    <h3>Software Engineer</h3><p class="org">FICO · Bangalore</p>
-    <ul><li>Backend services for customer onboarding and loan repayment — 60% reduction in
-    onboarding time.</li></ul></div></div>
-
-  <div class="role"><div class="when">2017 — 2019</div><div class="what">
-    <h3>Master of Technology</h3><p class="org">NIT Bhopal</p></div></div>
-</section>
-
-<hr class="rule">
-
-<section class="shell" id="build">
-  <h2>What I build</h2>
-  <div class="builds">
-    <div class="build"><h3>Multi-agent systems</h3>
-      <p>Six specialised agents on one VPS — hybrid Redis and pgvector memory, Telegram
-      front end, voice pipeline, scheduled passes that run without me.</p></div>
-    <div class="build"><h3>Data engineering</h3>
-      <p>CDC pipelines with GoldenGate and Apache Iceberg; real-time replication, and the
-      coordination problems that appear when two clocks disagree.</p></div>
-    <div class="build"><h3>Cloud infrastructure</h3>
-      <p>Terraform, OCI, distributed system design, and production deployments that have to
-      survive someone else's outage.</p></div>
-    <div class="build"><h3>Developer tools</h3>
-      <p>CLI tools in Go, voice cloning with XTTS-v2, and local LLM inference tuned for
-      machines without a GPU.</p></div>
+<section class="band b2 tight" id="findings">
+  <div class="shell">
+  <p class="eyebrow"><i>01</i> / Findings</p>
+  <h2>Two claims, and the state of each.</h2>
+  <div class="readouts">
+    <article class="readout">
+      <span class="stat">0.98<span class="unit">recall@10</span></span>
+      <p class="claim">A vector index sitting at <strong>recall@10 = 0.98</strong> can
+      still ship a search system that feels broken, because recall@k measures fidelity to
+      brute force over your own embedding space, not whether the right answer is in that
+      space at all.</p>
+      <p class="srcline"><span class="status preliminary">Preliminary</span>
+        <a href="https://ankitmishra471.substack.com/p/after-hnsw-three-failures-you-wont">Argued 12 May 2026 ↗</a></p>
+    </article>
+    <article class="readout">
+      <span class="stat">50M<span class="unit">vectors</span></span>
+      <p class="claim">Past roughly <strong>50 million vectors</strong> the HNSW index
+      stops being the hard part. Shard semantically and the shard router becomes a second
+      layer of approximate search: it fails silently, and it accounts for most of the
+      recall loss.</p>
+      <p class="srcline"><span class="status preliminary">Preliminary</span>
+        <a href="https://ankitmishra471.substack.com/p/hnsw-is-the-easy-part">Argued 5 May 2026 ↗</a></p>
+    </article>
+  </div>
+  <p class="herolinks" style="margin-top:2rem"><a href="/findings.html">The ledger, with how a row gets there</a></p>
   </div>
 </section>
 
-<hr class="rule">
+<section class="band loose" id="about">
+  <div class="shell">
+  <p class="eyebrow"><i>02</i> / About</p>
+  <h2>About</h2>
+  <div class="prose">
+    <p>Seven years shipping production systems at scale, from payment integrations
+    handling millions of daily transactions to real-time CDC pipelines. I think in
+    systems, ship in sprints, and obsess over the details that separate a demo from a
+    deployment.</p>
+    <p>Right now that means a <strong>six-agent setup</strong> with hybrid Redis and
+    pgvector memory, Telegram bots and a voice pipeline, running 24/7 on a single box, and
+    writing down what it actually costs to run.</p>
+  </div>
+  </div>
+</section>
 
-<section class="shell" id="stack">
+<section class="band b2 tall" id="experience">
+  <div class="shell">
+  <p class="eyebrow"><i>03</i> / Experience</p>
+  <h2>Experience</h2>
+
+  <div class="role"><div class="when"><b>Now</b>Aug 2026 –</div><div class="what">
+    <h3>Senior Software Engineer</h3><p class="org">New Relic · Bengaluru</p>
+    <p class="did">An SLI/SLO evaluation service over a Kafka stream, where a periodic
+    scheduler and an event consumer have to agree about the same minute.</p></div></div>
+
+  <div class="role"><div class="when">Jan 2025 – Jul 2026</div><div class="what">
+    <h3>Senior Member of Technical Staff</h3><p class="org">Oracle · Bengaluru</p>
+    <p class="did">Real-time CDC streaming with GoldenGate and a WebSocket event layer,
+    and a DAG orchestration engine with cycle detection and stateful failure
+    recovery.</p></div></div>
+
+  <div class="role"><div class="when">Dec 2023 – Jan 2025</div><div class="what">
+    <h3>Vice President (SDE III)</h3><p class="org">Goldman Sachs · Bengaluru</p>
+    <p class="did">A metadata-driven interface for account lifecycle events, and the
+    Grafana and Prometheus stack that made trading-platform reconciliation
+    debuggable.</p></div></div>
+
+  <div class="role"><div class="when">Aug 2022 – Dec 2023</div><div class="what">
+    <h3>Associate (SSE)</h3><p class="org">Goldman Sachs · Bengaluru</p>
+    <p class="did">Post-account-opening workflows, built from scratch.</p></div></div>
+
+  <div class="role"><div class="when">Jul 2021 – Aug 2022</div><div class="what">
+    <h3>Software Engineer → Senior Software Engineer</h3><p class="org">Paytm · Noida</p>
+    <p class="did">FasTag issuance and payment workflows through NPCI, plus a centralised
+    in-memory config store and the circuit breakers that stopped one slow dependency
+    taking the rest down.</p></div></div>
+
+  <div class="role"><div class="when">Jul 2019 – Jul 2021</div><div class="what">
+    <h3>Software Engineer</h3><p class="org">FICO · Bangalore</p>
+    <p class="did">Backend services for customer onboarding and loan repayment.</p></div></div>
+
+  <div class="role"><div class="when">2017 – 2019</div><div class="what">
+    <h3>Master of Technology</h3><p class="org">NIT Bhopal</p>
+    <p class="did">Spectrum hole detection for cognitive radio, and a paper on ensemble
+    methods for fraud detection on heavily skewed data.</p></div></div>
+  </div>
+</section>
+
+<section class="band" id="build">
+  <div class="shell">
+  <p class="eyebrow"><i>04</i> / Build</p>
+  <h2>What I build</h2>
+
+  <div class="role rev"><div class="when">Multi-agent systems</div><div class="what">
+    <p class="did">Six specialised agents on one VPS: hybrid Redis and pgvector memory, a
+    Telegram front end, a voice pipeline, and scheduled passes that run without me.</p>
+    </div></div>
+
+  <div class="role rev"><div class="when">Data engineering</div><div class="what">
+    <p class="did">CDC pipelines with GoldenGate and Apache Iceberg; real-time
+    replication, and the coordination problems that appear when two clocks
+    disagree.</p></div></div>
+
+  <div class="role rev"><div class="when">Cloud infrastructure</div><div class="what">
+    <p class="did">Terraform, OCI, distributed system design, and production deployments
+    that have to survive someone else's outage.</p></div></div>
+
+  <div class="role rev"><div class="when">Developer tools</div><div class="what">
+    <p class="did">CLI tools in Go, voice cloning with XTTS-v2, and local LLM inference
+    tuned for machines without a GPU.</p></div></div>
+  </div>
+</section>
+
+<section class="band b3 tight" id="stack">
+  <div class="shell">
+  <p class="eyebrow"><i>05</i> / Stack</p>
   <h2>Stack</h2>
   <dl class="stack">
-    <div class="srow"><dt>Languages</dt><dd>Java · Go · Python · TypeScript · Rust (learning)</dd></div>
-    <div class="srow"><dt>Streaming &amp; data</dt><dd>Apache Kafka · Apache Spark · PostgreSQL · pgvector · Redis / Valkey · Elasticsearch · Flyway</dd></div>
-    <div class="srow"><dt>Infrastructure</dt><dd>Kubernetes · Docker · Terraform · OCI · systemd · Jenkins</dd></div>
+    <div class="srow"><dt>Languages</dt><dd>Java · Go · Python · TypeScript</dd></div>
+    <div class="srow"><dt>Streaming &amp; data</dt><dd>Apache Kafka · Apache Spark · PostgreSQL · pgvector · Redis / Valkey · Elasticsearch</dd></div>
+    <div class="srow"><dt>Infrastructure</dt><dd>Kubernetes · Docker · Terraform · OCI · systemd</dd></div>
     <div class="srow"><dt>Observability</dt><dd>Prometheus · Grafana · SLI/SLO design · incident response</dd></div>
     <div class="srow"><dt>AI systems</dt><dd>LLM inference · Ollama · embeddings · retrieval · agent orchestration · evaluation harnesses</dd></div>
   </dl>
+  </div>
 </section>
 
-<hr class="rule">
-
-<section class="shell" id="writing">
+<section class="band" id="writing">
+  <div class="shell">
+  <p class="eyebrow"><i>06</i> / Writing</p>
   <h2>Writing</h2>
-  <div class="post"><div class="when">May 2026</div>
-    <h3><a href="https://ankitmishra471.substack.com/p/after-hnsw-three-failures-you-wont">After HNSW: three failures you won't see</a></h3></div>
-  <div class="post"><div class="when">May 2026</div>
-    <h3><a href="https://ankitmishra471.substack.com/archive">HNSW is the easy part</a></h3></div>
-  <div class="post"><div class="when">Mar 2025</div>
-    <h3><a href="/blog.html">How I set up a 6-agent AI system that runs 24/7</a></h3></div>
-  <p class="herolinks" style="margin-top:1.75rem"><a href="/blog.html">All posts ↗</a>
+
+  <div class="post"><div class="when">12 May 2026</div><div class="what">
+    <h3><a href="https://ankitmishra471.substack.com/p/after-hnsw-three-failures-you-wont">After HNSW: Three Failures You Won't See ↗</a></h3>
+    <p class="sum">Graph rot under writes and the hot/cold index pattern that answers it,
+    redundancy in pure similarity ranking, and why recall@k measures your approximation
+    rather than your product.</p>
+    <p class="where">The Dev Kernel · Part 2 of 2</p></div></div>
+
+  <div class="post"><div class="when">5 May 2026</div><div class="what">
+    <h3><a href="https://ankitmishra471.substack.com/p/hnsw-is-the-easy-part">HNSW Is the Easy Part ↗</a></h3>
+    <p class="sum">What changes past tens of millions of vectors: semantic sharding makes
+    the index tractable and creates a router, and that router is a second layer of
+    approximate search that fails silently.</p>
+    <p class="where">The Dev Kernel · Part 1 of 2</p></div></div>
+
+  <p class="herolinks" style="margin-top:1.75rem"><a href="/writing.html">All posts</a>
     <a href="https://ankitmishra471.substack.com">The Dev Kernel ↗</a></p>
+  </div>
 </section>
 
-<hr class="rule">
-
-<section class="shell contact" id="contact">
+<section class="band plate punct contact" id="contact">
+  <div class="shell">
+  <p class="eyebrow"><i>07</i> / Contact</p>
   <h2>Let's build something.</h2>
   <p class="lede">Happiest talking about stream coordination, agent evaluation, or why your
   index is quietly rotting.</p>
+  <p class="mailto">ankitmishra471@gmail.com</p>
   <p class="herolinks">
-    <a href="mailto:ankitmishra471@gmail.com">ankitmishra471@gmail.com</a>
+    <a href="mailto:ankitmishra471@gmail.com">Email ↗</a>
     <a href="https://github.com/ankitpyc">GitHub ↗</a>
     <a href="https://linkedin.com/in/ankit-mishra-8a8350a0">LinkedIn ↗</a>
   </p>
+  </div>
 </section>
+
 
 <div class="shell"><footer>
   <span><svg class="mark endmark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
@@ -474,7 +652,7 @@ footer{border-top:1px solid var(--rule);padding-block:1.75rem;
       <circle class="ring" cx="16" cy="16" r="6" stroke-width="1.2"/>
       <circle class="core" cx="16" cy="16" r="2.5"/>
     </svg>© 2026 devkernels — Ankit Mishra</span>
-  <span>Built and measured on one box</span>
+  <span class="stamp">Last updated 1 Nov 2026</span>
 </footer></div>
 
 </body>
