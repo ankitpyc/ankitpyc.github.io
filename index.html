@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ankit Mishra — Software Engineer | devkernels</title>
-<meta name="description" content="Senior Software Engineer at New Relic. Distributed systems, real-time CDC pipelines and AI infrastructure. Seven years at Oracle, Goldman Sachs and Paytm.">
+<meta name="description" content="Senior Software Engineer at New Relic. Distributed systems, real-time CDC pipelines and fault-tolerant services. Seven years at Oracle, Goldman Sachs, Paytm and FICO.">
 <link rel="canonical" href="https://ankitpyc.github.io/">
 <link rel="alternate" type="application/rss+xml" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -463,10 +463,11 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   </div>
 
   <div class="shell cover-inner hero">
-    <h1>I build the pipes that <em>move the data</em>, and the agents that read it.</h1>
+    <h1>I build the pipes that <em>move the data</em>, and keep them moving when something breaks.</h1>
     <p class="lede">Senior Software Engineer at <strong>New Relic</strong>. Seven years on
-    distributed systems, real-time CDC pipelines and AI infrastructure — at Oracle, Goldman
-    Sachs and Paytm. Currently running a six-agent system, 24/7, on a single VPS.</p>
+    distributed systems, real-time CDC pipelines and fault-tolerant services — at Oracle,
+    Goldman Sachs, Paytm and FICO. The AI side is what I am building toward, in the open,
+    on the single VPS that runs a six-agent system.</p>
     <p class="herolinks">
       <a href="https://github.com/ankitpyc">GitHub ↗</a>
       <a href="https://linkedin.com/in/ankit-mishra-8a8350a0">LinkedIn ↗</a>
@@ -513,13 +514,15 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   <p class="eyebrow"><i>02</i> / About</p>
   <h2>About</h2>
   <div class="prose">
-    <p>Seven years shipping production systems at scale, from payment integrations
-    handling millions of daily transactions to real-time CDC pipelines. I think in
-    systems, ship in sprints, and obsess over the details that separate a demo from a
-    deployment.</p>
-    <p>Right now that means a <strong>six-agent setup</strong> with hybrid Redis and
-    pgvector memory, Telegram bots and a voice pipeline, running 24/7 on a single box, and
-    writing down what it actually costs to run.</p>
+    <p>Seven years shipping production systems at scale: payment flows through NPCI,
+    account lifecycle at a bank, real-time change capture out of a production database.
+    The through-line is <strong>scale, resilience and fault tolerance</strong> — circuit
+    breakers, replay, and the details that separate a demo from something that survives
+    someone else's outage.</p>
+    <p>The AI work is newer and it is mine, not my employer's: a
+    <strong>six-agent setup</strong> with hybrid Redis and pgvector memory, Telegram bots
+    and a voice pipeline, running 24/7 on a single box, and writing down what it actually
+    costs to run. I am learning this part in public rather than claiming it.</p>
   </div>
   </div>
 </section>
@@ -578,7 +581,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     </div></div>
 
   <div class="role rev"><div class="when">Data engineering</div><div class="what">
-    <p class="did">CDC pipelines with GoldenGate and Apache Iceberg; real-time
+    <p class="did">CDC pipelines with GoldenGate; real-time
     replication, and the coordination problems that appear when two clocks
     disagree.</p></div></div>
 
@@ -587,7 +590,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     that have to survive someone else's outage.</p></div></div>
 
   <div class="role rev"><div class="when">Developer tools</div><div class="what">
-    <p class="did">CLI tools in Go, voice cloning with XTTS-v2, and local LLM inference
+    <p class="did">CLI tools in Go, a local text-to-speech pipeline, and LLM inference
     tuned for machines without a GPU.</p></div></div>
   </div>
 </section>
@@ -601,7 +604,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     <div class="srow"><dt>Streaming &amp; data</dt><dd>Apache Kafka · Apache Spark · PostgreSQL · pgvector · Redis / Valkey · Elasticsearch</dd></div>
     <div class="srow"><dt>Infrastructure</dt><dd>Kubernetes · Docker · Terraform · OCI · systemd</dd></div>
     <div class="srow"><dt>Observability</dt><dd>Prometheus · Grafana · SLI/SLO design · incident response</dd></div>
-    <div class="srow"><dt>AI systems</dt><dd>LLM inference · Ollama · embeddings · retrieval · agent orchestration · evaluation harnesses</dd></div>
+    <div class="srow"><dt>AI systems</dt><dd>LLM inference · Ollama · embeddings · retrieval · agent orchestration — on my own box, not in production</dd></div>
   </dl>
   </div>
 </section>
