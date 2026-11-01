@@ -162,6 +162,24 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .themer:hover{color:var(--signal)}
 .themer svg{display:block}
 
+/* ── correction row, and the empty state it currently wears ───────────
+   A status pill says a row was wrong; this says what it said before,
+   when, and what changed it. Nothing has been corrected yet, so the
+   band ships the empty state instead — saying "none yet" in a defined
+   shape is itself the commitment, and is better than an absent
+   section that could mean either nothing broke or nothing was told. */
+.fix{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem;
+  padding:1.5rem 0;border-top:1px solid var(--rule)}
+.fix .when{font-family:var(--mono);font-size:.72rem;letter-spacing:.07em;color:var(--fg-3)}
+.fix p{margin:0 0 .5rem;max-width:62ch}
+.fix .was{color:var(--fg-3);text-decoration:line-through;
+  text-decoration-color:var(--rule-2);text-decoration-thickness:1px}
+.fix .became{color:var(--fg)}
+.nothing{border-top:1px solid var(--rule);padding-top:1.5rem;color:var(--fg-2);max-width:62ch}
+.nothing b{display:block;font-family:var(--mono);font-weight:400;font-size:.7rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);margin-bottom:.7rem}
+@media (max-width:700px){.fix{grid-template-columns:1fr;gap:.45rem}}
+
 /* Under ~560px the row wraps, and left to itself it wraps raggedly:
    two links stranded beside the wordmark, two below. So the wrap is
    made deliberate instead — the wordmark takes its own line, the four
@@ -467,9 +485,24 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   </div>
 </section>
 
+<section class="band b3 tight" id="corrections">
+  <div class="shell">
+  <p class="eyebrow"><i>03</i> / Corrections</p>
+  <h2>What I got wrong</h2>
+  <div class="nothing">
+    <b>None yet</b>
+    <p>The first time a number on this page changes, the old one stays here with the date
+    it was published, what replaced it, and what found the error. Rows are corrected in
+    place and marked <span class="status retracted">Retracted</span>; nothing is quietly
+    deleted. An empty section here is a commitment, not an achievement — the ledger is
+    two rows old.</p>
+  </div>
+  </div>
+</section>
+
 <section class="band b2 loose" id="method">
   <div class="shell">
-  <p class="eyebrow"><i>03</i> / Method</p>
+  <p class="eyebrow"><i>04</i> / Method</p>
   <h2>How a row gets here</h2>
   <div class="prose">
     <p>A claim earns a row when it is a single sentence, contains a number, and names the

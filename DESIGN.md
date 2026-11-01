@@ -574,9 +574,25 @@ page is the theme switch; motion stays CSS-only.
 
 Every repeating thing on this site is one of the pieces below. They are defined once, in
 the `WIDGET KIT` block of each page's stylesheet, and the four pages are generated from
-that one block so they cannot drift. **Do not invent an eleventh widget before checking
-that none of these ten fits.** Two of them are defined and deliberately unused, because
-there is nothing real to put in them yet.
+that one block so they cannot drift. **Do not invent a thirteenth widget before checking
+that none of these twelve fits.** Two of them are defined and deliberately unused, because
+there is nothing real to put in them yet, and one ships wearing its empty state.
+
+### Now line (`.nowline`)
+One dated sentence under the cover saying what is actually happening, in the `13rem 1fr`
+grid the stack rows use. It is a forcing function wearing a widget: a stale `Now` is
+visibly stale, which is the point on a site that once sat dark for six months. It carries
+its own `Written <date>` stamp and the line *"if this is stale, assume the rest is too"*,
+so the cost of neglecting it is paid in public. **Do not soften that stamp.**
+
+### Correction row (`.fix`) and empty state (`.nothing`)
+The status pill says a claim was wrong; the correction row says what it said before, when,
+what replaced it and what found the error — `13rem 1fr`, the old number struck through in
+`fg-3`, the new one in `fg`. Nothing has been corrected yet, so the band ships `.nothing`
+instead: a mono `NONE YET` over a sentence stating the policy. Saying "none yet" in a
+defined shape is the commitment; an absent section could mean either nothing broke or
+nothing was told. `.nothing` is the general empty state — **any section with no content
+wears it rather than being deleted.**
 
 ### Rail (`figure.rail`) — the scaled timeline
 One bar per employer on a shared month axis, July 2019 to now, beside the written list

@@ -173,6 +173,19 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .themer:hover{color:var(--signal)}
 .themer svg{display:block}
 
+/* ── now line ─────────────────────────────────────────────────────────
+   One dated sentence about what is actually happening. It is a forcing
+   function wearing a widget: a stale Now is visibly stale, which is the
+   whole point on a site that once sat dark for six months. */
+.nowline{display:grid;grid-template-columns:13rem 1fr;gap:0 2.5rem}
+.nowline .when{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--fg-3)}
+.nowline p{margin:0 0 .7rem;color:var(--fg-2);max-width:60ch}
+.nowline p strong{color:var(--fg);font-weight:600}
+.nowline .stamp{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;
+  color:var(--fg-3);margin:0}
+@media (max-width:700px){.nowline{grid-template-columns:1fr;gap:.5rem}}
+
 /* ── the rail ─────────────────────────────────────────────────────────
    One bar per employer on a shared month axis, because a list gives
    five very different tenures the same visual weight. One series, so
@@ -636,6 +649,21 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     <span>4 vCPU · 7.6 GB · no GPU · read 1 Nov 2026</span>
   </div></div>
 </header>
+
+<section class="band b3 tight" id="now">
+  <div class="shell">
+  <div class="nowline">
+    <p class="when">Now · Nov 2026</p>
+    <div>
+      <p>Rebuilt this site around the ledger. Next is the <strong>eval harness</strong>
+      the experiments will run on — it does not exist yet — and then the first measured
+      row, <strong>HNSW recall under index churn</strong>. At work, an SLI/SLO evaluation
+      service over a Kafka stream.</p>
+      <p class="stamp">Written 1 Nov 2026. If this line is stale, assume the rest is too.</p>
+    </div>
+  </div>
+  </div>
+</section>
 
 <section class="band b2 tight" id="findings">
   <div class="shell">
