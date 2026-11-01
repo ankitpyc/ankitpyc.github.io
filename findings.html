@@ -29,7 +29,41 @@
   --measure:68ch;
   --gut:max(20px,env(safe-area-inset-left,0px));
   --gut-r:max(20px,env(safe-area-inset-right,0px));
-  color-scheme:dark;
+  color-scheme:light dark;
+}
+
+/* ── light theme ──────────────────────────────────────────────────────
+   The whole page derives from the fourteen tokens plus two per-band
+   overrides, so light is a re-definition of those and nothing else.
+   .plate keeps working for free: its background is var(--fg), so the
+   one inverted band inverts with the theme and stays the punctuation.
+   The accent moves to a dark teal — #3FD0C9 is 1.9:1 on white and
+   would stop meaning "link" the moment it was unreadable. */
+@media (prefers-color-scheme: light){
+  :root{
+    --ground:#F6F9FA;     --ground-2:#E7EDF0;    --ground-3:#DAE3E8;
+    --fg:#0C1317;         --fg-2:#3B4A52;        --fg-3:#64747D;
+    --rule:#D6DEE2;       --rule-2:#C1CBD1;
+    --signal:#0B7571;     --signal-dim:#064F4C;  --event:#A4620A;
+    --focus:#0B7571;
+    --mesh:#9DB2BD;       --mesh-node:#6D8795;
+  }
+  /* The scrim is a wash of --ground over the mesh. At these lightnesses
+     it erased the hero instead of making it readable, so it keeps the
+     left-hand text column and lets go of the rest much earlier. */
+  .cover::after{background:
+    linear-gradient(100deg,var(--ground) 0%,
+      color-mix(in srgb,var(--ground) 82%,transparent) 22%,
+      color-mix(in srgb,var(--ground) 30%,transparent) 54%,
+      transparent 82%),
+    radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent 66%)}
+  .band.b2{--fg-3:#5A6A73}
+  .band.b3{--fg-3:#53636C}
+  /* inside the inverted band the ground is dark, so the hover colour
+     has to climb rather than drop. */
+  .plate a:hover{color:var(--signal);text-decoration-color:var(--signal)}
+  .plate :focus-visible{outline-color:var(--signal)}
+  .plate ::selection{background:var(--signal);color:var(--ground)}
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}

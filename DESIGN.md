@@ -225,7 +225,9 @@ the sole place motion exists. Every animated element is styled so that its resti
 already the correct state; with JS absent and motion reduced, the page is complete.
 
 **Key Characteristics:**
-- Ink-navy dark-only ground; `color-scheme: dark`, no light theme and no `dark:` variants.
+- Ink-navy ground by default, with a light theme that is a redefinition of the same
+  fourteen tokens under `prefers-color-scheme: light` — `color-scheme: light dark`, no
+  toggle, no JS, and no `dark:` variants anywhere.
 - Three-face type system: Archivo variable (display), Source Serif 4 (prose), IBM Plex Mono (data/labels).
 - 1px hairlines as the only structural device; zero cards, zero shadows on content, radius 0.
 - A single repeating `13rem / 1fr` two-column row carries four different sections.
@@ -395,8 +397,10 @@ two-column readout strip; and the inverted plate. If a new band would repeat its
 neighbour's silhouette, change one of the two.
 
 **The One Punctuation Rule.** Exactly one band per page is the inverted `.plate` — `fg`
-ground, `ground` text — and it is the contact band. It is the only light surface in the
-build and the only hard break in the scroll. Striping more than one band inverted
+ground, `ground` text — and it is the contact band. It is the only inverted surface in
+the build and the only hard break in the scroll. It costs nothing to theme: its
+background is `var(--fg)`, so under the light theme it becomes the one dark band and
+goes on being the punctuation. Striping more than one band inverted
 destroys the effect and is a defect, not a variation.
 
 **The Row-Not-Grid Rule.** Repeated page content is a ruled row list with a fixed label
@@ -656,11 +660,14 @@ explainer row), `.lede`, `.herolinks`, `.prose` and `.mailto`.
 - **Don't** encode status, state or category by colour alone. Every accent in this build is
   accompanied by a word or a shape — `Now` is the word plus teal, a live node is a thicker
   stroke plus teal. A legend is not an acceptable substitute.
-- **Don't** add a third accent, a theme-per-section colour, or a light mode. The build is
-  `color-scheme: dark` only. The single inverted `.plate` band is punctuation, not a
-  theme: it is one band per page, it is always the contact band, and inside it links drop
-  to `signal-dim` and the focus ring follows, because `signal` and `focus` do not hold
-  4.5:1 on a light ground.
+- **Don't** add a third accent or a theme-per-section colour. There are two themes and
+  they are the same build: light is the fourteen tokens redefined under
+  `prefers-color-scheme: light`, plus the two per-band `--fg-3` overrides and a lighter
+  cover scrim, and nothing else. Any rule that hardcodes a colour outside `:root` breaks
+  both at once. The single inverted `.plate` band is punctuation, not a theme: one band
+  per page, always the contact band. Inside it the link colour has to move *away* from
+  the band's ground — `signal-dim` on the dark theme's light plate, `signal` on the light
+  theme's dark plate — because neither accent holds 4.5:1 on both.
 - **Don't** introduce a corner radius on a content block, or a `box-shadow` on anything.
 - **Don't** make content depend on JavaScript or on animation completing.
 - **Don't** take any value from `design/README.md`, `design/direction-a.html` or
@@ -680,9 +687,9 @@ the artifact.
   machine, not here.** Editing files in this repo does not change the source.
 - **Porting trap 1 — palette as custom properties.** Define the fourteen colour tokens as
   CSS custom properties on `:root` and have `tailwind.config.ts` reference them
-  (`colors: { ground: 'var(--ground)' }`). Because the site is dark-only, this means no
-  `dark:` variants are needed anywhere; duplicating the palette into the Tailwind config as
-  literals is what forces them back.
+  (`colors: { ground: 'var(--ground)' }`). Both themes then live entirely in the token
+  block and no `dark:` variants are needed anywhere; duplicating the palette into the
+  Tailwind config as literals is what forces them back.
 - **Porting trap 2 — zero out shadcn first.** Before adding any shadcn/ui component, set
   `--radius: 0` and empty the shadow scale. Left at defaults, card, input and popover
   components reintroduce rounded corners and elevation — the exact abandoned look this
