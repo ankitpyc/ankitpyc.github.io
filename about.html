@@ -491,17 +491,14 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     something, judge validation, how a vector index behaves once you start writing to it,
     what inference actually costs per request, and what an SLO looks like for a system
     that is allowed to be wrong some of the time. I am learning it and building it in
-    public. None of it is production work yet, and I am not going to write it as though
-    it were.</p>
-    <p>That is a different ladder from modelling or research, and naming it is the point.
-    Left generic, a research-leaning reader sees a backend engineer who has drifted, and a
-    platform reader never notices I am talking to them. Named, seven years of streams,
-    databases and on-call becomes the asset rather than the thing to explain away.</p>
+    public. None of it is production work yet.</p>
+    <p>That is a different ladder from modelling or research, and it is worth naming.
+    Seven years of streams, databases and on-call is the asset for the platform ladder.
+    Against a research profile it is beside the point.</p>
     <p>Anything here with a number in it is measured on <strong>one 4-vCPU, 7.6 GB VPS
     with no GPU</strong>, the same box that runs a six-agent system round the clock.
-    Nothing on the ledger has earned that word yet — both rows say preliminary, and they
-    will keep saying it until there is a repro command beside them. The
-    constraint is deliberate. Most of the interesting numbers in this field come from
+    Nothing on the ledger is measured yet; both rows stay preliminary until there is a
+    repro command beside them. The constraint is deliberate. Most of the interesting numbers in this field come from
     people with a GPU budget, most readers do not have one, and almost nobody is writing
     for them.</p>
   </div>
@@ -612,7 +609,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     <strong>pgvector</strong> for storage and retrieval; <strong>Valkey</strong> for
     per-window state; <strong>Kubernetes</strong> for where it all runs; and
     <strong>Prometheus and Grafana</strong> for whether any of it is actually working.</p>
-    <p>There is a longer list. It is not more interesting.</p>
+    <p>There is a longer list. This is the part I actually use.</p>
   </div>
   </div>
 </section>
