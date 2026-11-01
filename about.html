@@ -53,6 +53,7 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --scrim-a:92%;  --scrim-b:46%;  --scrim-c:6%;
   --scrim-stop:78%; --scrim-r:70%;
   --mesh-w:1.15;
+  --series:#44616F;
   --fg-3-b2:#798A94;   --fg-3-b3:#93A2AA;
   --plate-link:var(--signal-dim);  --plate-sel-fg:var(--fg);
 
@@ -79,6 +80,7 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --scrim-a:86%; --scrim-b:42%; --scrim-c:0%; --scrim-stop:84%; --scrim-r:68%;
   /* Dark hairlines on a light ground read thinner than the reverse. */
   --mesh-w:1.3;
+  --series:#9CB0BB;
   /* The inverted band is the dark one now, so its link colour climbs. */
   --plate-link:var(--l-signal); --plate-sel-fg:var(--l-ground);
 }}
@@ -98,6 +100,7 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --scrim-a:86%; --scrim-b:42%; --scrim-c:0%; --scrim-stop:84%; --scrim-r:68%;
   /* Dark hairlines on a light ground read thinner than the reverse. */
   --mesh-w:1.3;
+  --series:#9CB0BB;
   /* The inverted band is the dark one now, so its link colour climbs. */
   --plate-link:var(--l-signal); --plate-sel-fg:var(--l-ground);
 }
@@ -161,6 +164,29 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   transition:color .18s cubic-bezier(.16,1,.3,1)}
 .themer:hover{color:var(--signal)}
 .themer svg{display:block}
+/* ── the rail ─────────────────────────────────────────────────────────
+   One bar per employer on a shared month axis, because a list gives
+   five very different tenures the same visual weight. One series, so
+   no legend and no categorical palette: the bars wear a chart ink of
+   their own, kept off the accent, which only ever means link or
+   number. The promotion is a notch cut in the surface colour rather
+   than a second hue — identity is never carried by colour alone here.
+   Under 700px it stands down and the written list below does the job,
+   which is also the text equivalent for anything that cannot read it. */
+.rail{margin:0 0 2.5rem}
+.rail svg{width:100%;height:auto;display:block;overflow:visible}
+.rail .ax{stroke:var(--rule);stroke-width:1}
+.rail .axlab{fill:var(--fg-3);font-family:var(--mono);font-size:10.5px;letter-spacing:.09em}
+.rail .now{stroke:var(--fg-3);stroke-width:1;stroke-dasharray:2 4}
+.rail text.now-lab{fill:var(--fg-2);text-anchor:end}
+.rail .co{fill:var(--fg);font-family:var(--display);font-weight:600;font-size:14.5px}
+.rail .dur{fill:var(--fg-3);font-family:var(--mono);font-size:10px;letter-spacing:.07em}
+.rail .bar{fill:var(--series)}
+.rail .notch{stroke:var(--ground);stroke-width:2}
+.rail .promolab{fill:var(--fg-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.06em}
+.rail figcaption{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;
+  color:var(--fg-3);margin-top:1rem;max-width:62ch;line-height:1.6}
+@media (max-width:700px){.rail{display:none}}
 
 /* Under ~560px the row wraps, and left to itself it wraps raggedly:
    two links stranded beside the wordmark, two below. So the wrap is
@@ -450,6 +476,59 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   <div class="shell">
   <p class="eyebrow"><i>02</i> / Timeline</p>
   <h2>Timeline</h2>
+
+<figure class="rail">
+  <svg viewBox="0 0 1000 278" role="img" aria-labelledby="railt raild">
+  <title id="railt">Seven years and four months, to scale</title>
+  <desc id="raild">A horizontal bar per employer on a shared month axis from July 2019 to November 2026. Bar length is tenure; a notch marks an internal promotion. The same roles are listed in full beneath this chart.</desc>
+  <line class="ax" x1="223.2" y1="26" x2="223.2" y2="264"/>
+  <text class="axlab" x="223.2" y="20">2020</text>
+  <line class="ax" x1="333.7" y1="26" x2="333.7" y2="264"/>
+  <text class="axlab" x="333.7" y="20">2021</text>
+  <line class="ax" x1="444.1" y1="26" x2="444.1" y2="264"/>
+  <text class="axlab" x="444.1" y="20">2022</text>
+  <line class="ax" x1="554.6" y1="26" x2="554.6" y2="264"/>
+  <text class="axlab" x="554.6" y="20">2023</text>
+  <line class="ax" x1="665.0" y1="26" x2="665.0" y2="264"/>
+  <text class="axlab" x="665.0" y="20">2024</text>
+  <line class="ax" x1="775.5" y1="26" x2="775.5" y2="264"/>
+  <text class="axlab" x="775.5" y="20">2025</text>
+  <line class="ax" x1="886.0" y1="26" x2="886.0" y2="264"/>
+  <text class="axlab" x="886.0" y="20">2026</text>
+  <line class="now" x1="978.0" y1="26" x2="978.0" y2="264"/>
+  <text class="axlab now-lab" x="978.0" y="20">NOW</text>
+  <text class="co" x="0" y="58">FICO</text>
+  <text class="dur" x="0" y="73">24 MONTHS</text>
+  <g><title>FICO · Jul 2019 – Jul 2021 · 24 months</title>
+  <rect class="bar" x="168.0" y="46" width="220.9" height="16" rx="3"/>
+  </g>
+  <text class="co" x="0" y="104">Paytm</text>
+  <text class="dur" x="0" y="119">13 MONTHS</text>
+  <g><title>Paytm · Jul 2021 – Aug 2022 · 13 months · promoted SSE Apr 2022</title>
+  <rect class="bar" x="388.9" y="92" width="119.7" height="16" rx="3"/>
+  </g>
+  <line class="notch" x1="471.8" y1="92" x2="471.8" y2="108"/>
+  <text class="promolab" x="476.8" y="88">SSE</text>
+  <text class="co" x="0" y="150">Goldman Sachs</text>
+  <text class="dur" x="0" y="165">29 MONTHS</text>
+  <g><title>Goldman Sachs · Aug 2022 – Jan 2025 · 29 months · promoted VP Dec 2023</title>
+  <rect class="bar" x="508.6" y="138" width="266.9" height="16" rx="3"/>
+  </g>
+  <line class="notch" x1="655.8" y1="138" x2="655.8" y2="154"/>
+  <text class="promolab" x="660.8" y="134">VP</text>
+  <text class="co" x="0" y="196">Oracle</text>
+  <text class="dur" x="0" y="211">19 MONTHS</text>
+  <g><title>Oracle · Jan 2025 – Jul 2026 · 19 months</title>
+  <rect class="bar" x="775.5" y="184" width="174.9" height="16" rx="3"/>
+  </g>
+  <text class="co" x="0" y="242">New Relic</text>
+  <text class="dur" x="0" y="257">3 MONTHS</text>
+  <g><title>New Relic · Aug 2026 – now · 3 months</title>
+  <rect class="bar" x="950.4" y="230" width="27.6" height="16" rx="3"/>
+  </g>
+  </svg>
+  <figcaption>Each bar is to scale on a shared month axis. A notch marks an internal promotion, not a change of employer.</figcaption>
+</figure>
 
   <div class="role"><div class="when"><b>Now</b>Aug 2026 –</div><div class="what">
     <h3>Senior Software Engineer</h3><p class="org">New Relic · Bengaluru</p>

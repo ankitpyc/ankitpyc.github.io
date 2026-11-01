@@ -574,9 +574,26 @@ page is the theme switch; motion stays CSS-only.
 
 Every repeating thing on this site is one of the pieces below. They are defined once, in
 the `WIDGET KIT` block of each page's stylesheet, and the four pages are generated from
-that one block so they cannot drift. **Do not invent a tenth widget before checking that
-none of these nine fits.** Two of them are defined and deliberately unused, because there
-is nothing real to put in them yet.
+that one block so they cannot drift. **Do not invent an eleventh widget before checking
+that none of these ten fits.** Two of them are defined and deliberately unused, because
+there is nothing real to put in them yet.
+
+### Rail (`figure.rail`) — the scaled timeline
+One bar per employer on a shared month axis, July 2019 to now, beside the written list
+rather than instead of it. The list gives five very different tenures the same visual
+weight; the rail shows the proportions, including the ones that do not flatter — a
+13-month stay is as visible as a 16-month promotion.
+- **One series, so no legend and no categorical palette.** The bars wear `--series`, a
+  chart ink kept off the accent, because `signal` only ever means link or number.
+- **A promotion is a 2px notch in `--ground` cut through the bar**, with a mono label
+  above it — the internal move stays one bar rather than becoming two employers. Identity
+  is never carried by colour alone here.
+- **Axis:** 1px `rule` gridlines at each January with mono `fg-3` year labels, and a
+  dashed `now` edge at the right. Bars `rx: 3`, 16px tall, 46px row pitch.
+- **Hover** is a native `<title>` per bar (employer, range, months, promotion) — no JS.
+  `role="img"` with `<title>`/`<desc>`, and the written list below is the text equivalent.
+- **Under 700px it stands down** (`display: none`) and the list does the whole job. A
+  horizontal time axis on a phone is a worse chart than no chart.
 
 ### 1. Findings readout strip — `.readouts` > `.readout`
 The findings as instrument readings, sitting directly under the cover on the landing page
