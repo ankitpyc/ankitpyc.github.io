@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-01T02:54:40.229Z",
+        "reason": "Kleos: detector cannot evaluate clamp() or max(20px,env(safe-area-inset-left)), so it reads the band padding and the .shell gutter as 0. Reproduced with minimal cases (clamp vs plain length; env gutter vs literal) - swapping either for a literal clears it. Real insets are 3-7.5rem vertical and >=20px horizontal."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "about.html"
+        ],
+        "createdAt": "2026-11-01T02:54:40.242Z",
+        "reason": "Kleos: detector cannot evaluate clamp() or max(20px,env(safe-area-inset-left)), so it reads the band padding and the .shell gutter as 0. Reproduced with minimal cases (clamp vs plain length; env gutter vs literal) - swapping either for a literal clears it. Real insets are 3-7.5rem vertical and >=20px horizontal."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "writing.html"
+        ],
+        "createdAt": "2026-11-01T02:54:40.256Z",
+        "reason": "Kleos: detector cannot evaluate clamp() or max(20px,env(safe-area-inset-left)), so it reads the band padding and the .shell gutter as 0. Reproduced with minimal cases (clamp vs plain length; env gutter vs literal) - swapping either for a literal clears it. Real insets are 3-7.5rem vertical and >=20px horizontal."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "findings.html"
+        ],
+        "createdAt": "2026-11-01T02:54:40.269Z",
+        "reason": "Kleos: detector cannot evaluate clamp() or max(20px,env(safe-area-inset-left)), so it reads the band padding and the .shell gutter as 0. Reproduced with minimal cases (clamp vs plain length; env gutter vs literal) - swapping either for a literal clears it. Real insets are 3-7.5rem vertical and >=20px horizontal."
+      }
+    ]
+  }
+}
