@@ -226,8 +226,18 @@ already the correct state; with JS absent and motion reduced, the page is comple
 
 **Key Characteristics:**
 - Ink-navy ground by default, with a light theme that is a redefinition of the same
-  fourteen tokens under `prefers-color-scheme: light` — `color-scheme: light dark`, no
-  toggle, no JS, and no `dark:` variants anywhere.
+  tokens — `color-scheme: light dark`, and no `dark:` variants anywhere. Everything that
+  differs between the two is a token, including the values that are not colours: the nav
+  wash (`--nav-bg`, `--nav-blur`), the cover scrim stops (`--scrim-*`), the mesh weight
+  (`--mesh-w`), the per-band `--fg-3`, and the inverted band's link colour
+  (`--plate-link`). A component rule never knows which theme it is in.
+- **The one script on the site** is the theme switch: ~10 inline lines, no dependencies.
+  A pre-paint snippet in `<head>` resolves "follow the OS" to an explicit `data-theme`
+  so there is no flash of the wrong theme, and a button in the nav flips it and stores
+  the choice in `localStorage`. With JS off, `@media (prefers-color-scheme: light)` on
+  `:root:not([data-theme=dark])` does the whole job and the button is simply absent of
+  effect. All three paths are verified by rendering: OS light with no JS, `data-theme`
+  forced against the OS in both directions.
 - Three-face type system: Archivo variable (display), Source Serif 4 (prose), IBM Plex Mono (data/labels).
 - 1px hairlines as the only structural device; zero cards, zero shadows on content, radius 0.
 - A single repeating `13rem / 1fr` two-column row carries four different sections.

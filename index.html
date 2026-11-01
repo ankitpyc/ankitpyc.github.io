@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>(function(){var r=document.documentElement,s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+r.setAttribute('data-theme',s==='light'||s==='dark'?s:
+  (window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'))})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ankit Mishra — Software Engineer | devkernels</title>
 <meta name="description" content="Senior Software Engineer at New Relic. Distributed systems, real-time CDC pipelines and fault-tolerant services. Seven years at Oracle, Goldman Sachs, Paytm and FICO.">
@@ -32,38 +36,70 @@
   color-scheme:light dark;
 }
 
-/* ── light theme ──────────────────────────────────────────────────────
-   The whole page derives from the fourteen tokens plus two per-band
-   overrides, so light is a re-definition of those and nothing else.
-   .plate keeps working for free: its background is var(--fg), so the
-   one inverted band inverts with the theme and stays the punctuation.
-   The accent moves to a dark teal — #3FD0C9 is 1.9:1 on white and
-   would stop meaning "link" the moment it was unreadable. */
-@media (prefers-color-scheme: light){
-  :root{
-    --ground:#F6F9FA;     --ground-2:#E7EDF0;    --ground-3:#DAE3E8;
-    --fg:#0C1317;         --fg-2:#3B4A52;        --fg-3:#64747D;
-    --rule:#D6DEE2;       --rule-2:#C1CBD1;
-    --signal:#0B7571;     --signal-dim:#064F4C;  --event:#A4620A;
-    --focus:#0B7571;
-    --mesh:#9DB2BD;       --mesh-node:#6D8795;
-  }
-  /* The scrim is a wash of --ground over the mesh. At these lightnesses
-     it erased the hero instead of making it readable, so it keeps the
-     left-hand text column and lets go of the rest much earlier. */
-  .cover::after{background:
-    linear-gradient(100deg,var(--ground) 0%,
-      color-mix(in srgb,var(--ground) 82%,transparent) 22%,
-      color-mix(in srgb,var(--ground) 30%,transparent) 54%,
-      transparent 82%),
-    radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent 66%)}
-  .band.b2{--fg-3:#5A6A73}
-  .band.b3{--fg-3:#53636C}
-  /* inside the inverted band the ground is dark, so the hover colour
-     has to climb rather than drop. */
-  .plate a:hover{color:var(--signal);text-decoration-color:var(--signal)}
-  .plate :focus-visible{outline-color:var(--signal)}
-  .plate ::selection{background:var(--signal);color:var(--ground)}
+/* ── themes ───────────────────────────────────────────────────────────
+   Two themes, one build. Everything that differs between them is a
+   token — including the values that are not colours: the nav wash, the
+   scrim stops, the mesh weight — so no component rule has to know which
+   theme it is in. The light values are written once as --l-*; the two
+   blocks below only map them.
+
+   The script in <head> resolves "follow the OS" to an explicit
+   data-theme before the first paint, which is what lets the toggle
+   exist without a flash of the wrong theme. With JS off the media
+   query does the whole job by itself. */
+:root{
+  --nav-bg:color-mix(in srgb,var(--ground) 86%,transparent);
+  --nav-blur:blur(14px);
+  --scrim-a:92%;  --scrim-b:46%;  --scrim-c:6%;
+  --scrim-stop:78%; --scrim-r:70%;
+  --mesh-w:1.15;
+  --fg-3-b2:#798A94;   --fg-3-b3:#93A2AA;
+  --plate-link:var(--signal-dim);  --plate-sel-fg:var(--fg);
+
+  --l-ground:#F6F9FA;  --l-ground-2:#E7EDF0;  --l-ground-3:#DAE3E8;
+  --l-fg:#0C1317;      --l-fg-2:#3B4A52;      --l-fg-3:#64747D;
+  --l-rule:#D6DEE2;    --l-rule-2:#C1CBD1;
+  --l-signal:#0B7571;  --l-signal-dim:#064F4C; --l-event:#A4620A;
+  --l-mesh:#8EA6B3;    --l-mesh-node:#56707E;
+  --l-fg-3-b2:#5A6A73; --l-fg-3-b3:#53636C;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]){
+  color-scheme:light;
+  --ground:var(--l-ground); --ground-2:var(--l-ground-2); --ground-3:var(--l-ground-3);
+  --fg:var(--l-fg); --fg-2:var(--l-fg-2); --fg-3:var(--l-fg-3);
+  --rule:var(--l-rule); --rule-2:var(--l-rule-2);
+  --signal:var(--l-signal); --signal-dim:var(--l-signal-dim); --event:var(--l-event);
+  --focus:var(--l-signal); --mesh:var(--l-mesh); --mesh-node:var(--l-mesh-node);
+  --fg-3-b2:var(--l-fg-3-b2); --fg-3-b3:var(--l-fg-3-b3);
+  /* The nav stops being a wash: over a band edge a translucent near-white
+     bar smears the rule underneath it instead of sitting on top of it. */
+  --nav-bg:var(--l-ground); --nav-blur:none;
+  /* The scrim is --ground over the mesh. At these lightnesses the dark
+     recipe erased the hero, so it holds the text column and lets go. */
+  --scrim-a:86%; --scrim-b:42%; --scrim-c:0%; --scrim-stop:84%; --scrim-r:68%;
+  /* Dark hairlines on a light ground read thinner than the reverse. */
+  --mesh-w:1.3;
+  /* The inverted band is the dark one now, so its link colour climbs. */
+  --plate-link:var(--l-signal); --plate-sel-fg:var(--l-ground);
+}}
+:root[data-theme=light]{
+  color-scheme:light;
+  --ground:var(--l-ground); --ground-2:var(--l-ground-2); --ground-3:var(--l-ground-3);
+  --fg:var(--l-fg); --fg-2:var(--l-fg-2); --fg-3:var(--l-fg-3);
+  --rule:var(--l-rule); --rule-2:var(--l-rule-2);
+  --signal:var(--l-signal); --signal-dim:var(--l-signal-dim); --event:var(--l-event);
+  --focus:var(--l-signal); --mesh:var(--l-mesh); --mesh-node:var(--l-mesh-node);
+  --fg-3-b2:var(--l-fg-3-b2); --fg-3-b3:var(--l-fg-3-b3);
+  /* The nav stops being a wash: over a band edge a translucent near-white
+     bar smears the rule underneath it instead of sitting on top of it. */
+  --nav-bg:var(--l-ground); --nav-blur:none;
+  /* The scrim is --ground over the mesh. At these lightnesses the dark
+     recipe erased the hero, so it holds the text column and lets go. */
+  --scrim-a:86%; --scrim-b:42%; --scrim-c:0%; --scrim-stop:84%; --scrim-r:68%;
+  /* Dark hairlines on a light ground read thinner than the reverse. */
+  --mesh-w:1.3;
+  /* The inverted band is the dark one now, so its link colour climbs. */
+  --plate-link:var(--l-signal); --plate-sel-fg:var(--l-ground);
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -89,8 +125,8 @@ a:hover{color:var(--signal);text-decoration-color:var(--signal)}
 
 /* ── nav ─────────────────────────────────────────────────────────────── */
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
-  background:color-mix(in srgb,var(--ground) 86%,transparent);
-  backdrop-filter:blur(14px);border-bottom:1px solid var(--rule)}
+  background:var(--nav-bg);
+  backdrop-filter:var(--nav-blur);border-bottom:1px solid var(--rule)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
   background:var(--ground);z-index:21}
 .navrow{display:flex;align-items:baseline;gap:1.5rem;padding-top:.9rem;padding-bottom:.9rem;flex-wrap:wrap}
@@ -116,6 +152,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* Where you are, said with luminance rather than with the accent. */
 .navrow a[aria-current=page]{color:var(--fg)}
 
+/* ── theme switch ─────────────────────────────────────────────────────
+   The one piece of script on the site. It is here because following the
+   OS is not always what the reader wants, and a CSS-only switch cannot
+   remember a choice. */
+.themer{appearance:none;background:none;border:0;padding:.2rem;margin-left:-.35rem;
+  align-self:center;line-height:0;color:var(--fg-3);cursor:pointer;
+  transition:color .18s cubic-bezier(.16,1,.3,1)}
+.themer:hover{color:var(--signal)}
+.themer svg{display:block}
+
+
 /* The mark animates from an already-correct resting state, so switching it
    off leaves the page intact rather than empty. */
 @media (prefers-reduced-motion:reduce){
@@ -131,16 +178,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cover::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:
     linear-gradient(100deg,var(--ground) 0%,
-      color-mix(in srgb,var(--ground) 92%,transparent) 20%,
-      color-mix(in srgb,var(--ground) 46%,transparent) 48%,
-      color-mix(in srgb,var(--ground) 6%,transparent) 78%),
-    radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent 70%)}
+      color-mix(in srgb,var(--ground) var(--scrim-a),transparent) 20%,
+      color-mix(in srgb,var(--ground) var(--scrim-b),transparent) 48%,
+      color-mix(in srgb,var(--ground) var(--scrim-c),transparent) var(--scrim-stop)),
+    radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent var(--scrim-r))}
 .cover-inner{position:relative;padding-top:clamp(4rem,9vw,7rem);padding-bottom:clamp(4rem,9vw,7rem);width:100%}
 .mesh-edges path:nth-child(4n+1){stroke:var(--signal-dim);stroke-dasharray:3 13;
   animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both,
             current 2.8s 2.2s linear infinite}
 @keyframes current{to{stroke-dashoffset:-32}}
-.mesh-edges path{fill:none;stroke:var(--mesh);stroke-width:1.15;
+.mesh-edges path{fill:none;stroke:var(--mesh);stroke-width:var(--mesh-w);
   stroke-dasharray:1 0;animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both}
 .mesh-nodes circle{fill:var(--ground-3);stroke:var(--mesh-node);stroke-width:1.4;
   animation:settle .9s cubic-bezier(.16,1,.3,1) both}
@@ -220,8 +267,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* Each band above the ground lifts the tertiary grey far enough to keep
    4.5:1 on its own background: #6F818C holds 4.3:1 on #121A20 and 4.0:1 on
    #18232A, and a row label is body-sized text, not decoration. */
-.band.b2{background:var(--ground-2);--fg-3:#798A94}
-.band.b3{background:var(--ground-3);--fg-3:#93A2AA}
+.band.b2{background:var(--ground-2);--fg-3:var(--fg-3-b2)}
+.band.b3{background:var(--ground-3);--fg-3:var(--fg-3-b3)}
 .band.tight{padding-top:clamp(2.25rem,4vw,3.25rem);padding-bottom:clamp(2.25rem,4vw,3.25rem)}
 .band.loose{padding-top:clamp(3.5rem,7vw,6rem);padding-bottom:clamp(3.5rem,7vw,6rem)}
 .band.tall{padding-top:clamp(4rem,8vw,7rem);padding-bottom:clamp(4rem,8vw,7rem)}
@@ -251,9 +298,9 @@ h2{font-family:var(--display);font-weight:700;font-stretch:108%;
 .plate .mailto{color:var(--ground)}
 .plate a{color:var(--ground);
   text-decoration-color:color-mix(in srgb,var(--ground) 35%,var(--fg))}
-.plate a:hover{color:var(--signal-dim);text-decoration-color:var(--signal-dim)}
-.plate :focus-visible{outline-color:var(--signal-dim)}
-.plate ::selection{background:var(--signal-dim);color:var(--fg)}
+.plate a:hover{color:var(--plate-link);text-decoration-color:var(--plate-link)}
+.plate :focus-visible{outline-color:var(--plate-link)}
+.plate ::selection{background:var(--plate-link);color:var(--plate-sel-fg)}
 
 /* ── spec plate: what the numbers were measured on ───────────────────── */
 .specplate{display:flex;justify-content:space-between;gap:1rem 2rem;flex-wrap:wrap;
@@ -413,6 +460,12 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   <a href="/writing.html">Writing</a>
   <a href="/about.html">About</a>
   <a href="https://github.com/ankitpyc">GitHub ↗</a>
+  <button class="themer" type="button" aria-label="Switch to the light theme">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M8 1.7a6.3 6.3 0 0 0 0 12.6z" fill="currentColor"/>
+    </svg>
+  </button>
 </div></nav>
 
 <header class="cover">
@@ -692,5 +745,15 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   <span class="stamp">Last updated 1 Nov 2026</span>
 </footer></div>
 
+<script>(function(){var r=document.documentElement,b=document.querySelector('.themer');
+if(!b)return;
+function label(){b.setAttribute('aria-label','Switch to the '+
+  (r.getAttribute('data-theme')==='light'?'dark':'light')+' theme')}
+label();
+b.addEventListener('click',function(){
+  var n=r.getAttribute('data-theme')==='light'?'dark':'light';
+  r.setAttribute('data-theme',n);
+  try{localStorage.setItem('theme',n)}catch(e){}
+  label()})})();</script>
 </body>
 </html>
