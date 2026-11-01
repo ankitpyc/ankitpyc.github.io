@@ -546,15 +546,24 @@ One motion vocabulary, one easing, one hard rule.
   `settle` fades and lifts nodes from `opacity .2` / `translateY(8px)` over `.9s`.
 - **Loops:** `flow` drives each pip `0% → 100%` along its `offset-path` over `2.03–3.39s`
   with staggered `.71s–3.75s` delays; `current` pulls `stroke-dashoffset` to `-32` on every
-  fourth edge; `pulse` breathes live nodes between `.75` and `1` opacity over `3.4s`.
+  fourth edge and, in reverse and faster, on every twelfth, so charge crosses the graph
+  instead of all running one way; `pulse` breathes live nodes between `.75` and `1` opacity
+  over `3.4s`; `arc` rests the charged edges at `.62` opacity and takes them briefly to `1`
+  twice per cycle, over `9s` and `11s` with different delays.
+- **The charge.** Charged edges take `--charge` and `--charge-glow`: on dark, `signal`
+  with a 5px glow at 50% — the unlit graph is near-black on near-black and without this
+  the hero reads as an empty cover. On light, the darker teal and **no glow**, because a
+  glowing hairline on paper reads as a printing fault. The flicker is irregular on
+  purpose; a blink at a fixed interval reads as a status light rather than as something
+  travelling the graph.
 
 **The Correct-At-Rest Rule.** Every animation runs *from* an already-correct resting state,
 never *to* one. All entrance animations use `animation-fill-mode: both` on properties whose
 static values are the finished values, so the page is complete with no JS, with animations
 disabled, and at frame zero. `prefers-reduced-motion: reduce` cancels the mark orbit, the
-mesh draw, the edge current, the node settle and the node pulse, and parks the pips at
-`offset-distance: 58%` so the topology still reads as populated. There is no JavaScript in
-this page at all; any future motion must keep that property.
+mesh draw, the edge current, the arc, the node settle and the node pulse, pins the charged
+edges back to full opacity, and parks the pips at `offset-distance: 58%` so the topology still reads as populated. The only JavaScript on the
+page is the theme switch; motion stays CSS-only.
 
 ## Widget kit
 

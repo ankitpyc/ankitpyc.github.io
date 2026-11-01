@@ -26,7 +26,7 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --rule:#22303A;        --rule-2:#2E414D;
   --signal:#3FD0C9;      --signal-dim:#1B6B68;  --event:#F2A93B;
   --focus:#7FE3DE;
-  --mesh:#35505E;        --mesh-node:#4A6A7A;
+  --mesh:#3E5F70;        --mesh-node:#54788A;
   --display:"Archivo",system-ui,sans-serif;
   --prose:"Source Serif 4",Georgia,serif;
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -53,6 +53,8 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --scrim-a:92%;  --scrim-b:46%;  --scrim-c:6%;
   --scrim-stop:78%; --scrim-r:70%;
   --mesh-w:1.15;
+  --charge:var(--signal);
+  --charge-glow:drop-shadow(0 0 5px color-mix(in srgb,var(--signal) 50%,transparent));
   --fg-3-b2:#798A94;   --fg-3-b3:#93A2AA;
   --plate-link:var(--signal-dim);  --plate-sel-fg:var(--fg);
 
@@ -79,6 +81,9 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --scrim-a:86%; --scrim-b:42%; --scrim-c:0%; --scrim-stop:84%; --scrim-r:68%;
   /* Dark hairlines on a light ground read thinner than the reverse. */
   --mesh-w:1.3;
+  /* On paper a glowing edge reads as a printing fault, so the charge is
+     just the darker teal and carries no light with it. */
+  --charge:var(--l-signal-dim); --charge-glow:none;
   /* The inverted band is the dark one now, so its link colour climbs. */
   --plate-link:var(--l-signal); --plate-sel-fg:var(--l-ground);
 }}
@@ -98,6 +103,9 @@ r.setAttribute('data-theme',s==='light'||s==='dark'?s:
   --scrim-a:86%; --scrim-b:42%; --scrim-c:0%; --scrim-stop:84%; --scrim-r:68%;
   /* Dark hairlines on a light ground read thinner than the reverse. */
   --mesh-w:1.3;
+  /* On paper a glowing edge reads as a printing fault, so the charge is
+     just the darker teal and carries no light with it. */
+  --charge:var(--l-signal-dim); --charge-glow:none;
   /* The inverted band is the dark one now, so its link colour climbs. */
   --plate-link:var(--l-signal); --plate-sel-fg:var(--l-ground);
 }
@@ -200,10 +208,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       color-mix(in srgb,var(--ground) var(--scrim-c),transparent) var(--scrim-stop)),
     radial-gradient(62% 58% at 6% 44%,var(--ground) 0%,transparent var(--scrim-r))}
 .cover-inner{position:relative;padding-top:clamp(4rem,9vw,7rem);padding-bottom:clamp(4rem,9vw,7rem);width:100%}
-.mesh-edges path:nth-child(4n+1){stroke:var(--signal-dim);stroke-dasharray:3 13;
+.mesh-edges path:nth-child(4n+1){stroke:var(--charge);stroke-dasharray:3 13;
+  filter:var(--charge-glow);
   animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both,
-            current 2.8s 2.2s linear infinite}
+            current 2.8s 2.2s linear infinite,
+            arc 9s 2.6s ease-in-out infinite}
+/* A second, slower set running the other way, so the graph has charge
+   crossing it rather than one direction of traffic. */
+.mesh-edges path:nth-child(12n+7){stroke:var(--charge);stroke-dasharray:2 11;
+  filter:var(--charge-glow);
+  animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both,
+            current 2.1s 2.4s linear infinite reverse,
+            arc 11s 5.4s ease-in-out infinite}
 @keyframes current{to{stroke-dashoffset:-32}}
+/* The arc rests at a readable level and only briefly goes bright, twice,
+   the way a discharge does. A blink at a fixed interval would read as a
+   status light; this reads as something travelling the graph. */
+@keyframes arc{0%,76%,100%{opacity:.62}81%{opacity:1}84%{opacity:.74}88%{opacity:1}92%{opacity:.8}}
 .mesh-edges path{fill:none;stroke:var(--mesh);stroke-width:var(--mesh-w);
   stroke-dasharray:1 0;animation:draw-mesh 2.2s cubic-bezier(.16,1,.3,1) both}
 .mesh-nodes circle{fill:var(--ground-3);stroke:var(--mesh-node);stroke-width:1.4;
@@ -266,7 +287,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
    switching it all off leaves the page intact rather than empty. */
 @media (prefers-reduced-motion:reduce){
   .mark .orbit,.mesh-edges path,.mesh-edges path:nth-child(4n+1),
-  .mesh-nodes circle,.mesh-nodes circle.hot{animation:none}
+  .mesh-edges path:nth-child(12n+7),
+  .mesh-nodes circle,.mesh-nodes circle.hot{animation:none;opacity:1}
   .mp{animation:none;offset-distance:58%}
 }
 
