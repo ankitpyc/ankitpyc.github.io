@@ -491,15 +491,20 @@ Quiet, sticky, hairline-bottomed.
 
 ### Cover (`header.cover` > `.cover-bg`, `::after` scrim, `.shell.cover-inner.hero`, `.coverfoot`)
 The signature component: a full-viewport instrument readout.
-- **Frame:** `min-height: clamp(32rem, 86vh, 54rem)`, `display: flex; align-items: center`,
-  `isolation: isolate; overflow: hidden`, 1px `rule` bottom border.
+- **Frame:** `min-height: clamp(28rem, 78vh, 46rem)`, `display: flex;
+  align-items: flex-start`, `isolation: isolate; overflow: hidden`, 1px `rule` bottom
+  border. **Top-aligned, not centred.** Centring put a band of empty ground under the nav
+  and started both the headline and the mesh halfway down the screen; the cover has to
+  begin where the page begins.
 - **`.cover-bg`:** absolutely positioned at `z-index: -2`, holding a `1600×900`
-  `preserveAspectRatio="xMidYMid slice"` SVG with three groups — `.mesh-edges` (37 bezier
+  `preserveAspectRatio="xMidYMin slice"` SVG — anchored to the **top**, for the same
+  reason as the frame: `YMid` centred the drawing and left the first screenful bare with three groups — `.mesh-edges` (37 bezier
   paths), `.mesh-nodes` (13 circles, five flagged `.hot`), `.mesh-pips` (20 `.mp` circles
   each bound to one `offset-path`).
 - **Scrim:** `::after` at `z-index: -1`, `pointer-events: none`, the two-layer gradient
   described in Elevation.
-- **`.cover-inner`:** `padding-block: clamp(4rem, 9vw, 7rem)`, full width, holds the
+- **`.cover-inner`:** `padding-top: clamp(2.5rem, 5.5vw, 4.25rem)`,
+  `padding-bottom: clamp(3rem, 7vw, 5.5rem)`, full width, holds the
   display `h1`, the `.lede`, and a `.herolinks` row.
 - **`.coverfoot`:** absolutely pinned to the bottom edge, 1px `rule` top border,
   `ground 72%` + `blur(6px)`, inner `.shell` as a `space-between` flex row of two mono
