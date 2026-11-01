@@ -162,6 +162,23 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .themer:hover{color:var(--signal)}
 .themer svg{display:block}
 
+/* ── icons ────────────────────────────────────────────────────────────
+   Drawn from the same hand as the nav mark: 16px grid, 1.4px stroke,
+   currentColor, no fills except where a filled dot means "a reading was
+   taken". They appear in exactly two places, because an icon that does
+   not disambiguate anything is decoration. On the status pills they are
+   the second channel — the three states must not be carried by a word
+   alone. In the contact row they tell an action (mail) from a
+   destination (code, profile) at a glance. No brand logos anywhere:
+   a GitHub mark would be the one piece of someone else's design system
+   on the page. */
+.ico{width:1em;height:1em;flex:none;vertical-align:-.14em;margin-right:.45em;
+  fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.ico .solid{fill:currentColor;stroke:none}
+.ico.st{width:1.25em;height:1.25em;margin-right:.5em;opacity:.95;vertical-align:-.26em;stroke-width:1.5}
+.herolinks a .ico{opacity:.62;transition:opacity .18s cubic-bezier(.16,1,.3,1)}
+.herolinks a:hover .ico{opacity:1}
+
 /* ── correction row, and the empty state it currently wears ───────────
    A status pill says a row was wrong; this says what it said before,
    when, and what changed it. Nothing has been corrected yet, so the
@@ -396,6 +413,25 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
 </style>
 </head>
 <body>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <symbol id="i-measured" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="4.5"/><circle class="solid" cx="8" cy="8" r="1.5"/>
+      <path d="M8 1v2.1M8 12.9V15M1 8h2.1M12.9 8H15"/></symbol>
+    <symbol id="i-preliminary" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="5.3"/></symbol>
+    <symbol id="i-retracted" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="5.3"/><path d="m4.2 11.8 7.6-7.6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 16 16">
+      <rect x="1.7" y="4.2" width="12.6" height="7.6" rx="1"/>
+      <path d="m2 4.8 6 4.1 6-4.1"/></symbol>
+    <symbol id="i-code" viewBox="0 0 16 16">
+      <path d="m5.6 4.9-3.2 3.1 3.2 3.1M10.4 4.9l3.2 3.1-3.2 3.1"/></symbol>
+    <symbol id="i-profile" viewBox="0 0 16 16">
+      <circle cx="8" cy="6" r="2.4"/>
+      <path d="M3.4 13.4c.9-2.4 2.6-3.7 4.6-3.7s3.7 1.3 4.6 3.7"/></symbol>
+  </defs>
+</svg>
 
 <nav><div class="shell navrow">
   <a class="wordmark" href="/" aria-label="devkernels — home">
@@ -442,7 +478,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
       still ship a search system that feels broken, because recall@k measures fidelity to
       brute force over your own embedding space, not whether the right answer is in that
       space at all.</p>
-      <p class="srcline"><span class="status preliminary">Preliminary</span>
+      <p class="srcline"><svg class="ico st" aria-hidden="true"><use href="#i-preliminary"/></svg><span class="status preliminary">Preliminary</span>
         <a href="https://ankitmishra471.substack.com/p/after-hnsw-three-failures-you-wont">Argued 12 May 2026 ↗</a></p>
     </article>
     <article class="readout">
@@ -451,7 +487,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
       stops being the hard part. Shard semantically and the shard router becomes a second
       layer of approximate search: it fails silently, and it accounts for most of the
       recall loss.</p>
-      <p class="srcline"><span class="status preliminary">Preliminary</span>
+      <p class="srcline"><svg class="ico st" aria-hidden="true"><use href="#i-preliminary"/></svg><span class="status preliminary">Preliminary</span>
         <a href="https://ankitmishra471.substack.com/p/hnsw-is-the-easy-part">Argued 5 May 2026 ↗</a></p>
     </article>
   </div>
@@ -464,20 +500,20 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
   <h2>What each status means</h2>
 
   <div class="find">
-    <div class="meta"><span class="status measured">Measured</span></div>
+    <div class="meta"><svg class="ico st" aria-hidden="true"><use href="#i-measured"/></svg><span class="status measured">Measured</span></div>
     <div><p class="claim">I ran it on the box named above, and the raw rows, the scripts
     and the chart regenerated from them are published alongside the claim.</p></div>
   </div>
 
   <div class="find">
-    <div class="meta"><span class="status preliminary">Preliminary</span></div>
+    <div class="meta"><svg class="ico st" aria-hidden="true"><use href="#i-preliminary"/></svg><span class="status preliminary">Preliminary</span></div>
     <div><p class="claim">I argued it in writing and have not tested it. Both rows in the
     ledger are preliminary. Nothing here is measured yet, and a page that promised numbers
     it did not have would be the opposite of the point.</p></div>
   </div>
 
   <div class="find">
-    <div class="meta"><span class="status retracted">Retracted</span></div>
+    <div class="meta"><svg class="ico st" aria-hidden="true"><use href="#i-retracted"/></svg><span class="status retracted">Retracted</span></div>
     <div><p class="claim">I was wrong, and the corrected number is in the row. Retractions
     stay on the page. A number I corrected is worth more to you than a number I quietly
     deleted.</p></div>
@@ -493,7 +529,7 @@ footer{border-top:1px solid var(--rule);padding-top:1.75rem;padding-bottom:1.75r
     <b>None yet</b>
     <p>The first time a number on this page changes, the old one stays here with the date
     it was published, what replaced it, and what found the error. Rows are corrected in
-    place and marked <span class="status retracted">Retracted</span>; nothing is quietly
+    place and marked <svg class="ico st" aria-hidden="true"><use href="#i-retracted"/></svg><span class="status retracted">Retracted</span>; nothing is quietly
     deleted. An empty section here is a commitment, not an achievement — the ledger is
     two rows old.</p>
   </div>

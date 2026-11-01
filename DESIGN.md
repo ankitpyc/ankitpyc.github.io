@@ -489,6 +489,27 @@ Quiet, sticky, hairline-bottomed.
 - `.endmark` repeats the mark at `1.1rem`, `opacity .5`, `vertical-align: -.2em`, with its
   orbit animation disabled — a quieter sign-off in the footer.
 
+### Icons (`svg.ico`, `<symbol>` sheet)
+Six glyphs, defined once per page in a hidden `<symbol>` sheet after `<body>` and used
+with `<use href="#i-…">`. Drawn from the same hand as the nav mark: 16px grid, 1.4px
+stroke, `currentColor`, no fills — except the dot inside `i-measured`, where a filled
+centre means *a reading was taken*.
+- **Where they are allowed:** the status pills and the contact row. Nowhere else.
+  **An icon that does not disambiguate anything is decoration**, and this build does not
+  carry decoration.
+- **On the status pills** they are the second channel: `i-measured` a crosshair with a
+  filled centre, `i-preliminary` an empty circle, `i-retracted` a circle with a slash.
+  Three states must not rest on a word alone. The glyph sits *outside* the `.status`
+  span so the pill's underline stays under the word.
+- **In the contact row** they separate an action from a destination: `i-mail` an
+  envelope, `i-code` a pair of chevrons, `i-profile` a head and shoulders. They sit at
+  `opacity: .62` and come up on hover.
+- **No brand logos, ever.** A GitHub or LinkedIn mark would be the one piece of someone
+  else's design system on the page, and at this stroke weight it would also be the
+  heaviest thing in the row.
+- Dashes do not survive at 10–12px: the first `i-preliminary` used a dashed circle and
+  rendered as a smudge. Solid geometry only at this size.
+
 ### Cover (`header.cover` > `.cover-bg`, `::after` scrim, `.shell.cover-inner.hero`, `.coverfoot`)
 The signature component: a full-viewport instrument readout.
 - **Frame:** `min-height: clamp(28rem, 78vh, 46rem)`, `display: flex;
